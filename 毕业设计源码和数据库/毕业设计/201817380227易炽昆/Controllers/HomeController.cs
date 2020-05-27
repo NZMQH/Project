@@ -19,7 +19,7 @@ namespace _201817380227易炽昆.Controllers
 
             return View();
         }
-
+         
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
