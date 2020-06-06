@@ -7,7 +7,7 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/Main.css" rel="stylesheet" />
     <link href="~/Content/buju.css" rel="stylesheet" />
-    <style>
+    <style type="text/css">
         * {
             margin: 0px;
             padding: 0px;
@@ -15,8 +15,8 @@
             list-style: none;
         }
     </style>
-    <script>
-
+    <script type="text/javascript">
+        
     </script>
 </head>
 <body>
@@ -43,7 +43,7 @@
     <div id="body">
         <div class="grid">
             @* 左侧导航 *@
-            <div style="width:250px;height:875px;background-color:#d9edf7">
+            <div style="width:250px;height:875px;background-color:#d9edf7;overflow:auto;">
                 <div class="panel-group" id="accordion" style="width:250px;">
                     <div class="panel panel-info">
                         <a data-toggle="collapse" style="display:block;text-align:center;" class="panel-heading" data-parent="#accordion" href="#collapseOne">
@@ -52,17 +52,17 @@
                         </a>
                         <div id="collapseOne" style="text-align:center;" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <a href="#"><span class="glyphicon glyphicon-search"></span>&nbsp;查询客户信息</a>
+                                <a href="#"><span class="glyphicon glyphicon-search"></span>&nbsp;客户信息管理</a>
                             </div>
-                            <div class="panel-body">
-                                <a href="#"><span class="glyphicon glyphicon-plus"></span>&nbsp;添加客户信息</a>
-                            </div>
-                            <div class="panel-body">
-                                <a href="#"><span class="glyphicon glyphicon-edit"></span>&nbsp;修改客户信息</a>
-                            </div>
-                            <div class="panel-body">
-                                <a href="#"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除客户信息</a>
-                            </div>
+                            @*<div class="panel-body">
+                        <a href="#"><span class="glyphicon glyphicon-plus"></span>&nbsp;添加客户信息</a>
+                    </div>
+                    <div class="panel-body">
+                        <a href="#"><span class="glyphicon glyphicon-edit"></span>&nbsp;修改客户信息</a>
+                    </div>
+                    <div class="panel-body">
+                        <a href="#"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除客户信息</a>
+                    </div>*@
                         </div>
                     </div>
                 </div>
@@ -74,16 +74,13 @@
                         </a>
                         <div id="collapseTwo" style="text-align:center;" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <a href="#"><span class="glyphicon glyphicon-search"></span>&nbsp;查询出租房信息</a>
+                                <a href="#"><span class="glyphicon glyphicon-search"></span>&nbsp;出租房信息管理</a>
                             </div>
                             <div class="panel-body">
-                                <a href="#"><span class="glyphicon glyphicon-plus"></span>&nbsp;添加出租房信息</a>
+                                <a href="#"><span class="glyphicon glyphicon-trash"></span>&nbsp;单人租房管理</a>
                             </div>
                             <div class="panel-body">
-                                <a href="#"><span class="glyphicon glyphicon-edit"></span>&nbsp;修改出租房信息</a>
-                            </div>
-                            <div class="panel-body">
-                                <a href="#"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除出租房信息</a>
+                                <a href="#"><span class="glyphicon glyphicon-trash"></span>&nbsp;合租管理</a>
                             </div>
                         </div>
                     </div>
@@ -91,15 +88,31 @@
                 <div class="panel-group" id="accordion" style="width:250px;">
                     <div class="panel panel-info">
                         <a data-toggle="collapse" style="display:block;text-align:center;" class="panel-heading" data-parent="#accordion" href="#collapseThree">
-                            <span class="glyphicon glyphicon-book"></span><span style="font-size:18px;">456456</span>
+                            <span class="glyphicon glyphicon-book"></span><span style="font-size:18px;">&nbsp;出售房信息</span>
                             <span style="float:right;font-weight:bold;" class="glyphicon glyphicon-chevron-right"></span>
                         </a>
                         <div id="collapseThree" style="text-align:center;" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <a href="#"><span class="glyphicon glyphicon-edit"></span>46546</a>
+                                <a href="#"><span class="glyphicon glyphicon-search"></span>&nbsp;出售房信息管理</a>
                             </div>
                             <div class="panel-body">
-                                <a href="#"><span class="glyphicon glyphicon-plus"></span>46564</a>
+                                <a href="#"><span class="glyphicon glyphicon-plus"></span>&nbsp;客户-房屋管理</a>
+                            </div>
+                            <div class="panel-body">
+                                <a href="#"><span class="glyphicon glyphicon-edit"></span>&nbsp;客户-分期管理</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-group" id="accordion" style="width:250px;">
+                    <div class="panel panel-info">
+                        <a data-toggle="collapse" style="display:block;text-align:center;" class="panel-heading" data-parent="#accordion" href="#collapseFour">
+                            <span class="glyphicon glyphicon-book"></span><span style="font-size:18px;">&nbsp;管理员信息</span>
+                            <span style="float:right;font-weight:bold;" class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                        <div id="collapseFour" style="text-align:center;" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <a href="#"><span class="glyphicon glyphicon-search"></span>&nbsp;查询管理员信息</a>
                             </div>
                         </div>
                     </div>
