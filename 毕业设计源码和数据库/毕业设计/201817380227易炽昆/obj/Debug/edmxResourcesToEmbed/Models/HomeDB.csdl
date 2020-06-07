@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HomeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdminLogin" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AdminPwd" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AdminName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AdminIdentity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AdminSex" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AdminAge" Type="Int32" Nullable="false" />
+    <Property Name="AdminPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="State" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BuyHouse">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Time" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="SellID" Type="Int32" Nullable="false" />
+    <Property Name="AdminID" Type="Int32" Nullable="false" />
+    <Property Name="State" Type="Int32" />
+    <NavigationProperty Name="SellHouse" Relationship="Self.FK_BuyHouse_SellHouse" FromRole="BuyHouse" ToRole="SellHouse" />
+    <NavigationProperty Name="User" Relationship="Self.FK_BuyHouse_User" FromRole="BuyHouse" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Lease">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Time" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="LeaseID" Type="Int32" Nullable="false" />
+    <Property Name="AdminID" Type="Int32" Nullable="false" />
+    <Property Name="RentingState" Type="Int32" />
+    <NavigationProperty Name="LeaseHouse" Relationship="Self.FK_Lease_LeaseHouse" FromRole="Lease" ToRole="LeaseHouse" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Lease_User" FromRole="Lease" ToRole="User" />
+  </EntityType>
+  <EntityType Name="LeaseHouse">
+    <Key>
+      <PropertyRef Name="LeaseID" />
+    </Key>
+    <Property Name="LeaseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Position" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Describe" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Area" Type="Double" Nullable="false" />
+    <Property Name="HouseType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="LeaseFurniture" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsLease" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Contacts" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ContactsPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Lease" Relationship="Self.FK_Lease_LeaseHouse" FromRole="LeaseHouse" ToRole="Lease" />
+    <NavigationProperty Name="Picture" Relationship="Self.FK_Picture_LeaseHouse" FromRole="LeaseHouse" ToRole="Picture" />
+  </EntityType>
+  <EntityType Name="Picture">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Picture1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LeaseID" Type="Int32" />
+    <Property Name="SellID" Type="Int32" />
+    <NavigationProperty Name="LeaseHouse" Relationship="Self.FK_Picture_LeaseHouse" FromRole="Picture" ToRole="LeaseHouse" />
+    <NavigationProperty Name="SellHouse" Relationship="Self.FK_Picture_SellHouse" FromRole="Picture" ToRole="SellHouse" />
+  </EntityType>
+  <EntityType Name="RequestRent">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReqSex" Type="Int32" />
+    <Property Name="ReqAge" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SellHouse">
+    <Key>
+      <PropertyRef Name="SellID" />
+    </Key>
+    <Property Name="SellID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Position" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SellPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Describe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Area" Type="Double" Nullable="false" />
+    <Property Name="HouseType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsSell" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Contacts" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ContactsPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BuyHouse" Relationship="Self.FK_BuyHouse_SellHouse" FromRole="SellHouse" ToRole="BuyHouse" />
+    <NavigationProperty Name="Picture" Relationship="Self.FK_Picture_SellHouse" FromRole="SellHouse" ToRole="Picture" />
+    <NavigationProperty Name="StagesBuyHouse" Relationship="Self.FK_StagesBuyHouse_SellHouse" FromRole="SellHouse" ToRole="StagesBuyHouse" />
+  </EntityType>
+  <EntityType Name="StagesBuyHouse">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Time" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IsFinish" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="SellID" Type="Int32" Nullable="false" />
+    <Property Name="AdminID" Type="Int32" Nullable="false" />
+    <Property Name="State" Type="Int32" />
+    <NavigationProperty Name="SellHouse" Relationship="Self.FK_StagesBuyHouse_SellHouse" FromRole="StagesBuyHouse" ToRole="SellHouse" />
+    <NavigationProperty Name="User" Relationship="Self.FK_StagesBuyHouse_User" FromRole="StagesBuyHouse" ToRole="User" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserLogin" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPwd" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserSex" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="UserAge" Type="Int32" />
+    <Property Name="UserPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BuyHouse" Relationship="Self.FK_BuyHouse_User" FromRole="User" ToRole="BuyHouse" />
+    <NavigationProperty Name="Lease" Relationship="Self.FK_Lease_User" FromRole="User" ToRole="Lease" />
+    <NavigationProperty Name="StagesBuyHouse" Relationship="Self.FK_StagesBuyHouse_User" FromRole="User" ToRole="StagesBuyHouse" />
+  </EntityType>
+  <Association Name="FK_BuyHouse_SellHouse">
+    <End Role="SellHouse" Type="Self.SellHouse" Multiplicity="1" />
+    <End Role="BuyHouse" Type="Self.BuyHouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SellHouse">
+        <PropertyRef Name="SellID" />
+      </Principal>
+      <Dependent Role="BuyHouse">
+        <PropertyRef Name="SellID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BuyHouse_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="BuyHouse" Type="Self.BuyHouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="BuyHouse">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lease_LeaseHouse">
+    <End Role="LeaseHouse" Type="Self.LeaseHouse" Multiplicity="1" />
+    <End Role="Lease" Type="Self.Lease" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LeaseHouse">
+        <PropertyRef Name="LeaseID" />
+      </Principal>
+      <Dependent Role="Lease">
+        <PropertyRef Name="LeaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lease_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Lease" Type="Self.Lease" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Lease">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Picture_LeaseHouse">
+    <End Role="LeaseHouse" Type="Self.LeaseHouse" Multiplicity="0..1" />
+    <End Role="Picture" Type="Self.Picture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LeaseHouse">
+        <PropertyRef Name="LeaseID" />
+      </Principal>
+      <Dependent Role="Picture">
+        <PropertyRef Name="LeaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Picture_SellHouse">
+    <End Role="SellHouse" Type="Self.SellHouse" Multiplicity="0..1" />
+    <End Role="Picture" Type="Self.Picture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SellHouse">
+        <PropertyRef Name="SellID" />
+      </Principal>
+      <Dependent Role="Picture">
+        <PropertyRef Name="SellID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StagesBuyHouse_SellHouse">
+    <End Role="SellHouse" Type="Self.SellHouse" Multiplicity="1" />
+    <End Role="StagesBuyHouse" Type="Self.StagesBuyHouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SellHouse">
+        <PropertyRef Name="SellID" />
+      </Principal>
+      <Dependent Role="StagesBuyHouse">
+        <PropertyRef Name="SellID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StagesBuyHouse_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="StagesBuyHouse" Type="Self.StagesBuyHouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="StagesBuyHouse">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HomeDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admin" EntityType="Self.Admin" />
+    <EntitySet Name="BuyHouse" EntityType="Self.BuyHouse" />
+    <EntitySet Name="Lease" EntityType="Self.Lease" />
+    <EntitySet Name="LeaseHouse" EntityType="Self.LeaseHouse" />
+    <EntitySet Name="Picture" EntityType="Self.Picture" />
+    <EntitySet Name="RequestRent" EntityType="Self.RequestRent" />
+    <EntitySet Name="SellHouse" EntityType="Self.SellHouse" />
+    <EntitySet Name="StagesBuyHouse" EntityType="Self.StagesBuyHouse" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_BuyHouse_SellHouse" Association="Self.FK_BuyHouse_SellHouse">
+      <End Role="SellHouse" EntitySet="SellHouse" />
+      <End Role="BuyHouse" EntitySet="BuyHouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BuyHouse_User" Association="Self.FK_BuyHouse_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="BuyHouse" EntitySet="BuyHouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lease_LeaseHouse" Association="Self.FK_Lease_LeaseHouse">
+      <End Role="LeaseHouse" EntitySet="LeaseHouse" />
+      <End Role="Lease" EntitySet="Lease" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lease_User" Association="Self.FK_Lease_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Lease" EntitySet="Lease" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Picture_LeaseHouse" Association="Self.FK_Picture_LeaseHouse">
+      <End Role="LeaseHouse" EntitySet="LeaseHouse" />
+      <End Role="Picture" EntitySet="Picture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Picture_SellHouse" Association="Self.FK_Picture_SellHouse">
+      <End Role="SellHouse" EntitySet="SellHouse" />
+      <End Role="Picture" EntitySet="Picture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StagesBuyHouse_SellHouse" Association="Self.FK_StagesBuyHouse_SellHouse">
+      <End Role="SellHouse" EntitySet="SellHouse" />
+      <End Role="StagesBuyHouse" EntitySet="StagesBuyHouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StagesBuyHouse_User" Association="Self.FK_StagesBuyHouse_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="StagesBuyHouse" EntitySet="StagesBuyHouse" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

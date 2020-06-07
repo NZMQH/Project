@@ -1,11 +1,13 @@
 ﻿<!DOCTYPE html>
+@using _201817380227易炽昆.Models
+
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/Main.css" rel="stylesheet" />
+    @*<link href="~/Content/Main.css" rel="stylesheet" />*@
     <link href="~/Content/buju.css" rel="stylesheet" />
     <style type="text/css">
         * {
@@ -16,7 +18,7 @@
         }
     </style>
     <script type="text/javascript">
-        
+
     </script>
 </head>
 <body>
@@ -35,7 +37,18 @@
             </div>
             <div class="grid-cell-1">
                 <div style="height:60px;text-align:center;line-height:60px;background-color:#444444;color:white;font-size:30px;font-family:KaiTi">
-                    账号信息
+                    @if (Session["Admin"] == null)
+                    {
+                        <script>alert('请登录后再访问页面'); window.location.href = "/Login/AdminLogin";</script>
+                    }
+                    else
+                    {
+                         
+                            Admin admin = Session["Admin"] as Admin;
+                        
+                        <span>欢迎：</span><span>@admin.AdminName</span>
+                        <a href="/Login/AdminLogin" onclick="return confirm('确定要注销吗？')" style="color:white">注销</a>
+                    }
                 </div>
             </div>
         </div>
@@ -52,17 +65,17 @@
                         </a>
                         <div id="collapseOne" style="text-align:center;" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <a href="#"><span class="glyphicon glyphicon-search"></span>&nbsp;客户信息管理</a>
+                                <a href="/BackStage/UserMsg"><span class="glyphicon glyphicon-search"></span>&nbsp;客户信息管理</a>
                             </div>
                             @*<div class="panel-body">
-                        <a href="#"><span class="glyphicon glyphicon-plus"></span>&nbsp;添加客户信息</a>
-                    </div>
-                    <div class="panel-body">
-                        <a href="#"><span class="glyphicon glyphicon-edit"></span>&nbsp;修改客户信息</a>
-                    </div>
-                    <div class="panel-body">
-                        <a href="#"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除客户信息</a>
-                    </div>*@
+                                    <a href="#"><span class="glyphicon glyphicon-plus"></span>&nbsp;添加客户信息</a>
+                                </div>
+                                <div class="panel-body">
+                                    <a href="#"><span class="glyphicon glyphicon-edit"></span>&nbsp;修改客户信息</a>
+                                </div>
+                                <div class="panel-body">
+                                    <a href="#"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除客户信息</a>
+                                </div>*@
                         </div>
                     </div>
                 </div>
@@ -120,8 +133,10 @@
             </div>
             @* 右侧内容 *@
             <div class="grid-cell-6">
-                <div style="overflow:auto;height:875px">
-                    @RenderBody()
+                <div style="height:875px;background-color:#d9edf7;padding-top:20px;">
+                    <div style="overflow:auto;width:98%;margin-left:1%;height:841px;background-color:white;border-radius:10px;">
+                        @RenderBody()
+                    </div>
                 </div>
             </div>
         </div>

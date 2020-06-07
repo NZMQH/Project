@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>房屋中介管理员登录</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/styleLogin.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="login-box">
+        <h2>管理员登录</h2>
+        <form action="/Login/AdminLogin" method="post">
+            <div class="user-box">
+                <input type="text" id="AdminLogin" name="AdminLogin" required="">
+                <label>账号</label>
+            </div>
+            <div class="user-box">
+                <input type="password" id="AdminPwd" name="AdminPwd" required="">
+                <label>密码</label>
+            </div>
+            @*<a href="#">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>*@
+            <input type="submit" class="btn btn-primary" style="width:320px" value="管理员登录">
+            @*</a>*@
+        </form>
+    </div>
+
+    <script>
+
+    </script>
+
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*@RenderSection("scripts", required: false)*@
+</body>
+</html>

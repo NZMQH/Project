@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "UserMsg";
+    Layout = "~/Views/BackstageView.cshtml";
+}
+@using _201817380227易炽昆.Models
+@{
+    List<User> list = ViewBag.list;
+}
+
+    <form action="/BackStage/UserMsg">
+        <div class="form-group form-inline" style="width:500px;margin-left:10%;margin-top:1%;">
+            <label style="font-size:18px">搜索：</label>
+            <input type="text" name="UserName" style="width:200px" class="form-control" placeholder="请输入用户名" />
+            <input type="submit" value="搜 索" class="btn btn-primary" />
+        </div>
+    </form>
+    <br />
+<table class="table table-hover" border="1" style="text-align:center;">
+    <tr style="font-size:20px;font-weight:bolder;">
+        <td>ID</td>
+        <td>用户名</td>
+        <td>账号</td>
+        <td>密码</td>
+        <td>性别</td>
+        <td>年龄</td>
+        <td>手机号</td>
+        <td>状态</td>
+        <td>操作</td>
+    </tr>
+    @foreach (var item in list)
+    {
+        <tr style="font-size:16px;line-height:40px">
+            <td>@item.UserID</td>
+            <td>@item.UserName</td>
+            <td>@item.UserLogin</td>
+            <td>@item.UserPwd</td>
+            <td>@item.UserSex</td>
+            <td>@item.UserAge</td>
+            <td>@item.UserPhone</td>
+            <td>
+                @if (item.State == 0)
+                {
+                    @:正常
+                }
+                else
+                {
+                    @:冻结
+                }
+            </td>
+            <td>
+                <a href="#" class="btn btn-primary">查看</a>
+                <a href="#" class="btn btn-primary">编辑</a>
+                <a href="#" class="btn btn-danger">删除</a>
+            </td>
+        </tr>
+    }
+</table>
