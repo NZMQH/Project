@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "UserMsg";
+    ViewBag.Title = "客户信息管理";
     Layout = "~/Views/BackstageView.cshtml";
 }
 @using _201817380227易炽昆.Models
@@ -8,14 +8,21 @@
     List<User> list = ViewBag.list;
 }
 
-    <form action="/BackStage/UserMsg">
-        <div class="form-group form-inline" style="width:500px;margin-left:10%;margin-top:1%;">
-            <label style="font-size:18px">搜索：</label>
-            <input type="text" name="UserName" style="width:200px" class="form-control" placeholder="请输入用户名" />
-            <input type="submit" value="搜 索" class="btn btn-primary" />
-        </div>
-    </form>
-    <br />
+@* 面包屑导航 *@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/BackStage/Index">客户信息</a></li>
+        <li class="breadcrumb-item active" aria-current="page">客户信息管理</li>
+    </ol>
+</nav>
+<form action="/BackStage/UserMsg">
+    <div class="form-group form-inline" style="width:500px;margin-left:10%;margin-top:1%;">
+        <label style="font-size:18px">搜索：</label>
+        <input type="text" name="UserName" style="width:200px" class="form-control" placeholder="请输入用户名" />
+        <input type="submit" value="搜 索" class="btn btn-primary" />
+    </div>
+</form>
+<br />
 <table class="table table-hover" border="1" style="text-align:center;">
     <tr style="font-size:20px;font-weight:bolder;">
         <td>ID</td>
@@ -56,3 +63,4 @@
         </tr>
     }
 </table>
+
