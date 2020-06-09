@@ -78,13 +78,21 @@
             <div class="col-sm-10">
                 @if (user.State == 0)
                 {
-                    <input type="radio" value="@user.State" checked="checked" id="State" name="State"><span>正常&nbsp;&nbsp;</span>
-                    <input type="radio" value="1" id="State" name="State"><span>冻结</span>
+                    <input type="radio" value="@user.State" checked="checked" name="State"><span>正常&nbsp;&nbsp;</span>
+                    <input type="radio" value="1" name="State"><span>冻结&nbsp;&nbsp;</span>
+                    <input type="radio" value="2" name="State" /><span>注销</span>
+                }
+                else if (user.State == 1)
+                {
+                    <input type="radio" value="0" id="State" name="State"><span>正常&nbsp;&nbsp;</span>
+                    <input type="radio" value="@user.State" checked="checked" name="State"><span>冻结&nbsp;&nbsp;</span>
+                    <input type="radio" value="2" name="State" /><span>注销</span>
                 }
                 else
                 {
-                    <input type="radio" value="0" id="State" name="State"><span>正常&nbsp;&nbsp;</span>
-                    <input type="radio" value="@user.State" checked="checked" id="State" name="State"><span>冻结</span>
+                    <input type="radio" value="0"  name="State"><span>正常&nbsp;&nbsp;</span>
+                    <input type="radio" value="1"  name="State"><span>冻结&nbsp;&nbsp;</span>
+                    <input type="radio" value="@user.State" checked="checked" name="State" /><span>注销</span>
                 }
 
             </div>

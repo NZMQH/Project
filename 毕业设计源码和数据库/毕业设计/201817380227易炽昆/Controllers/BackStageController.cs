@@ -15,10 +15,17 @@ namespace _201817380227易炽昆.Controllers
         {
             return View();
         }
-        public ActionResult UserMsg(string UserName="")
+        public ActionResult UserMsg(string UserName = "")
         {
-            var list = db.User.Where(p=>p.UserName==UserName || p.UserName.Contains(UserName)).ToList();
+            var list = db.User.Where(p => p.UserName == UserName || p.UserName.Contains(UserName)).ToList();
             ViewBag.list = list;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UserMsg()
+        {
+            var list = db.User.Where(p => p.State == 2).ToList();
+            ViewBag.list=list;
             return View();
         }
         /// <summary>
@@ -57,6 +64,18 @@ namespace _201817380227易炽昆.Controllers
             ViewBag.user = userEdit;
             //return RedirectToAction("UserEdit", "BackStage",new { UserID= userEdit.UserID});
             return Content("<script >alert('保存成功');window.open('" + Url.Content("/BackStage/UserEdit?UserID="+userEdit.UserID) + "', '_self')</script >", "text/html");
+        }
+        /// <summary>
+        /// 删除客户
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DeleteUser(int UserID)
+        {
+            var user = db.User.Find(UserID);
+            //2为注销状态，此处用来做标记删除
+            user.State = 2;
+            db.SaveChanges();
+            return RedirectToAction("UserMsg", "BackStege");
         }
     }
 }

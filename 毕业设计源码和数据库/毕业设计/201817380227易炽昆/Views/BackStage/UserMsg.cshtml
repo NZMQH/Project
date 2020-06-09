@@ -16,13 +16,20 @@
         <li class="breadcrumb-item active" aria-current="page">客户信息管理</li>
     </ol>
 </nav>
-<form action="/BackStage/UserMsg">
-    <div class="form-group form-inline" style="width:500px;margin-left:10%;margin-top:1%;">
-        <label style="font-size:18px">搜索：</label>
-        <input type="text" name="UserName" style="width:200px" class="form-control" placeholder="请输入用户名" />
-        <input type="submit" value="搜 索" class="btn btn-primary" />
-    </div>
-</form>
+<div class="grid">
+    <form action="/BackStage/UserMsg">
+        <div class="form-group form-inline" style="width:500px;margin-left:30%;margin-top:1%;">
+            <label style="font-size:18px">搜索：</label>
+            <input type="text" name="UserName" style="width:200px" class="form-control" placeholder="请输入用户名" />
+            <input type="submit" value="搜 索" class="btn btn-primary" />
+        </div>
+    </form>
+    <form action="/BackStage/UserMsg" method="post">
+        <div style="width:500px;margin-top:1%;">
+            <input type="submit" class="btn btn-primary" value="查询已删除客户" />
+        </div>
+    </form>
+</div>
 <br />
 <table class="table table-hover" border="1" style="text-align:center;width:98%;margin-left:1%;">
     <tr style="font-size:20px;font-weight:bolder;">
@@ -51,15 +58,19 @@
                 {
                     @:正常
                 }
-                else
+                else if(item.State==1)
                 {
                     @:冻结
+                }
+                else
+                {
+                    @:注销
                 }
             </td>
             <td>
                 <a href="/BackStage/UserSee?UserID=@item.UserID" id="UserSee" class="btn btn-primary">查看</a>
                 <a href="/BackStage/UserEdit?UserID=@item.UserID" class="btn btn-primary">编辑</a>
-                <a href="#" class="btn btn-danger">删除</a>
+                <a href="/BackStage/DeleteUser?UserID=@item.UserID" class="btn btn-danger">删除</a>
             </td>
         </tr>
     }
