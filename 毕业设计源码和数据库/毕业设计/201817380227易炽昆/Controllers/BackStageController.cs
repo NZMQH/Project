@@ -21,5 +21,42 @@ namespace _201817380227易炽昆.Controllers
             ViewBag.list = list;
             return View();
         }
+        /// <summary>
+        /// 查看客户信息
+        /// </summary>
+        /// <param name="UserID"></param>
+        /// <returns></returns>
+        public ActionResult UserSee(int UserID)
+        {
+            User user = db.User.Find(UserID);
+            ViewBag.user = user;
+            return View();
+        }
+        /// <summary>
+        /// 客户信息修改
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult UserEdit(int UserID)
+        {
+            User user = db.User.Find(UserID);
+            ViewBag.user = user;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UserEdit(User user)
+        {
+            User userEdit = db.User.Find(user.UserID);
+            userEdit.UserName = user.UserName;
+            userEdit.UserLogin = user.UserLogin;
+            userEdit.UserPwd = user.UserPwd;
+            userEdit.UserSex = user.UserSex;
+            userEdit.UserAge = user.UserAge;
+            userEdit.UserPhone = user.UserPhone;
+            userEdit.State = user.State;
+            db.SaveChanges();
+            ViewBag.user = userEdit;
+            //return RedirectToAction("UserEdit", "BackStage",new { UserID= userEdit.UserID});
+            return Content("<script >alert('保存成功');window.open('" + Url.Content("/BackStage/UserEdit?UserID="+userEdit.UserID) + "', '_self')</script >", "text/html");
+        }
     }
 }

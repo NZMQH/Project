@@ -39,7 +39,7 @@
     @foreach (var item in list)
     {
         <tr style="font-size:16px;line-height:40px">
-            <td>@item.UserID</td>
+            <td id="UserID">@item.UserID</td>
             <td>@item.UserName</td>
             <td>@item.UserLogin</td>
             <td>@item.UserPwd</td>
@@ -57,8 +57,8 @@
                 }
             </td>
             <td>
-                <a href="#" class="btn btn-primary">查看</a>
-                <a href="#" class="btn btn-primary">编辑</a>
+                <a href="/BackStage/UserSee?UserID=@item.UserID" id="UserSee" class="btn btn-primary">查看</a>
+                <a href="/BackStage/UserEdit?UserID=@item.UserID" class="btn btn-primary">编辑</a>
                 <a href="#" class="btn btn-danger">删除</a>
             </td>
         </tr>

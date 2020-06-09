@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "UserEdit";
+    Layout = "~/Views/BackstageView.cshtml";
+}
+@using _201817380227易炽昆.Models
+@{
+    User user = ViewBag.user;
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<style>
+    label.error {
+        color: red;
+    }
+</style>
+@* 面包屑导航 *@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/BackStage/Index">首页</a></li>
+        <li class="breadcrumb-item"><a href="#">客户信息</a></li>
+        <li class="breadcrumb-item"><a href="/BackStage/UserMsg">客户信息管理</a></li>
+        <li class="breadcrumb-item active" aria-current="page">修改客户信息</li>
+    </ol>
+</nav>
+
+<form method="post" action="/BackStage/UserEdit" id="EditForm">
+    <div style="width:80%;margin-left:10%;">
+        <div class="form-group row">
+            <label for="UserName" class="col-sm-2 col-form-label">用户名：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" required="required" value="@user.UserName" placeholder="请输入用户名" id="UserName" name="UserName">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="UserLogin" class="col-sm-2 col-form-label">账号：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" required="required" value="@user.UserLogin" placeholder="请输入账号" id="UserLogin" name="UserLogin">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="UserPwd" class="col-sm-2 col-form-label">密码：</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" required="required" value="@user.UserPwd" placeholder="请输入密码" id="UserPwd" name="UserPwd">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="UserSex" class="col-sm-2 col-form-label">性别：</label>
+            <div class="col-sm-10">
+                @if (user.UserSex == "男")
+                {
+                    <input type="radio" value="@user.UserSex" checked="checked" id="UserSex" name="UserSex"><span>@user.UserSex&nbsp;&nbsp;</span>
+                    <input type="radio" value="女" id="UserSex" name="UserSex"><span>女</span>
+                }
+                else
+                {
+                    <input type="radio" value="男" id="UserSex" name="UserSex"><span>男&nbsp;&nbsp;</span>
+                    <input type="radio" value="@user.UserSex" checked="checked" id="UserSex" name="UserSex">@user.UserSex
+                }
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="UserAge" class="col-sm-2 col-form-label">年龄：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" required="required" value="@user.UserAge" placeholder="请输入年龄" id="UserAge" name="UserAge">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="UserPhone" class="col-sm-2 col-form-label">手机号：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" required="required" value="@user.UserPhone" placeholder="请输入年龄" id="UserPhone" name="UserPhone">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="UserSex" class="col-sm-2 col-form-label">状态：</label>
+            <div class="col-sm-10">
+                @if (user.State == 0)
+                {
+                    <input type="radio" value="@user.State" checked="checked" id="State" name="State"><span>正常&nbsp;&nbsp;</span>
+                    <input type="radio" value="1" id="State" name="State"><span>冻结</span>
+                }
+                else
+                {
+                    <input type="radio" value="0" id="State" name="State"><span>正常&nbsp;&nbsp;</span>
+                    <input type="radio" value="@user.State" checked="checked" id="State" name="State"><span>冻结</span>
+                }
+
+            </div>
+        </div>
+        <input type="hidden" name="UserID" value="@user.UserID" />
+        <input type="submit" value="保 存" class="btn btn-primary" style="width:200px;" />
+    </div>
+</form>
+
+
+<script type="text/javascript">
+    $("#EditForm").validate({
+        rules: {
+            UserName: { required: true, maxlength: 10 },
+            UserLogin: { required: true, maxlength: 20 },
+            UserPwd: { required: true, checkPwd: true },
+            UserAge: { required: true, checkAge: true },
+            UserPhone: { required: true, maxlength: 11, minlength: 11 }
+        },
+        messages: {
+            UserName: { required: "用户名不能为空", maxlength: "用户名不能超过10字" },
+            UserLogin: { required: "账号不能为空", maxlength: "账号不能超过20字符" },
+            UserPwd: { required: "密码不能为空", checkPwd: "密码组成：6-16位的字母数字组成" },
+            UserAge: { required: "年龄不能为空", checkAge: "请输入正确的年龄" },
+            UserPhone: { required: "手机号不能为空", maxlength: "请输入11位的手机号", minlength: "请输入11位的手机号" }
+        }
+    })
+
+    $.validator.addMethod("checkPwd", function (value, e) {
+        var reg = /^[A-Za-z0-9]{6,16}$/;
+        return reg.test(value);
+    })
+    $.validator.addMethod("checkAge", function (value, e) {
+        var reg = /^[0-9]{1,3}$/;
+        return reg.test(value);
+    })
+</script>

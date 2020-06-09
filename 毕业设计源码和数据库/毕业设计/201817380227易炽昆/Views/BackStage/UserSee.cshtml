@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "UserSee";
+    Layout = "~/Views/BackstageView.cshtml";
+}
+@using _201817380227易炽昆.Models
+@{
+    User user = ViewBag.user;
+}
+    
+
+@* 面包屑导航 *@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/BackStage/Index">首页</a></li>
+        <li class="breadcrumb-item"><a href="#">客户信息</a></li>
+        <li class="breadcrumb-item"><a href="/BackStage/UserMsg">客户信息管理</a></li>
+        <li class="breadcrumb-item active" aria-current="page">查看客户信息</li>
+    </ol>
+</nav>
+<table class="table table-borderless table-hover" style="width:40%;margin-left:30%;height:60%;font-size:22px;margin-top:5%;text-align:center;line-height:80px;" border="0">
+    <tr>
+        <td>用户名：</td>
+        <td>@user.UserName</td>
+    </tr>
+    <tr>
+        <td>账号：</td>
+        <td>@user.UserLogin</td>
+    </tr>
+    <tr>
+        <td>密码：</td>
+        <td>@user.UserPwd</td>
+    </tr>
+    <tr>
+        <td>性别：</td>
+        <td>@user.UserSex</td>
+    </tr>
+    <tr>
+        <td>年龄：</td>
+        <td>@user.UserAge</td>
+    </tr>
+    <tr>
+        <td>状态：</td>
+        <td>
+        @if (user.State==0)
+        {
+            <span>正常（@user.State）</span>
+        }
+        else
+        {
+            <span>冻结（@user.State）</span>
+        }
+        </td>
+    </tr>
+</table>
+
