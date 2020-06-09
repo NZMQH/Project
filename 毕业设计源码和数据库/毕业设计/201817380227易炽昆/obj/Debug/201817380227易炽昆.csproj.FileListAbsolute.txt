@@ -79,7 +79,6 @@ E:\大三毕业项目设计\项目\毕业设计源码和数据库\毕业设计\2
 E:\大三毕业项目设计\项目\毕业设计源码和数据库\毕业设计\201817380227易炽昆\bin\zh-Hans\System.Web.WebPages.resources.dll
 E:\大三毕业项目设计\项目\毕业设计源码和数据库\毕业设计\201817380227易炽昆\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 E:\大三毕业项目设计\项目\毕业设计源码和数据库\毕业设计\201817380227易炽昆\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
-E:\大三毕业项目设计\项目\毕业设计源码和数据库\毕业设计\201817380227易炽昆\obj\Debug\201817380227易炽昆.csprojAssemblyReference.cache
 E:\大三毕业项目设计\项目\毕业设计源码和数据库\毕业设计\201817380227易炽昆\obj\Debug\201817380227易炽昆.csproj.CopyComplete
 E:\大三毕业项目设计\项目\毕业设计源码和数据库\毕业设计\201817380227易炽昆\obj\Debug\201817380227易炽昆.dll
 E:\大三毕业项目设计\项目\毕业设计源码和数据库\毕业设计\201817380227易炽昆\obj\Debug\201817380227易炽昆.pdb
@@ -89,3 +88,4 @@ E:\大三毕业项目设计\项目\毕业设计源码和数据库\毕业设计\2
 E:\大三毕业项目设计\项目\毕业设计源码和数据库\毕业设计\201817380227易炽昆\bin\EntityFramework.SqlServer.xml
 E:\大三毕业项目设计\项目\毕业设计源码和数据库\毕业设计\201817380227易炽昆\bin\zh-Hans\EntityFramework.resources.dll
 E:\大三毕业项目设计\项目\毕业设计源码和数据库\毕业设计\201817380227易炽昆\bin\zh-Hans\EntityFramework.SqlServer.resources.dll
+E:\大三毕业项目设计\项目\毕业设计源码和数据库\毕业设计\201817380227易炽昆\obj\Debug\201817380227易炽昆.csprojAssemblyReference.cache
