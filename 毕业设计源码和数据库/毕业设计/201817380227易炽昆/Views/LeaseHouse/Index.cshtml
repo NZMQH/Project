@@ -3,6 +3,10 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/BackstageView.cshtml";
 }
+@using _201817380227易炽昆.Models
+@{
+    List<LeaseHouse> list = ViewBag.list;
+}
 @* 面包屑导航 *@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -11,5 +15,58 @@
         <li class="breadcrumb-item active" aria-current="page">出租房信息</li>
     </ol>
 </nav>
-<h2>出租房信息</h2>
+<div class="grid">
+    <form action="/LeaseHouse/Index">
+        <div class="form-group form-inline" style="width:500px;margin-left:30%;margin-top:1%;">
+            <label style="font-size:18px">搜索：</label>
+            <input type="text" name="Position" style="width:200px" class="form-control" placeholder="请输入位置" />
+            <input type="submit" value="搜 索" class="btn btn-primary" />
+        </div>
+    </form>
+    <form action="/LeaseHouse/Index" method="post">
+        <div style="width:100%;margin-top:2%;">
+            <input type="submit" class="btn btn-primary" value="查询未出售房屋" />
+        </div>
+    </form>
+    <div style="">
+        <a href="/LeaseHouse/AddHouse" class="btn btn-primary">添加房屋</a>
+    </div>
+</div>
 
+<br />
+<table class="table table-hover" border="1" style="text-align:center;width:98%;margin-left:1%;">
+    <tr>
+        <th>ID</th>
+        <th>位置</th>
+        <th>描述</th>
+        <th>面积</th>
+        <th>类型</th>
+        <th>价格</th>
+        <th>家具</th>
+        <th>是否出售</th>
+        <th>联系人</th>
+        <th>联系人电话</th>
+        <th>操作</th>
+    </tr>
+    @foreach (var item in list)
+    {
+        <tr>
+            <td>@item.LeaseID</td>
+            <td>@item.Position</td>
+            <td>@item.Describe</td>
+            <td>@item.Area</td>
+            <td>@item.HouseType</td>
+            <td>@item.Price</td>
+            <td>@item.LeaseFurniture</td>
+            <td>@item.IsLease</td>
+            <td>@item.Contacts</td>
+            <td>@item.ContactsPhone</td>
+            <td>
+                <a href="/LeaseHouse/HouseSee?LeaseID=@item.LeaseID" id="UserSee" class="btn btn-primary">查看</a>
+                <a href="/LeaseHouse/HouseEdit?LeaseID=@item.LeaseID" class="btn btn-primary">编辑</a>
+                <a href="/LeaseHouse/HouseUser?LeaseID=@item.LeaseID" class="btn btn-primary">添加租客</a>
+                <a href="/LeaseHouse/HouseDelete?LeaseID=@item.LeaseID" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</a>
+            </td>
+        </tr>
+    }
+</table>
