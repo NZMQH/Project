@@ -75,7 +75,7 @@ namespace _201817380227易炽昆.Controllers
             //2为注销状态，此处用来做标记删除
             user.State = 2;
             db.SaveChanges();
-            return RedirectToAction("UserMsg", "BackStege");
+            return RedirectToAction("UserMsg", "BackStage");
         }
     }
 }

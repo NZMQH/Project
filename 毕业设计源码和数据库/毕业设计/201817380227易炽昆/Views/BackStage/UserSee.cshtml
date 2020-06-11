@@ -42,14 +42,18 @@
     <tr>
         <td>状态：</td>
         <td>
-        @if (user.State==0)
-        {
-            <span>正常（@user.State）</span>
-        }
-        else
-        {
-            <span>冻结（@user.State）</span>
-        }
+            @if (user.State == 0)
+            {
+                <span>正常（@user.State）</span>
+            }
+            else if (user.State == 1)
+            {
+                <span>冻结（@user.State）</span>
+            }
+            else
+            {
+                <span>注销（@user.State）</span>
+            }
         </td>
     </tr>
 </table>
