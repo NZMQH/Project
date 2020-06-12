@@ -35,5 +35,32 @@ namespace _201817380227易炽昆.Controllers
             db.SaveChanges();
             return Content("<script >alert('添加成功');window.open('" + Url.Content("/LeaseHouse/Index") + "', '_self')</script >", "text/html");
         }
+        /// <summary>
+        /// 修改房屋信息
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult HouseEdit(int LeaseID)
+        {
+            var leaseHouse = db.LeaseHouse.Find(LeaseID);
+            ViewBag.leaseHouse = leaseHouse;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult HouseEdit(LeaseHouse leaseHouse)
+        {
+            var leaseHouse1 = db.LeaseHouse.Find(leaseHouse.LeaseID);
+            leaseHouse1.Position = leaseHouse.Position;
+            leaseHouse1.Describe = leaseHouse.Describe;
+            leaseHouse1.Area = leaseHouse.Area;
+            leaseHouse1.HouseType = leaseHouse.HouseType;
+            leaseHouse1.Price = leaseHouse.Price;
+            leaseHouse1.LeaseFurniture = leaseHouse.LeaseFurniture;
+            leaseHouse1.IsLease = leaseHouse.IsLease;
+            leaseHouse1.Contacts = leaseHouse.Contacts;
+            leaseHouse1.ContactsPhone = leaseHouse.ContactsPhone;
+            db.SaveChanges();
+            ViewBag.leaseHouse = leaseHouse1;
+            return Content("<script >alert('修改成功');window.open('" + Url.Content("/LeaseHouse/HouseEdit?LeaseID="+leaseHouse1.LeaseID) + "', '_self')</script >", "text/html");
+        }
     }
 }

@@ -204,6 +204,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Image\Logo.png" />
     <Content Include="Models\HomeDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>HomeDB.Context.cs</LastGenOutput>
@@ -362,6 +363,7 @@
     <Content Include="Views\BackStage\UserEdit.cshtml" />
     <Content Include="Views\LeaseHouse\Index.cshtml" />
     <Content Include="Views\LeaseHouse\AddHouse.cshtml" />
+    <Content Include="Views\LeaseHouse\HouseEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
