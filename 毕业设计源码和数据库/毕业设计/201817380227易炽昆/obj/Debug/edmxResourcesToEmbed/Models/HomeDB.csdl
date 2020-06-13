@@ -13,6 +13,7 @@
     <Property Name="AdminAge" Type="Int32" Nullable="false" />
     <Property Name="AdminPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="State" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Lease" Relationship="HomeDBModel.FK_Lease_Admin" FromRole="Admin" ToRole="Lease" />
   </EntityType>
   <EntityType Name="BuyHouse">
     <Key>
@@ -41,6 +42,7 @@
     <Property Name="RentingState" Type="Int32" />
     <NavigationProperty Name="LeaseHouse" Relationship="Self.FK_Lease_LeaseHouse" FromRole="Lease" ToRole="LeaseHouse" />
     <NavigationProperty Name="User" Relationship="Self.FK_Lease_User" FromRole="Lease" ToRole="User" />
+    <NavigationProperty Name="Admin" Relationship="HomeDBModel.FK_Lease_Admin" FromRole="Lease" ToRole="Admin" />
   </EntityType>
   <EntityType Name="LeaseHouse">
     <Key>
@@ -58,6 +60,7 @@
     <Property Name="ContactsPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Lease" Relationship="Self.FK_Lease_LeaseHouse" FromRole="LeaseHouse" ToRole="Lease" />
     <NavigationProperty Name="Picture" Relationship="Self.FK_Picture_LeaseHouse" FromRole="LeaseHouse" ToRole="Picture" />
+    <Property Name="LeaseType" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Picture">
     <Key>
@@ -276,5 +279,21 @@
       <End Role="User" EntitySet="User" />
       <End Role="StagesBuyHouse" EntitySet="StagesBuyHouse" />
     </AssociationSet>
+    <AssociationSet Name="FK_Lease_Admin" Association="HomeDBModel.FK_Lease_Admin">
+      <End Role="Admin" EntitySet="Admin" />
+      <End Role="Lease" EntitySet="Lease" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_Lease_Admin">
+    <End Type="HomeDBModel.Admin" Role="Admin" Multiplicity="1" />
+    <End Type="HomeDBModel.Lease" Role="Lease" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="AdminID" />
+      </Principal>
+      <Dependent Role="Lease">
+        <PropertyRef Name="AdminID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

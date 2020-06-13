@@ -49,6 +49,7 @@
     <Property Name="HouseType" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Price" Type="money" Nullable="false" />
     <Property Name="LeaseFurniture" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="LeaseType" Type="int" Nullable="false" />
     <Property Name="IsLease" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="Contacts" Type="nvarchar" MaxLength="20" />
     <Property Name="ContactsPhone" Type="nvarchar" MaxLength="11" />
@@ -145,6 +146,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Lease_Admin">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="1" />
+    <End Role="Lease" Type="Self.Lease" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="AdminID" />
+      </Principal>
+      <Dependent Role="Lease">
+        <PropertyRef Name="AdminID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Lease_LeaseHouse">
     <End Role="LeaseHouse" Type="Self.LeaseHouse" Multiplicity="1" />
     <End Role="Lease" Type="Self.Lease" Multiplicity="*" />
@@ -235,6 +248,10 @@
     <AssociationSet Name="FK_BuyHouse_User" Association="Self.FK_BuyHouse_User">
       <End Role="User" EntitySet="User" />
       <End Role="BuyHouse" EntitySet="BuyHouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lease_Admin" Association="Self.FK_Lease_Admin">
+      <End Role="Admin" EntitySet="Admin" />
+      <End Role="Lease" EntitySet="Lease" />
     </AssociationSet>
     <AssociationSet Name="FK_Lease_LeaseHouse" Association="Self.FK_Lease_LeaseHouse">
       <End Role="LeaseHouse" EntitySet="LeaseHouse" />

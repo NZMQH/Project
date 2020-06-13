@@ -1,0 +1,176 @@
+﻿
+@{
+    ViewBag.Title = "HouseUser";
+    Layout = "~/Views/BackstageView.cshtml";
+}
+@using _201817380227易炽昆.Models
+@{
+    LeaseHouse leaseHouse = ViewBag.leaseHouse;
+    Admin admin = Session["Admin"] as Admin;
+    List<User> list = ViewBag.list;
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<style>
+    label.error {
+        color: red;
+    }
+</style>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">首页</a></li>
+        <li class="breadcrumb-item"><a href="#">出租房信息</a></li>
+        <li class="breadcrumb-item"><a href="/LeaseHouse/Index">出租房信息管理</a></li>
+        <li class="breadcrumb-item active" aria-current="page">添加租客</li>
+    </ol>
+</nav>
+<div style="width:80%;margin-left:10%;margin-top:10px;">
+    <div class="form-group row">
+        <label for="Position" class="col-sm-2 col-form-label">位置：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@leaseHouse.Position" name="Position">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Price" class="col-sm-2 col-form-label">价格（月）：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@leaseHouse.Price" name="Price">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Area" class="col-sm-2 col-form-label">面积：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@leaseHouse.Area" name="Area">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="HouseType" class="col-sm-2 col-form-label">类型：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@leaseHouse.HouseType" name="HouseType">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="AdminName" class="col-sm-2 col-form-label">操作员：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@admin.AdminName" name="AdminName">
+        </div>
+    </div>
+    @*@if (leaseHouse.LeaseType == 0 && leaseHouse.IsLease == "是")
+        {
+            <div class="form-group row">
+                <label for="Time" class="col-sm-2 col-form-label">租房时间：</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" readonly value="@DateTime.Now" name="Time">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="StartTime" class="col-sm-2 col-form-label">开始时间：</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" value="@" name="StartTime" id="StartTime">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="EndTime" class="col-sm-2 col-form-label">结束时间：</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" value="年/月/日" name="EndTime" id="EndTime">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="UserID" class="col-sm-2 col-form-label">租客ID：</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" value="" name="UserID">
+                </div>
+            </div>
+        }*@
+    <form action="/LeaseHouse/HouseUser" method="post" id="HouseUserForm">
+        <div class="form-group row">
+            <label for="Time" class="col-sm-2 col-form-label">租房时间：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" readonly value="@DateTime.Now" name="Time">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="StartTime" class="col-sm-2 col-form-label">开始时间：</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" value="年/月/日" name="StartTime" id="StartTime">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="EndTime" class="col-sm-2 col-form-label">结束时间：</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" value="年/月/日" name="EndTime" id="EndTime">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="UserID" class="col-sm-2 col-form-label">租客ID：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" value="" name="UserID">
+            </div>
+        </div>
+        <div class="form-group row" style="padding-bottom:10px;border-bottom:1px solid gray">
+            <input type="hidden" name="LeaseID" value="@leaseHouse.LeaseID">
+            <input type="hidden" name="RentingState" value="0" />
+            <input type="hidden" name="AdminID" value="@admin.AdminID" />
+            <input type="submit" value="提交" class="btn btn-primary" style="width:200px;margin:0px auto;" />
+        </div>
+    </form>
+    <form action="/LeaseHouse/HouseUser">
+        <div class="form-group row" style="margin-left:0.1%;">
+            <label for="UserName">搜索：</label>
+            <input type="hidden" name="LeaseID" value="@leaseHouse.LeaseID" />
+            <input type="text" name="UserName" placeholder="请输入用户名" style="width:200px;" class="form-control" />
+            <input type="submit" value="搜索" class="btn btn-primary" />
+        </div>
+    </form>
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>账号</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>电话</th>
+        </tr>
+        @if (list.Count == 0)
+        {
+
+        }
+        else
+        {
+            foreach (var item in list)
+            {
+                <tr>
+                    <td>@item.UserID</td>
+                    <td>@item.UserName</td>
+                    <td>@item.UserLogin</td>
+                    <td>@item.UserSex</td>
+                    <td>@item.UserAge</td>
+                    <td>@item.UserPhone</td>
+                </tr>
+            }
+        }
+
+    </table>
+</div>
+
+
+<script type="text/javascript">
+    $("#HouseUserForm").validate({
+        rules: {
+            StartTime: { required: true },
+            EndTime: { required: true },
+            UserID: { required: true, checkUserID: true }
+        },
+        messages: {
+            StartTime: { required: "请输入开始时间" },
+            EndTime: { required: "请输入结束时间" },
+            UserID: { required: "客户ID不能为空", checkUserID: "请输入ID" }
+        }
+    })
+
+    $.validator.addMethod("checkUserID", function (value, e) {
+        var reg = /^[0-9]{1,1000000}$/;
+        return reg.test(value);
+    })
+
+</script>

@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "SingleLease";
+    Layout = "~/Views/BackstageView.cshtml";
+}
+
+@using _201817380227易炽昆.Models
+@{
+    List<Lease> list = ViewBag.list as List<Lease>;
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">首页</a></li>
+        <li class="breadcrumb-item"><a href="#">出租房信息</a></li>
+        <li class="breadcrumb-item active" aria-current="page">单人租房管理</li>
+    </ol>
+</nav>
+<div class="grid">
+    <form action="/LeaseHouse/SingleLease">
+        <div class="form-group form-inline" style="width:500px;margin-left:30%;margin-top:1%;">
+            <label style="font-size:18px">搜索：</label>
+            <input type="text" name="Position" style="width:200px" class="form-control" placeholder="请输入位置" />
+            <input type="submit" value="搜 索" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+<br />
+<table class="table table-hover" border="1" style="text-align:center;width:98%;margin-left:1%;">
+    <tr>
+        <th>房屋ID</th>
+        <th>位置</th>
+        <th>面积</th>
+        <th>类型</th>
+        <th>价格(月)</th>
+        <th>客户</th>
+        <th>客户电话</th>
+        <th>中介人</th>
+        <th>中介人电话</th>
+        <th>操作</th>
+    </tr>
+    @foreach (var item in list)
+    {
+<tr>
+    <td>@item.LeaseHouse.LeaseID</td>
+    <td>@item.LeaseHouse.Position</td>
+    <td>@item.LeaseHouse.Area</td>
+    <td>@item.LeaseHouse.HouseType</td>
+    <td>@item.LeaseHouse.Price</td>
+    <td>@item.User.UserName</td>
+    <td>@item.User.UserPhone</td>
+    <td>@item.Admin.AdminName</td>
+    <td>@item.Admin.AdminPhone</td>
+    <td>
+        <a href="/LeaseHouse/HouseSee?LeaseID=@item.LeaseID" class="btn btn-primary">查看</a>
+        <a href="/LeaseHouse/HouseEdit?LeaseID=@item.LeaseID" class="btn btn-primary">编辑</a>
+        <a href="/LeaseHouse/HouseDelete?LeaseID=@item.LeaseID" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</a>
+    </td>
+</tr>
+    }
+</table>
+

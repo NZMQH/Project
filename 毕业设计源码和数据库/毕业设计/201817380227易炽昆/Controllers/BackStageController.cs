@@ -24,7 +24,7 @@ namespace _201817380227易炽昆.Controllers
         [HttpPost]
         public ActionResult UserMsg()
         {
-            var list = db.User.Where(p => p.State == 2).ToList();
+            var list = db.User.Where(p => p.State == 1).ToList();
             ViewBag.list=list;
             return View();
         }

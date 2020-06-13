@@ -31,6 +31,7 @@ namespace _201817380227易炽昆.Models
         public string IsLease { get; set; }
         public string Contacts { get; set; }
         public string ContactsPhone { get; set; }
+        public int LeaseType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Lease> Lease { get; set; }

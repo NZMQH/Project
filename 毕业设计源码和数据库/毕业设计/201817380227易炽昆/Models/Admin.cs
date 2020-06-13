@@ -14,6 +14,12 @@ namespace _201817380227易炽昆.Models
     
     public partial class Admin
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Admin()
+        {
+            this.Lease = new HashSet<Lease>();
+        }
+    
         public int AdminID { get; set; }
         public string AdminLogin { get; set; }
         public string AdminPwd { get; set; }
@@ -23,5 +29,8 @@ namespace _201817380227易炽昆.Models
         public int AdminAge { get; set; }
         public string AdminPhone { get; set; }
         public string State { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Lease> Lease { get; set; }
     }
 }

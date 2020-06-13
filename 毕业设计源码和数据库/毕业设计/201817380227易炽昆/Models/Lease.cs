@@ -25,5 +25,6 @@ namespace _201817380227易炽昆.Models
     
         public virtual LeaseHouse LeaseHouse { get; set; }
         public virtual User User { get; set; }
+        public virtual Admin Admin { get; set; }
     }
 }

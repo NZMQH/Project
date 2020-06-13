@@ -41,9 +41,10 @@
         <th>描述</th>
         <th>面积</th>
         <th>类型</th>
-        <th>价格</th>
+        <th>价格(月)</th>
         <th>家具</th>
-        <th>是否出售</th>
+        <th>出租类型</th>
+        <th>是否出租</th>
         <th>联系人</th>
         <th>联系人电话</th>
         <th>操作</th>
@@ -58,13 +59,23 @@
             <td>@item.HouseType</td>
             <td>@item.Price</td>
             <td>@item.LeaseFurniture</td>
+            <td>
+               @if (item.LeaseType==0)
+               {
+                   @:单人
+               }
+               else
+               {
+                   @:合租
+               }
+            </td>
             <td>@item.IsLease</td>
             <td>@item.Contacts</td>
             <td>@item.ContactsPhone</td>
             <td>
-                <a href="/LeaseHouse/HouseSee?LeaseID=@item.LeaseID" id="UserSee" class="btn btn-primary">查看</a>
+                <a href="/LeaseHouse/HouseSee?LeaseID=@item.LeaseID"  class="btn btn-primary">查看</a>
                 <a href="/LeaseHouse/HouseEdit?LeaseID=@item.LeaseID" class="btn btn-primary">编辑</a>
-                <a href="/LeaseHouse/HouseUser?LeaseID=@item.LeaseID" class="btn btn-primary">添加租客</a>
+                <a href="/LeaseHouse/HouseUser?LeaseID=@item.LeaseID" class="btn btn-primary">租客信息</a>
                 <a href="/LeaseHouse/HouseDelete?LeaseID=@item.LeaseID" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</a>
             </td>
         </tr>

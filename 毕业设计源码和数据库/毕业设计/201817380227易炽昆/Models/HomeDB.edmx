@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HomeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HomeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -54,6 +54,7 @@
           <Property Name="HouseType" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
           <Property Name="LeaseFurniture" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="LeaseType" Type="int" Nullable="false" />
           <Property Name="IsLease" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Contacts" Type="nvarchar" MaxLength="20" />
           <Property Name="ContactsPhone" Type="nvarchar" MaxLength="11" />
@@ -150,6 +151,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Lease_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="1" />
+          <End Role="Lease" Type="Self.Lease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="AdminID" />
+            </Principal>
+            <Dependent Role="Lease">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Lease_LeaseHouse">
           <End Role="LeaseHouse" Type="Self.LeaseHouse" Multiplicity="1" />
           <End Role="Lease" Type="Self.Lease" Multiplicity="*" />
@@ -241,6 +254,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="BuyHouse" EntitySet="BuyHouse" />
           </AssociationSet>
+          <AssociationSet Name="FK_Lease_Admin" Association="Self.FK_Lease_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="Lease" EntitySet="Lease" />
+          </AssociationSet>
           <AssociationSet Name="FK_Lease_LeaseHouse" Association="Self.FK_Lease_LeaseHouse">
             <End Role="LeaseHouse" EntitySet="LeaseHouse" />
             <End Role="Lease" EntitySet="Lease" />
@@ -266,8 +283,7 @@
             <End Role="StagesBuyHouse" EntitySet="StagesBuyHouse" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HomeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -284,6 +300,7 @@
           <Property Name="AdminAge" Type="Int32" Nullable="false" />
           <Property Name="AdminPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="State" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Lease" Relationship="HomeDBModel.FK_Lease_Admin" FromRole="Admin" ToRole="Lease" />
         </EntityType>
         <EntityType Name="BuyHouse">
           <Key>
@@ -312,6 +329,7 @@
           <Property Name="RentingState" Type="Int32" />
           <NavigationProperty Name="LeaseHouse" Relationship="Self.FK_Lease_LeaseHouse" FromRole="Lease" ToRole="LeaseHouse" />
           <NavigationProperty Name="User" Relationship="Self.FK_Lease_User" FromRole="Lease" ToRole="User" />
+          <NavigationProperty Name="Admin" Relationship="HomeDBModel.FK_Lease_Admin" FromRole="Lease" ToRole="Admin" />
         </EntityType>
         <EntityType Name="LeaseHouse">
           <Key>
@@ -329,6 +347,7 @@
           <Property Name="ContactsPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Lease" Relationship="Self.FK_Lease_LeaseHouse" FromRole="LeaseHouse" ToRole="Lease" />
           <NavigationProperty Name="Picture" Relationship="Self.FK_Picture_LeaseHouse" FromRole="LeaseHouse" ToRole="Picture" />
+          <Property Name="LeaseType" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Picture">
           <Key>
@@ -547,7 +566,23 @@
             <End Role="User" EntitySet="User" />
             <End Role="StagesBuyHouse" EntitySet="StagesBuyHouse" />
           </AssociationSet>
+          <AssociationSet Name="FK_Lease_Admin" Association="HomeDBModel.FK_Lease_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="Lease" EntitySet="Lease" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Lease_Admin">
+          <End Type="HomeDBModel.Admin" Role="Admin" Multiplicity="1" />
+          <End Type="HomeDBModel.Lease" Role="Lease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="AdminID" />
+            </Principal>
+            <Dependent Role="Lease">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -598,6 +633,7 @@
           <EntitySetMapping Name="LeaseHouse">
             <EntityTypeMapping TypeName="HomeDBModel.LeaseHouse">
               <MappingFragment StoreEntitySet="LeaseHouse">
+                <ScalarProperty Name="LeaseType" ColumnName="LeaseType" />
                 <ScalarProperty Name="LeaseID" ColumnName="LeaseID" />
                 <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="Describe" ColumnName="Describe" />

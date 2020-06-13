@@ -20,8 +20,8 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">首页</a></li>
-        <li class="breadcrumb-item"><a href="#">出租房信息管理</a></li>
-        <li class="breadcrumb-item"><a href="/LeaseHouse/Index">出租房信息</a></li>
+        <li class="breadcrumb-item"><a href="#">出租房信息</a></li>
+        <li class="breadcrumb-item"><a href="/LeaseHouse/Index">出租房信息管理</a></li>
         <li class="breadcrumb-item active" aria-current="page">添加房屋信息</li>
     </ol>
 </nav>
@@ -65,6 +65,13 @@
             </div>
         </div>
         <div class="form-group row">
+            <label for="LeaseType" class="col-sm-2 col-form-label">出租类型：</label>
+            <div class="col-sm-10">
+                <input type="radio" name="LeaseType" id="LeaseType" value="0" checked="checked" /><span>单人</span>
+                <input type="radio" name="LeaseType" id="LeaseType" value="1" /><span>合租</span>
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="IsLease" class="col-sm-2 col-form-label">是否出租：</label>
             <div class="col-sm-10">
                 <input type="radio" name="IsLease" value="是" id="IsLease" /><span>是</span>
@@ -96,6 +103,7 @@
             HouseType: { required: true, maxlength: 25 },
             Price: { required: true },
             LeaseFurniture: { required: true, maxlength: 100 },
+            //LeaseType: { required: true, checkNum: true },
             Contacts: { required: true, maxlength: 10 },
             ContactsPhone: { required: true, checkPhone: true }
         },
@@ -106,6 +114,7 @@
             HouseType: { required: "房屋类型不能为空", maxlength: "房屋类型不能超过25字" },
             Price: { required: "价格不能为空" },
             LeaseFurniture: { required: "家具配置不能为空，若没有则填无", maxlength: "家具描述不能超过100字" },
+            //LeaseType: { required: "类型不能为空", checkNum: "请输入0或者1的数字" },
             Contacts: { required: "联系人不能为空", maxlength: "联系人不能超过10字" },
             ContactsPhone: { required: "手机号不能为空", maxlength: "请输入正确的11位手机号", minlength: "请输入正确11位手机号" }
         }
@@ -119,4 +128,8 @@
         var reg = /^[0-9]{11}$/;
         return reg.test(value);
     })
+    //$.validator.addMethod("checkNum", function (value, e) {
+    //    var reg = /^[0-1]{1}$/;
+    //    return reg.test(value);
+    //})
 </script>
