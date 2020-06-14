@@ -30,10 +30,10 @@ namespace _201817380227易炽昆.Models
         public virtual DbSet<Lease> Lease { get; set; }
         public virtual DbSet<LeaseHouse> LeaseHouse { get; set; }
         public virtual DbSet<Picture> Picture { get; set; }
-        public virtual DbSet<RequestRent> RequestRent { get; set; }
         public virtual DbSet<SellHouse> SellHouse { get; set; }
         public virtual DbSet<StagesBuyHouse> StagesBuyHouse { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<RequestHouse> RequestHouse { get; set; }
     }
 }

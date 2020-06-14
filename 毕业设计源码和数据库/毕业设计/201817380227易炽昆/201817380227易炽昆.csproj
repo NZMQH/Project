@@ -135,6 +135,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaseHouseController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RequestHouseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -168,7 +169,7 @@
     <Compile Include="Models\Picture.cs">
       <DependentUpon>HomeDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RequestRent.cs">
+    <Compile Include="Models\RequestHouse.cs">
       <DependentUpon>HomeDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SellHouse.cs">
@@ -367,6 +368,10 @@
     <Content Include="Views\LeaseHouse\HouseSee.cshtml" />
     <Content Include="Views\LeaseHouse\HouseUser.cshtml" />
     <Content Include="Views\LeaseHouse\SingleLease.cshtml" />
+    <Content Include="Views\LeaseHouse\SingleSee.cshtml" />
+    <Content Include="Views\LeaseHouse\SingleEdit.cshtml" />
+    <Content Include="Views\RequestHouse\Index.cshtml" />
+    <Content Include="Views\RequestHouse\AddMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

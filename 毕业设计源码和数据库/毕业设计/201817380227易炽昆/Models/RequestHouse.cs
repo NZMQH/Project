@@ -12,12 +12,14 @@ namespace _201817380227易炽昆.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class RequestRent
+    public partial class RequestHouse
     {
         public int ID { get; set; }
-        public Nullable<int> ReqSex { get; set; }
+        public string ReqSex { get; set; }
         public Nullable<int> ReqAge { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
+        public string UserLogin { get; set; }
+        public string Position { get; set; }
     }
 }

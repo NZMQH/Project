@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "AddMessage";
+    Layout = "~/Views/BackstageView.cshtml";
+}
+@using _201817380227易炽昆.Models
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">首页</a></li>
+        <li class="breadcrumb-item"><a href="#">求租信息</a></li>
+        <li class="breadcrumb-item"><a href="/RequestHouse/Index">求租信息管理</a></li>
+        <li class="breadcrumb-item active" aria-current="page">添加求租信息</li>
+    </ol>
+</nav>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<style>
+    label.error {
+        color: red;
+    }
+</style>
+
+<form method="post" action="/RequestHouse/AddMessage" id="AddForm">
+    <div style="width:80%;margin-left:10%;">
+        <div class="form-group row">
+            <label for="Name" class="col-sm-2 col-form-label">客户名：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" required="required" placeholder="请输入客户名" id="Name" name="Name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="Phone" class="col-sm-2 col-form-label">联系电话：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" required="required" placeholder="请输入联系电话" id="Phone" name="Phone">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="UserLogin" class="col-sm-2 col-form-label">账号：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" required="required" placeholder="请输入账号" id="UserLogin" name="UserLogin">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="Position" class="col-sm-2 col-form-label">位置：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" required="required" placeholder="请输入想租房的位置" id="Position" name="Position">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="ReqAge" class="col-sm-2 col-form-label">年龄(选填)：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" placeholder="请输入年龄" id="ReqAge" name="ReqAge">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="ReqSex" class="col-sm-2 col-form-label">性别(选填)：</label>
+            <div class="col-sm-10">
+                <input type="radio" id="ReqSex" name="ReqSex" value="男"><span>男</span>
+                <input type="radio" id="ReqSex" name="ReqSex" value="女"><span>女</span>
+            </div>
+        </div>
+        <input type="submit" value="保 存" class="btn btn-primary" style="width:200px;" />
+    </div>
+</form>
+
+<script type="text/javascript">
+    $("#AddForm").validate({
+        rules: {
+            Name: { required: true, maxlength: 10 },
+            UserLogin: { required: true, maxlength: 20 },
+            Phone: { required: true, maxlength: 11, minlength: 11 },
+            Position:{required: true}
+        },
+        messages: {
+            Name: { required: "客户名不能为空", maxlength: "用户名不能超过10字" },
+            UserLogin: { required: "账号不能为空", maxlength: "账号不能超过20字符" },
+            Phone: { required: "手机号不能为空", maxlength: "请输入11位的手机号", minlength: "请输入11位的手机号" },
+            Position:{required: "位置不能为空"}
+        }
+    })
+
+    $.validator.addMethod("checkPhone", function (value, e) {
+        var reg = /^[0-9]{11}$/;
+        return reg.test(value);
+    })
+</script>

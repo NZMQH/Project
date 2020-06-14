@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="HomeDBModel.Lease" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="HomeDBModel.LeaseHouse" Width="1.5" PointX="3.75" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HomeDBModel.Picture" Width="1.5" PointX="6" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HomeDBModel.RequestRent" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HomeDBModel.SellHouse" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="HomeDBModel.StagesBuyHouse" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HomeDBModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
@@ -24,6 +23,7 @@
         <AssociationConnector Association="HomeDBModel.FK_StagesBuyHouse_SellHouse" ManuallyRouted="false" />
         <AssociationConnector Association="HomeDBModel.FK_StagesBuyHouse_User" ManuallyRouted="false" />
         <AssociationConnector Association="HomeDBModel.FK_Lease_Admin" />
+        <EntityTypeShape EntityType="HomeDBModel.RequestHouse" Width="1.5" PointX="8.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

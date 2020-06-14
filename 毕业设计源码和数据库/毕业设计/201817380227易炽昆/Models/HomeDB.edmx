@@ -68,15 +68,17 @@
           <Property Name="LeaseID" Type="int" />
           <Property Name="SellID" Type="int" />
         </EntityType>
-        <EntityType Name="RequestRent">
+        <EntityType Name="RequestHouse">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ReqSex" Type="int" />
+          <Property Name="ReqSex" Type="nvarchar" MaxLength="2" />
           <Property Name="ReqAge" Type="int" />
-          <Property Name="Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Phone" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="UserLogin" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Position" Type="nvarchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="SellHouse">
           <Key>
@@ -241,7 +243,7 @@
           <EntitySet Name="Lease" EntityType="Self.Lease" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LeaseHouse" EntityType="Self.LeaseHouse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RequestRent" EntityType="Self.RequestRent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestHouse" EntityType="Self.RequestHouse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SellHouse" EntityType="Self.SellHouse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StagesBuyHouse" EntityType="Self.StagesBuyHouse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -359,16 +361,6 @@
           <Property Name="SellID" Type="Int32" />
           <NavigationProperty Name="LeaseHouse" Relationship="Self.FK_Picture_LeaseHouse" FromRole="Picture" ToRole="LeaseHouse" />
           <NavigationProperty Name="SellHouse" Relationship="Self.FK_Picture_SellHouse" FromRole="Picture" ToRole="SellHouse" />
-        </EntityType>
-        <EntityType Name="RequestRent">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ReqSex" Type="Int32" />
-          <Property Name="ReqAge" Type="Int32" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="SellHouse">
           <Key>
@@ -529,7 +521,6 @@
           <EntitySet Name="Lease" EntityType="Self.Lease" />
           <EntitySet Name="LeaseHouse" EntityType="Self.LeaseHouse" />
           <EntitySet Name="Picture" EntityType="Self.Picture" />
-          <EntitySet Name="RequestRent" EntityType="Self.RequestRent" />
           <EntitySet Name="SellHouse" EntityType="Self.SellHouse" />
           <EntitySet Name="StagesBuyHouse" EntityType="Self.StagesBuyHouse" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
@@ -570,6 +561,7 @@
             <End Role="Admin" EntitySet="Admin" />
             <End Role="Lease" EntitySet="Lease" />
           </AssociationSet>
+          <EntitySet Name="RequestHouse" EntityType="HomeDBModel.RequestHouse" />
         </EntityContainer>
         <Association Name="FK_Lease_Admin">
           <End Type="HomeDBModel.Admin" Role="Admin" Multiplicity="1" />
@@ -583,6 +575,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="RequestHouse">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReqSex" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="ReqAge" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -657,17 +661,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RequestRent">
-            <EntityTypeMapping TypeName="HomeDBModel.RequestRent">
-              <MappingFragment StoreEntitySet="RequestRent">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ReqSex" ColumnName="ReqSex" />
-                <ScalarProperty Name="ReqAge" ColumnName="ReqAge" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SellHouse">
             <EntityTypeMapping TypeName="HomeDBModel.SellHouse">
               <MappingFragment StoreEntitySet="SellHouse">
@@ -718,6 +711,19 @@
                 <ScalarProperty Name="UserAge" ColumnName="UserAge" />
                 <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
                 <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestHouse">
+            <EntityTypeMapping TypeName="HomeDBModel.RequestHouse">
+              <MappingFragment StoreEntitySet="RequestHouse">
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ReqAge" ColumnName="ReqAge" />
+                <ScalarProperty Name="ReqSex" ColumnName="ReqSex" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

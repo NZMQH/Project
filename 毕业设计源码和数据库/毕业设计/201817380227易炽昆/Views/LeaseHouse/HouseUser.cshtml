@@ -55,8 +55,27 @@
             <input type="text" class="form-control" readonly value="@admin.AdminName" name="AdminName">
         </div>
     </div>
-    @*@if (leaseHouse.LeaseType == 0 && leaseHouse.IsLease == "是")
-        {
+    @if (leaseHouse.LeaseType == 0 && leaseHouse.IsLease == "是")
+    {
+        <div class="form-group row">
+            <label for="IsLease" class="col-sm-2 col-form-label">是否出租：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" readonly value="已出租" name="IsLease">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="IsLease" class="col-sm-2 col-form-label">ID：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" readonly value="@leaseHouse.LeaseID" name="IsLease">
+            </div>
+        </div>
+        <div class="form-group row">
+            <a href="/LeaseHouse/Index" class="btn btn-primary" style="width:200px;">返回</a>
+        </div>
+    }
+    else
+    {
+        <form action="/LeaseHouse/HouseUser" method="post" id="HouseUserForm">
             <div class="form-group row">
                 <label for="Time" class="col-sm-2 col-form-label">租房时间：</label>
                 <div class="col-sm-10">
@@ -66,7 +85,7 @@
             <div class="form-group row">
                 <label for="StartTime" class="col-sm-2 col-form-label">开始时间：</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" value="@" name="StartTime" id="StartTime">
+                    <input type="date" class="form-control" value="年/月/日" name="StartTime" id="StartTime">
                 </div>
             </div>
             <div class="form-group row">
@@ -81,76 +100,52 @@
                     <input type="text" class="form-control" value="" name="UserID">
                 </div>
             </div>
-        }*@
-    <form action="/LeaseHouse/HouseUser" method="post" id="HouseUserForm">
-        <div class="form-group row">
-            <label for="Time" class="col-sm-2 col-form-label">租房时间：</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="@DateTime.Now" name="Time">
+            <div class="form-group row" style="padding-bottom:10px;border-bottom:1px solid gray">
+                <input type="hidden" name="LeaseID" value="@leaseHouse.LeaseID">
+                <input type="hidden" name="RentingState" value="0" />
+                <input type="hidden" name="AdminID" value="@admin.AdminID" />
+                <input type="submit" value="提交" class="btn btn-primary" style="width:200px;margin:0px auto;" />
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="StartTime" class="col-sm-2 col-form-label">开始时间：</label>
-            <div class="col-sm-10">
-                <input type="date" class="form-control" value="年/月/日" name="StartTime" id="StartTime">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="EndTime" class="col-sm-2 col-form-label">结束时间：</label>
-            <div class="col-sm-10">
-                <input type="date" class="form-control" value="年/月/日" name="EndTime" id="EndTime">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="UserID" class="col-sm-2 col-form-label">租客ID：</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" value="" name="UserID">
-            </div>
-        </div>
-        <div class="form-group row" style="padding-bottom:10px;border-bottom:1px solid gray">
-            <input type="hidden" name="LeaseID" value="@leaseHouse.LeaseID">
-            <input type="hidden" name="RentingState" value="0" />
-            <input type="hidden" name="AdminID" value="@admin.AdminID" />
-            <input type="submit" value="提交" class="btn btn-primary" style="width:200px;margin:0px auto;" />
-        </div>
-    </form>
-    <form action="/LeaseHouse/HouseUser">
-        <div class="form-group row" style="margin-left:0.1%;">
-            <label for="UserName">搜索：</label>
-            <input type="hidden" name="LeaseID" value="@leaseHouse.LeaseID" />
-            <input type="text" name="UserName" placeholder="请输入用户名" style="width:200px;" class="form-control" />
-            <input type="submit" value="搜索" class="btn btn-primary" />
-        </div>
-    </form>
-    <table class="table table-bordered">
-        <tr>
-            <th>ID</th>
-            <th>姓名</th>
-            <th>账号</th>
-            <th>性别</th>
-            <th>年龄</th>
-            <th>电话</th>
-        </tr>
-        @if (list.Count == 0)
-        {
+        </form>
 
-        }
-        else
-        {
-            foreach (var item in list)
+        <form action="/LeaseHouse/HouseUser">
+            <div class="form-group row" style="margin-left:0.1%;">
+                <label for="UserName">搜索：</label>
+                <input type="hidden" name="LeaseID" value="@leaseHouse.LeaseID" />
+                <input type="text" name="UserName" placeholder="请输入用户名" style="width:200px;" class="form-control" />
+                <input type="submit" value="搜索" class="btn btn-primary" />
+            </div>
+        </form>
+        <table class="table table-bordered">
+            <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>账号</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>电话</th>
+            </tr>
+            @if (list.Count == 0)
             {
-                <tr>
-                    <td>@item.UserID</td>
-                    <td>@item.UserName</td>
-                    <td>@item.UserLogin</td>
-                    <td>@item.UserSex</td>
-                    <td>@item.UserAge</td>
-                    <td>@item.UserPhone</td>
-                </tr>
-            }
-        }
 
-    </table>
+            }
+            else
+            {
+                foreach (var item in list)
+                {
+                    <tr>
+                        <td>@item.UserID</td>
+                        <td>@item.UserName</td>
+                        <td>@item.UserLogin</td>
+                        <td>@item.UserSex</td>
+                        <td>@item.UserAge</td>
+                        <td>@item.UserPhone</td>
+                    </tr>
+                }
+            }
+
+        </table>
+    }
 </div>
 
 

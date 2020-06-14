@@ -69,17 +69,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="RequestRent">
-      <EntityTypeMapping TypeName="HomeDBModel.RequestRent">
-        <MappingFragment StoreEntitySet="RequestRent">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="ReqSex" ColumnName="ReqSex" />
-          <ScalarProperty Name="ReqAge" ColumnName="ReqAge" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SellHouse">
       <EntityTypeMapping TypeName="HomeDBModel.SellHouse">
         <MappingFragment StoreEntitySet="SellHouse">
@@ -130,6 +119,19 @@
           <ScalarProperty Name="UserAge" ColumnName="UserAge" />
           <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
           <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RequestHouse">
+      <EntityTypeMapping TypeName="HomeDBModel.RequestHouse">
+        <MappingFragment StoreEntitySet="RequestHouse">
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ReqAge" ColumnName="ReqAge" />
+          <ScalarProperty Name="ReqSex" ColumnName="ReqSex" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

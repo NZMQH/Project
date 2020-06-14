@@ -25,7 +25,7 @@ namespace _201817380227易炽昆.Controllers
         public ActionResult UserMsg()
         {
             var list = db.User.Where(p => p.State == 1).ToList();
-            ViewBag.list=list;
+            ViewBag.list = list;
             return View();
         }
         /// <summary>
@@ -52,6 +52,19 @@ namespace _201817380227易炽昆.Controllers
         [HttpPost]
         public ActionResult UserEdit(User user)
         {
+            var rent = db.RequestHouse.Where(p => p.Name == user.UserName && p.Phone == user.UserPhone).ToList();
+            if (rent.Count > 0)
+            {
+                foreach (var item in rent)
+                {
+                    item.Name = user.UserName;
+                    item.Phone = user.UserPhone;
+                    if (item.ReqAge!=null)
+                    {
+                        item.ReqAge = user.UserAge;
+                    }
+                }
+            }
             User userEdit = db.User.Find(user.UserID);
             userEdit.UserName = user.UserName;
             userEdit.UserLogin = user.UserLogin;
@@ -63,7 +76,7 @@ namespace _201817380227易炽昆.Controllers
             db.SaveChanges();
             ViewBag.user = userEdit;
             //return RedirectToAction("UserEdit", "BackStage",new { UserID= userEdit.UserID});
-            return Content("<script >alert('保存成功');window.open('" + Url.Content("/BackStage/UserEdit?UserID="+userEdit.UserID) + "', '_self')</script >", "text/html");
+            return Content("<script >alert('保存成功');window.open('" + Url.Content("/BackStage/UserEdit?UserID=" + userEdit.UserID) + "', '_self')</script >", "text/html");
         }
         /// <summary>
         /// 删除客户

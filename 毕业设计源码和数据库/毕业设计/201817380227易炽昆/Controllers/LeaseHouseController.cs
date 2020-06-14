@@ -106,5 +106,43 @@ namespace _201817380227易炽昆.Controllers
             ViewBag.list = list;
             return View();
         }
+        [HttpPost]
+        public ActionResult SingleLease(int? LeaseID)
+        {
+            if (LeaseID == null)
+            {
+                var list = db.Lease.ToList();
+                ViewBag.list = list;
+                return View();
+            }
+            else
+            {
+                var lease = db.Lease.Where(p => p.LeaseID == LeaseID).ToList();
+                ViewBag.lease = lease;
+                return View();
+            }
+
+        }
+        /// <summary>
+        /// 详情
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SingleSee(int ID)
+        {
+            var lease = db.Lease.Find(ID);
+            //var list = db.Lease.Where(p => (p.User.UserName == UserName && p.LeaseHouse.LeaseType == 0) || (p.User.UserName.Contains(UserName) && p.LeaseHouse.LeaseType == 0)).ToList();
+            ViewBag.lease = lease;
+            return View();
+        }
+        /// <summary>
+        /// 修改单人出租信息
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SingleEdit(int ID)
+        {
+            Lease lease = db.Lease.Find(ID);
+            ViewBag.lease = lease;
+            return View();
+        }
     }
 }

@@ -63,15 +63,17 @@
     <Property Name="LeaseID" Type="int" />
     <Property Name="SellID" Type="int" />
   </EntityType>
-  <EntityType Name="RequestRent">
+  <EntityType Name="RequestHouse">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ReqSex" Type="int" />
+    <Property Name="ReqSex" Type="nvarchar" MaxLength="2" />
     <Property Name="ReqAge" Type="int" />
-    <Property Name="Name" Type="nvarchar" MaxLength="20" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="Phone" Type="nvarchar" MaxLength="11" Nullable="false" />
+    <Property Name="UserLogin" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Position" Type="nvarchar" MaxLength="300" />
   </EntityType>
   <EntityType Name="SellHouse">
     <Key>
@@ -236,7 +238,7 @@
     <EntitySet Name="Lease" EntityType="Self.Lease" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LeaseHouse" EntityType="Self.LeaseHouse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="RequestRent" EntityType="Self.RequestRent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RequestHouse" EntityType="Self.RequestHouse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SellHouse" EntityType="Self.SellHouse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StagesBuyHouse" EntityType="Self.StagesBuyHouse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
