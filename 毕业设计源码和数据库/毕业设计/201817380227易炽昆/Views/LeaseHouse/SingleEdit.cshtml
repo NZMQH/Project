@@ -26,11 +26,11 @@
     string day1 = lease.EndTime.Day.ToString();
     if (month1.Length==1)
     {
-        month = "0" + month;
+        month1 = "0" + month1;
     }
     if (day1.Length==1)
     {
-        day = "0" + day;
+        day1 = "0" + day1;
     }
     string EndTime = year1 + "-" + month1 + "-" + day1;
 }
@@ -73,17 +73,51 @@
             <input type="text" class="form-control" readonly value="@lease.Admin.AdminName" name="AdminName">
         </div>
     </div>
-    <div class="form-group row">
-        <label for="StartTime" class="col-sm-2 col-form-label">入住时间：</label>
-        <div class="col-sm-10">
-            <input type="date" class="form-control" readonly value="@StartTime" id="StartTime" name="StartTime">
+    <form action="/LeaseHouse/SingleEdit" method="post" id="SingleEdit">
+        <div class="form-group row">
+            <label for="StartTime" class="col-sm-2 col-form-label">入住时间：</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" readonly value="@StartTime" id="StartTime" name="StartTime">
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label for="EndTime" class="col-sm-2 col-form-label">到期时间：</label>
-        <div class="col-sm-10">
-            <input type="date" class="form-control" value="@EndTime" id="EndTime" name="EndTime">
+        <div class="form-group row">
+            <label for="EndTime" class="col-sm-2 col-form-label">到期时间：</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" value="@EndTime" id="EndTime" name="EndTime">
+            </div>
         </div>
-    </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <input type="hidden" name="ID" value="@lease.ID" />
+                <input type="hidden" name="Time" value="@lease.Time" />
+                <input type="hidden" name="UserID" value="@lease.UserID" />
+                <input type="hidden" name="LeaseID" value="@lease.LeaseID" />
+                <input type="hidden" name="AdminID" value="@lease.AdminID" />
+                <input type="hidden" name="RentingState" value="@lease.RentingState" />
+                <input type="submit" class="btn btn-primary" style="width:200px;"  value="修改">
+            </div>
+        </div>
+    </form>
 </div>
 
+
+@*<script>
+    $("#SingleEdit").validate({
+        rules: {
+            EndTime: { required: true, checkTime: true }
+        },
+        messages: {
+            Area: { required: "面积不能为空", checkArea: "面积不能超过3位数" }
+        }
+    })
+
+    $.validator.addMethod("checkTime", function (value, e) {
+        //var reg = /^[0-9]{2,3}$/;
+        //return reg.test(value);
+        var startTime = $("#StartTime").val();
+        var EndTime = $("#EndTIme").val();
+        if (EndTime < startTime) {
+            return EndTime.test(value);
+        }
+    })
+</script>*@

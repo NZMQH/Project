@@ -59,6 +59,7 @@ namespace _201817380227易炽昆.Controllers
             leaseHouse1.IsLease = leaseHouse.IsLease;
             leaseHouse1.Contacts = leaseHouse.Contacts;
             leaseHouse1.ContactsPhone = leaseHouse.ContactsPhone;
+            leaseHouse1.HousePhone = leaseHouse.HousePhone;
             db.SaveChanges();
             ViewBag.leaseHouse = leaseHouse1;
             return Content("<script >alert('修改成功');window.open('" + Url.Content("/LeaseHouse/HouseEdit?LeaseID=" + leaseHouse1.LeaseID) + "', '_self')</script >", "text/html");
@@ -75,6 +76,26 @@ namespace _201817380227易炽昆.Controllers
             return View();
         }
         /// <summary>
+        /// 删除房屋信息
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public ActionResult HouseDelete(int LeaseID)
+        {
+            var list = db.Lease.Where(p => p.LeaseID == LeaseID).ToList();
+            if (list.Count>0)
+            {
+                return Content("<script >alert('该房间有租客存在，不能删除');window.history.go(-1);</script >", "text/html");
+            }
+            else
+            {
+                LeaseHouse leaseHouse = db.LeaseHouse.Find(LeaseID);
+                db.LeaseHouse.Remove(leaseHouse);
+                db.SaveChanges();
+                return Content("<script >alert('删除成功');window.open('" + Url.Content("/LeaseHouse/Index") + "', '_self')</script >", "text/html");
+            }
+        }
+        /// <summary>
         /// 租客信息
         /// </summary>
         /// <returns></returns>
@@ -89,11 +110,20 @@ namespace _201817380227易炽昆.Controllers
         [HttpPost]
         public ActionResult HouseUser(Lease lease)
         {
-            var House = db.LeaseHouse.Find(lease.LeaseID);
-            House.IsLease = "是";
-            db.Lease.Add(lease);
-            db.SaveChanges();
-            return Content("<script >alert('提交成功');window.open('" + Url.Content("/LeaseHouse/Index") + "', '_self')</script >", "text/html");
+            var startTime = lease.StartTime;
+            var endTime = lease.EndTime;
+            if (endTime<=startTime)
+            {
+                return Content("<script >alert('到期时间必须大于入住时间');window.history.go(-1);</script >", "text/html");
+            }
+            else
+            {
+                var House = db.LeaseHouse.Find(lease.LeaseID);
+                House.IsLease = "是";
+                db.Lease.Add(lease);
+                db.SaveChanges();
+                return Content("<script >alert('提交成功');window.open('" + Url.Content("/LeaseHouse/Index") + "', '_self')</script >", "text/html");
+            }
         }
         /// <summary>
         /// 单人租房
@@ -158,10 +188,41 @@ namespace _201817380227易炽昆.Controllers
         [HttpPost]
         public ActionResult SingleEdit(Lease lease)
         {
-            Lease lea = db.Lease.Find(lease.ID);
-            
-            ViewBag.lease = lease;
-            return View();
+            var startTime = lease.StartTime;
+            var endTime = lease.EndTime;
+            var nowTime = DateTime.Now;
+            if (endTime <= startTime)
+            {
+                return Content("<script >alert('到期时间必须大于入住时间');window.history.go(-1);</script >", "text/html");
+            }
+            else if(endTime<nowTime)
+            {
+                Lease lea = db.Lease.Find(lease.ID);
+                lea.Time = lease.Time;
+                lea.StartTime = lease.StartTime;
+                lea.EndTime = lease.EndTime;
+                lea.UserID = lease.UserID;
+                lea.LeaseID = lease.LeaseID;
+                lea.AdminID = lease.AdminID;
+                lea.RentingState = 1;
+                db.SaveChanges();
+                ViewBag.lease = lea;
+                return Content("<script >alert('修改成功');window.open('" + Url.Content("/LeaseHouse/SingleEdit?ID=" + lease.ID) + "', '_self')</script >", "text/html");
+            }
+            else
+            {
+                Lease lea = db.Lease.Find(lease.ID);
+                lea.Time = lease.Time;
+                lea.StartTime = lease.StartTime;
+                lea.EndTime = lease.EndTime;
+                lea.UserID = lease.UserID;
+                lea.LeaseID = lease.LeaseID;
+                lea.AdminID = lease.AdminID;
+                lea.RentingState = 0;
+                db.SaveChanges();
+                ViewBag.lease = lea;
+                return Content("<script >alert('修改成功');window.open('" + Url.Content("/LeaseHouse/SingleEdit?ID=" + lease.ID) + "', '_self')</script >", "text/html");
+            }
         }
     }
 }

@@ -53,6 +53,7 @@
     <Property Name="IsLease" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="Contacts" Type="nvarchar" MaxLength="20" />
     <Property Name="ContactsPhone" Type="nvarchar" MaxLength="11" />
+    <Property Name="HousePhone" Type="nvarchar" MaxLength="11" />
   </EntityType>
   <EntityType Name="Picture">
     <Key>

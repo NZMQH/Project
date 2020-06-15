@@ -45,5 +45,12 @@ namespace _201817380227易炽昆.Controllers
             }
 
         }
+        public ActionResult DeleteMessage(int ID)
+        {
+            RequestHouse house = db.RequestHouse.Find(ID);
+            db.RequestHouse.Remove(house);
+            db.SaveChanges();
+            return Content("<script >alert('删除成功');window.open('" + Url.Content("/RequestHouse/Index") + "', '_self')</script >", "text/html");
+        }
     }
 }

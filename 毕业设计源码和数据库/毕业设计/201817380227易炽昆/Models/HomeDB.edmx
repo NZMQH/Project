@@ -58,6 +58,7 @@
           <Property Name="IsLease" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Contacts" Type="nvarchar" MaxLength="20" />
           <Property Name="ContactsPhone" Type="nvarchar" MaxLength="11" />
+          <Property Name="HousePhone" Type="nvarchar" MaxLength="11" />
         </EntityType>
         <EntityType Name="Picture">
           <Key>
@@ -350,6 +351,7 @@
           <NavigationProperty Name="Lease" Relationship="Self.FK_Lease_LeaseHouse" FromRole="LeaseHouse" ToRole="Lease" />
           <NavigationProperty Name="Picture" Relationship="Self.FK_Picture_LeaseHouse" FromRole="LeaseHouse" ToRole="Picture" />
           <Property Name="LeaseType" Type="Int32" Nullable="false" />
+          <Property Name="HousePhone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Picture">
           <Key>
@@ -637,6 +639,7 @@
           <EntitySetMapping Name="LeaseHouse">
             <EntityTypeMapping TypeName="HomeDBModel.LeaseHouse">
               <MappingFragment StoreEntitySet="LeaseHouse">
+                <ScalarProperty Name="HousePhone" ColumnName="HousePhone" />
                 <ScalarProperty Name="LeaseType" ColumnName="LeaseType" />
                 <ScalarProperty Name="LeaseID" ColumnName="LeaseID" />
                 <ScalarProperty Name="Position" ColumnName="Position" />

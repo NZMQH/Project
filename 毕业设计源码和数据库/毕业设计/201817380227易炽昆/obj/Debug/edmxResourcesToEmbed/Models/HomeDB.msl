@@ -45,6 +45,7 @@
     <EntitySetMapping Name="LeaseHouse">
       <EntityTypeMapping TypeName="HomeDBModel.LeaseHouse">
         <MappingFragment StoreEntitySet="LeaseHouse">
+          <ScalarProperty Name="HousePhone" ColumnName="HousePhone" />
           <ScalarProperty Name="LeaseType" ColumnName="LeaseType" />
           <ScalarProperty Name="LeaseID" ColumnName="LeaseID" />
           <ScalarProperty Name="Position" ColumnName="Position" />

@@ -61,6 +61,7 @@
     <NavigationProperty Name="Lease" Relationship="Self.FK_Lease_LeaseHouse" FromRole="LeaseHouse" ToRole="Lease" />
     <NavigationProperty Name="Picture" Relationship="Self.FK_Picture_LeaseHouse" FromRole="LeaseHouse" ToRole="Picture" />
     <Property Name="LeaseType" Type="Int32" Nullable="false" />
+    <Property Name="HousePhone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Picture">
     <Key>

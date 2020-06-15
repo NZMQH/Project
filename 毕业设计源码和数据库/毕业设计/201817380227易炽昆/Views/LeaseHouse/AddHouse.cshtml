@@ -79,15 +79,21 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="Contacts" class="col-sm-2 col-form-label">联系人：</label>
+            <label for="Contacts" class="col-sm-2 col-form-label">中介：</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" value="@admin.AdminName" name="Contacts" id="Contacts" placeholder="请输入联系人" />
             </div>
         </div>
         <div class="form-group row">
-            <label for="ContactsPhone" class="col-sm-2 col-form-label">联系人电话：</label>
+            <label for="ContactsPhone" class="col-sm-2 col-form-label">中介电话：</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="ContactsPhone" value="@admin.AdminPhone" id="ContactsPhone" placeholder="请输入联系人电话" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="HousePhone" class="col-sm-2 col-form-label">房主电话：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="HousePhone" id="HousePhone" placeholder="请输入房主电话" />
             </div>
         </div>
         <input type="submit" value="保 存" class="btn btn-primary" style="width:200px;" />
@@ -105,7 +111,9 @@
             LeaseFurniture: { required: true, maxlength: 100 },
             //LeaseType: { required: true, checkNum: true },
             Contacts: { required: true, maxlength: 10 },
-            ContactsPhone: { required: true, checkPhone: true }
+            ContactsPhone: { required: true, checkPhone: true },
+            HousePhone: { required: true, checkPhone: true }
+
         },
         messages: {
             Position: { required: "位置不能为空", maxlength: "位置信息不能超过150字" },
@@ -116,7 +124,9 @@
             LeaseFurniture: { required: "家具配置不能为空，若没有则填无", maxlength: "家具描述不能超过100字" },
             //LeaseType: { required: "类型不能为空", checkNum: "请输入0或者1的数字" },
             Contacts: { required: "联系人不能为空", maxlength: "联系人不能超过10字" },
-            ContactsPhone: { required: "手机号不能为空", maxlength: "请输入正确的11位手机号", minlength: "请输入正确11位手机号" }
+            ContactsPhone: { required: "手机号不能为空", maxlength: "请输入正确的11位手机号", minlength: "请输入正确11位手机号" },
+            HousePhone: { required: "手机号不能为空", maxlength: "请输入正确的11位手机号", minlength: "请输入正确11位手机号" }
+
         }
     })
 
