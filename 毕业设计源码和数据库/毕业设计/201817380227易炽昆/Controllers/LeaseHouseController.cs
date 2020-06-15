@@ -124,6 +124,17 @@ namespace _201817380227易炽昆.Controllers
 
         }
         /// <summary>
+        /// 查询已超过租用时间的信息
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Overtime(string Position="")
+        {
+            DateTime nowTime = DateTime.Now;
+            var list = db.Lease.Where(p => (p.EndTime < nowTime  && p.LeaseHouse.Position == Position) || (p.EndTime < nowTime && p.LeaseHouse.Position.Contains(Position))).ToList();
+            ViewBag.list = list;
+            return View();
+        }
+        /// <summary>
         /// 详情
         /// </summary>
         /// <returns></returns>
@@ -141,6 +152,14 @@ namespace _201817380227易炽昆.Controllers
         public ActionResult SingleEdit(int ID)
         {
             Lease lease = db.Lease.Find(ID);
+            ViewBag.lease = lease;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SingleEdit(Lease lease)
+        {
+            Lease lea = db.Lease.Find(lease.ID);
+            
             ViewBag.lease = lease;
             return View();
         }

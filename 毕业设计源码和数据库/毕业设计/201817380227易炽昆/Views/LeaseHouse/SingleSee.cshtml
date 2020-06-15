@@ -15,13 +15,6 @@
         <li class="breadcrumb-item active" aria-current="page">查看信息</li>
     </ol>
 </nav>
-@*<form action="/LeaseHouse/SingleLease">
-    <div class="form-group form-inline" style="width:500px;margin-left:30%;margin-top:1%;">
-        <label style="font-size:18px">搜索：</label>
-        <input type="text" name="UserName" style="width:200px" class="form-control" placeholder="请输入客户" />
-        <input type="submit" value="搜 索" class="btn btn-primary" />
-    </div>
-</form>*@
 <div style="width:80%;margin-left:10%;margin-top:6%;">
     <div class="form-group row">
         <label for="Position" class="col-sm-2 col-form-label">位置：</label>
@@ -83,6 +76,6 @@
             <input type="text" class="form-control" readonly value="@lease.Admin.AdminPhone" id="AdminPhone" name="AdminPhone">
         </div>
     </div>
-    <a href="/LeaseHouse/SingleLease" class="btn btn-primary" style="width:200px;">返回</a>
+    <a href="javascript:history.back(-1)" class="btn btn-primary" style="width:200px;">返回</a>
 </div>
 

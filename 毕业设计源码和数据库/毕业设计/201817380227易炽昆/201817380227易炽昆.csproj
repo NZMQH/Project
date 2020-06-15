@@ -372,6 +372,7 @@
     <Content Include="Views\LeaseHouse\SingleEdit.cshtml" />
     <Content Include="Views\RequestHouse\Index.cshtml" />
     <Content Include="Views\RequestHouse\AddMessage.cshtml" />
+    <Content Include="Views\LeaseHouse\Overtime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
