@@ -136,6 +136,7 @@
     <Compile Include="Controllers\LeaseHouseController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RequestHouseController.cs" />
+    <Compile Include="Controllers\UIController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -373,10 +374,13 @@
     <Content Include="Views\RequestHouse\Index.cshtml" />
     <Content Include="Views\RequestHouse\AddMessage.cshtml" />
     <Content Include="Views\LeaseHouse\Overtime.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\AdminSee.cshtml" />
+    <Content Include="Views\Admin\AdminEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\UI\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

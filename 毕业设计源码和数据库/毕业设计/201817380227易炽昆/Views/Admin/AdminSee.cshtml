@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "AdminSee";
+    Layout = "~/Views/BackstageView.cshtml";
+}
+
+@using _201817380227易炽昆.Models
+@{
+    Admin admin = ViewBag.Admin;
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">首页</a></li>
+        <li class="breadcrumb-item"><a href="#">管理员信息</a></li>
+        <li class="breadcrumb-item"><a href="/Admin/Index">管理员信息管理</a></li>
+        <li class="breadcrumb-item active" aria-current="page">查看管理员信息</li>
+    </ol>
+</nav>
+
+<div style="width:80%;margin-left:10%;margin-top:6%;">
+    <div class="form-group row">
+        <label for="AdminID" class="col-sm-2 col-form-label">ID：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@admin.AdminID" id="AdminID" name="AdminID">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="AdminName" class="col-sm-2 col-form-label">姓名：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@admin.AdminName" id="AdminName" name="AdminName">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="AdminLogin" class="col-sm-2 col-form-label">账号：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@admin.AdminLogin" id="AdminLogin" name="AdminLogin">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="AdminSex" class="col-sm-2 col-form-label">性别：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@admin.AdminSex" id="AdminSex" name="AdminSex">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="AdminAge" class="col-sm-2 col-form-label">年龄：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@admin.AdminAge" id="AdminAge" name="AdminAge">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="AdminIdentity" class="col-sm-2 col-form-label">身份证：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@admin.AdminIdentity" id="AdminIdentity" name="AdminIdentity">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="AdminPhone" class="col-sm-2 col-form-label">电话：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@admin.AdminPhone" id="AdminPhone" name="AdminPhone">
+        </div>
+    </div>
+    <a href="javascript:history.back(-1)" class="btn btn-primary" style="width:200px;">返回</a>
+</div>
+
+

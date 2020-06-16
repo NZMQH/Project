@@ -45,7 +45,7 @@
                         <input class="text" type="text" name="AdminAge" placeholder="年龄" required="required" />
                     </div>
                     <div class="input-group">
-                        <input class="text" type="text" name="Adminphone" placeholder="手机号" required="required" />
+                        <input class="text" type="text" name="AdminPhone" placeholder="手机号" required="required" />
                     </div>
                     <div class="input-group">
                         <input class="text" type="text" name="AdminIdentity" placeholder="身份证" required="required" />
@@ -80,16 +80,16 @@
                 AdminLogin: { required: true, maxlength: 20 },
                 AdminPwd: { required: true, checkPwd: true },
                 AdminAge: { required: true, checkAge: true },
-                Adminphone: { required: true, maxlength: 11, minlength: 11 },
-                AdminIdentity: { required: true, maxlength: 18, minlength: 15,checkIdentity:true }
+                AdminPhone: { required: true, maxlength: 11, minlength: 11 },
+                AdminIdentity: { required: true, maxlength: 18, minlength: 15,checkIdentity:true}
             },
             messages: {
                 AdminName: { required: "用户名不能为空", maxlength: "用户名不能超过10字" },
                 AdminLogin: { required: "账号不能为空", maxlength: "账号不能超过20字符" },
                 AdminPwd: { required: "密码不能为空", checkPwd: "密码组成：6-16位的字母数字组成" },
                 AdminAge: { required: "年龄不能为空",checkAge:"请输入正确的年龄" },
-                Adminphone: { required: "手机号不能为空", maxlength: "请输入11位的手机号", minlength: "请输入11位的手机号" },
-                AdminIdentity: { required: "身份证不能为空", maxlength: "请输入正确的身份证", minlength: "请输入正确的身份证", }
+                AdminPhone: { required: "手机号不能为空", maxlength: "请输入11位的手机号", minlength: "请输入11位的手机号" },
+                AdminIdentity: { required: "身份证不能为空", maxlength: "请输入正确的身份证", minlength: "请输入正确的身份证", checkIdentity:"身份证为15或18位" }
             }
         })
 
@@ -103,6 +103,7 @@
         });
         $.validator.addMethod("checkIdentity", function (value, e) {
             var reg = /^[1-9]([0-9]{16}|[0-9]{13})[xX0-9]$/;
+            //var reg = /(^\d{15}$)|(^\d{17}(\d|X)$)/;
             return reg.test(value);
         });
     </script>

@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/BackstageView.cshtml";
+}
+@using _201817380227易炽昆.Models
+@{
+    List<Admin> list = ViewBag.list;
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">首页</a></li>
+        <li class="breadcrumb-item"><a href="/Admin/Index">管理员信息</a></li>
+        <li class="breadcrumb-item active" aria-current="page">管理员信息管理</li>
+    </ol>
+</nav>
+
+<div class="grid">
+    <form action="/Admin/Index">
+        <div class="form-group form-inline" style="width:500px;margin-left:30%;margin-top:1%;">
+            <label style="font-size:18px">搜索：</label>
+            <input type="text" name="AdminName" style="width:200px" class="form-control" placeholder="请输入管理员姓名" />
+            <input type="submit" value="搜 索" class="btn btn-primary" />
+        </div>
+    </form>
+    <div style="">
+        <a href="/Admin/AddAdmin" class="btn btn-primary">添加管理员</a>
+    </div>
+</div>
+<table class="table table-hover" border="1" style="text-align:center;width:98%;margin-left:1%;">
+    <tr>
+        <th>姓名</th>
+        <th>账号</th>
+        <th>性别</th>
+        <th>年龄</th>
+        <th>电话</th>
+    </tr>
+    @foreach (var item in list)
+    {
+        <tr>
+            <td>@item.AdminName</td>
+            <td>@item.AdminLogin</td>
+            <td>@item.AdminSex</td>
+            <td>@item.AdminAge</td>
+            <td>@item.AdminPhone</td>
+            <td>
+                <a href="/Admin/AdminSee?AdminID=@item.AdminID" class="btn btn-primary">查看</a>
+                @*<a href="/Admin/AdminDelete?AdminID=@item.AdminID" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</a>*@
+            </td>
+        </tr>
+    }
+</table>
