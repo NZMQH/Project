@@ -44,5 +44,16 @@ namespace _201817380227易炽昆.Controllers
             Session["Admin"] = admin1;
             return Content("<script >alert('修改成功');window.open('" + Url.Content("/Admin/AdminEdit?AdminID=" + admin1.AdminID) + "', '_self')</script >", "text/html");
         }
+        //public ActionResult AddAdmin()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult AddAdmin(Admin admin)
+        //{
+        //    db.Admin.Add(admin);
+        //    db.SaveChanges();
+        //    return Content("<script >alert('添加成功');window.open('" + Url.Content("/Admin/Index") + "', '_self')</script >", "text/html");
+        //}
     }
 }

@@ -11,21 +11,12 @@
 }
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">首页</a></li>
+        <li class="breadcrumb-item"><a href="/BackStage/Index">首页</a></li>
         <li class="breadcrumb-item"><a href="#">出租房信息</a></li>
         <li class="breadcrumb-item active" aria-current="page">单人租房管理</li>
     </ol>
 </nav>
 <div class="grid">
-    <div class="grid-cell-3">
-        <form action="/LeaseHouse/SingleLease" method="post">
-            <div class="form-group form-inline" style="margin-left:10%;margin-top:1%;">
-                <label style="font-size:18px">搜索：</label>
-                <input type="text" name="LeaseID" style="width:200px" class="form-control" placeholder="请输入房屋ID" />
-                <input type="submit" value="搜 索" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
     <div class="grid-cell-3">
         <form action="/LeaseHouse/SingleLease">
             <div class="form-group form-inline" style="margin-left:10%;margin-top:1%;">
@@ -35,6 +26,16 @@
             </div>
         </form>
     </div>
+    <div class="grid-cell-3">
+        <form action="/LeaseHouse/SingleLease" method="post">
+            <div class="form-group form-inline" style="margin-left:10%;margin-top:1%;">
+                <label style="font-size:18px">搜索：</label>
+                <input type="text" name="LeaseID" style="width:200px" class="form-control" placeholder="请输入房屋ID" />
+                <input type="submit" value="搜 索" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
 </div>
 
 <br />

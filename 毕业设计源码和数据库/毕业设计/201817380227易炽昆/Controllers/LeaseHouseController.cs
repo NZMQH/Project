@@ -151,7 +151,6 @@ namespace _201817380227易炽昆.Controllers
                 ViewBag.lease = lease;
                 return View();
             }
-
         }
         /// <summary>
         /// 查询已超过租用时间的信息
@@ -223,6 +222,39 @@ namespace _201817380227易炽昆.Controllers
                 ViewBag.lease = lea;
                 return Content("<script >alert('修改成功');window.open('" + Url.Content("/LeaseHouse/SingleEdit?ID=" + lease.ID) + "', '_self')</script >", "text/html");
             }
+        }
+        /// <summary>
+        /// 合租信息
+        /// </summary>
+        /// <param name="Position"></param>
+        /// <returns></returns>
+        public ActionResult Together(string Position = "")
+        {
+            var list = db.Lease.Where(p => (p.LeaseHouse.LeaseType == 1 && p.LeaseHouse.Position == Position) || (p.LeaseHouse.LeaseType == 1 && p.LeaseHouse.Position.Contains(Position))).GroupBy(p=>p.LeaseID).ToList();
+            ViewBag.list = list;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Together(int? LeaseID)
+        {
+            if (LeaseID == null)
+            {
+                var list = db.Lease.GroupBy(p=>p.LeaseID).ToList();
+                ViewBag.list = list;
+                return View();
+            }
+            else
+            {
+                var lease = db.Lease.Where(p => p.LeaseID == LeaseID).GroupBy(p => p.LeaseID).ToList();
+                ViewBag.lease = lease;
+                return View();
+            }
+        }
+        public ActionResult TogetherSee(int ID)
+        {
+            Lease lease = db.Lease.Find(ID);
+            ViewBag.lease = lease;
+            return View();
         }
     }
 }

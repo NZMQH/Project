@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "Together";
+    Layout = "~/Views/BackstageView.cshtml";
+}
+
+@using _201817380227易炽昆.Models
+@{
+    var list = ViewBag.list;
+    var lease = ViewBag.lease;
+}
+@* 面包屑导航 *@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/BackStage/Index">首页</a></li>
+        <li class="breadcrumb-item"><a href="#">出租房信息管理</a></li>
+        <li class="breadcrumb-item active" aria-current="page">合租管理</li>
+    </ol>
+</nav>
+<div class="grid">
+    <div class="grid-cell-3">
+        <form action="/LeaseHouse/Together">
+            <div class="form-group form-inline" style="margin-left:10%;margin-top:1%;">
+                <label style="font-size:18px">搜索：</label>
+                <input type="text" name="Position" style="width:200px" class="form-control" placeholder="请输入位置" />
+                <input type="submit" value="搜 索" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="grid-cell-3">
+        <form action="/LeaseHouse/Together" method="post">
+            <div class="form-group form-inline" style="margin-left:10%;margin-top:1%;">
+                <label style="font-size:18px">搜索：</label>
+                <input type="text" name="LeaseID" style="width:200px" class="form-control" placeholder="请输入房屋ID" />
+                <input type="submit" value="搜 索" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<br />
+@if (lease == null)
+{
+<table class="table table-hover" border="1" style="text-align:center;width:98%;margin-left:1%;">
+    <tr>
+        <th>房屋ID</th>
+        <th>位置</th>
+        <th>面积</th>
+        <th>类型</th>
+        <th>价格(月)</th>
+        <th>客户</th>
+        <th>客户电话</th>
+        <th>中介人</th>
+        <th>中介人电话</th>
+        <th>操作</th>
+    </tr>
+    @foreach (var item in list)
+    {
+        foreach (var item1 in item)
+        {
+            <tr>
+                <td>@item1.LeaseHouse.LeaseID</td>
+                <td>@item1.LeaseHouse.Position</td>
+                <td>@item1.LeaseHouse.Area</td>
+                <td>@item1.LeaseHouse.HouseType</td>
+                <td>@item1.LeaseHouse.Price</td>
+                <td>@item1.User.UserName</td>
+                <td>@item1.User.UserPhone</td>
+                <td>@item1.Admin.AdminName</td>
+                <td>@item1.Admin.AdminPhone</td>
+                <td>
+                    <a href="/LeaseHouse/TogetherSee?ID=@item1.ID" class="btn btn-primary">查看</a>
+                    <a href="/LeaseHouse/TogetherEdit?ID=@item1.ID" class="btn btn-primary">编辑</a>
+                    <a href="/LeaseHouse/SingleDelete?ID=@item1.ID" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+}
+else if (list == null)
+{
+    <table class="table table-hover" border="1" style="text-align:center;width:98%;margin-left:1%;">
+        <tr>
+            <th>房屋ID</th>
+            <th>位置</th>
+            <th>面积</th>
+            <th>类型</th>
+            <th>价格(月)</th>
+            <th>客户</th>
+            <th>客户电话</th>
+            <th>中介人</th>
+            <th>中介人电话</th>
+            <th>操作</th>
+        </tr>
+        @foreach (var item in lease)
+        {
+            foreach (var item1 in item)
+            {
+            <tr>
+                <td>@item1.LeaseHouse.LeaseID</td>
+                <td>@item1.LeaseHouse.Position</td>
+                <td>@item1.LeaseHouse.Area</td>
+                <td>@item1.LeaseHouse.HouseType</td>
+                <td>@item1.LeaseHouse.Price</td>
+                <td>@item1.User.UserName</td>
+                <td>@item1.User.UserPhone</td>
+                <td>@item1.Admin.AdminName</td>
+                <td>@item1.Admin.AdminPhone</td>
+                <td>
+                    <a href="/LeaseHouse/TogetherSee?ID=@item1.ID" class="btn btn-primary">查看</a>
+                    <a href="/LeaseHouse/TogetherEdit?ID=@item1.ID" class="btn btn-primary">编辑</a>
+                    <a href="/LeaseHouse/SingleDelete?ID=@item1.ID" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</a>
+                </td>
+            </tr>
+            }
+        }
+    </table>
+}
