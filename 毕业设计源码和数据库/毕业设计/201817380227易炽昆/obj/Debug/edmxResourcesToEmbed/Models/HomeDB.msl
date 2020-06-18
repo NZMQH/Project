@@ -73,6 +73,8 @@
     <EntitySetMapping Name="SellHouse">
       <EntityTypeMapping TypeName="HomeDBModel.SellHouse">
         <MappingFragment StoreEntitySet="SellHouse">
+          <ScalarProperty Name="HousePhone" ColumnName="HousePhone" />
+          <ScalarProperty Name="BuyType" ColumnName="BuyType" />
           <ScalarProperty Name="SellID" ColumnName="SellID" />
           <ScalarProperty Name="Position" ColumnName="Position" />
           <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
@@ -88,6 +90,8 @@
     <EntitySetMapping Name="StagesBuyHouse">
       <EntityTypeMapping TypeName="HomeDBModel.StagesBuyHouse">
         <MappingFragment StoreEntitySet="StagesBuyHouse">
+          <ScalarProperty Name="ByStages" ColumnName="ByStages" />
+          <ScalarProperty Name="NowStages" ColumnName="NowStages" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Time" ColumnName="Time" />
           <ScalarProperty Name="IsFinish" ColumnName="IsFinish" />

@@ -21,8 +21,11 @@ namespace _201817380227易炽昆.Models
         public int SellID { get; set; }
         public int AdminID { get; set; }
         public Nullable<int> State { get; set; }
+        public int NowStages { get; set; }
+        public int ByStages { get; set; }
     
         public virtual SellHouse SellHouse { get; set; }
         public virtual User User { get; set; }
+        public virtual Admin Admin { get; set; }
     }
 }

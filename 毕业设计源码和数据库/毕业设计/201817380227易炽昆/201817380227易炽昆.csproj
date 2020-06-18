@@ -137,6 +137,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\RequestHouseController.cs" />
+    <Compile Include="Controllers\SellHouseController.cs" />
     <Compile Include="Controllers\UIController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -385,6 +386,10 @@
     <Content Include="Views\Picture\LeasePicture.cshtml" />
     <Content Include="Views\Picture\PictureSee.cshtml" />
     <Content Include="Views\Picture\PictureAdd.cshtml" />
+    <Content Include="Views\SellHouse\Index.cshtml" />
+    <Content Include="Views\SellHouse\AddHouse.cshtml" />
+    <Content Include="Views\SellHouse\HouseSee.cshtml" />
+    <Content Include="Views\SellHouse\HouseEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

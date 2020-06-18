@@ -14,6 +14,8 @@
     <Property Name="AdminPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="State" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Lease" Relationship="HomeDBModel.FK_Lease_Admin" FromRole="Admin" ToRole="Lease" />
+    <NavigationProperty Name="BuyHouse" Relationship="HomeDBModel.FK_BuyHouse_Admin" FromRole="Admin" ToRole="BuyHouse" />
+    <NavigationProperty Name="StagesBuyHouse" Relationship="HomeDBModel.FK_StagesBuyHouse_Admin" FromRole="Admin" ToRole="StagesBuyHouse" />
   </EntityType>
   <EntityType Name="BuyHouse">
     <Key>
@@ -27,6 +29,7 @@
     <Property Name="State" Type="Int32" />
     <NavigationProperty Name="SellHouse" Relationship="Self.FK_BuyHouse_SellHouse" FromRole="BuyHouse" ToRole="SellHouse" />
     <NavigationProperty Name="User" Relationship="Self.FK_BuyHouse_User" FromRole="BuyHouse" ToRole="User" />
+    <NavigationProperty Name="Admin" Relationship="HomeDBModel.FK_BuyHouse_Admin" FromRole="BuyHouse" ToRole="Admin" />
   </EntityType>
   <EntityType Name="Lease">
     <Key>
@@ -90,6 +93,8 @@
     <NavigationProperty Name="BuyHouse" Relationship="Self.FK_BuyHouse_SellHouse" FromRole="SellHouse" ToRole="BuyHouse" />
     <NavigationProperty Name="Picture" Relationship="Self.FK_Picture_SellHouse" FromRole="SellHouse" ToRole="Picture" />
     <NavigationProperty Name="StagesBuyHouse" Relationship="Self.FK_StagesBuyHouse_SellHouse" FromRole="SellHouse" ToRole="StagesBuyHouse" />
+    <Property Name="BuyType" Type="Int32" />
+    <Property Name="HousePhone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="StagesBuyHouse">
     <Key>
@@ -104,6 +109,9 @@
     <Property Name="State" Type="Int32" />
     <NavigationProperty Name="SellHouse" Relationship="Self.FK_StagesBuyHouse_SellHouse" FromRole="StagesBuyHouse" ToRole="SellHouse" />
     <NavigationProperty Name="User" Relationship="Self.FK_StagesBuyHouse_User" FromRole="StagesBuyHouse" ToRole="User" />
+    <NavigationProperty Name="Admin" Relationship="HomeDBModel.FK_StagesBuyHouse_Admin" FromRole="StagesBuyHouse" ToRole="Admin" />
+    <Property Name="NowStages" Type="Int32" Nullable="false" />
+    <Property Name="ByStages" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -274,6 +282,14 @@
       <End Role="Lease" EntitySet="Lease" />
     </AssociationSet>
     <EntitySet Name="RequestHouse" EntityType="HomeDBModel.RequestHouse" />
+    <AssociationSet Name="FK_BuyHouse_Admin" Association="HomeDBModel.FK_BuyHouse_Admin">
+      <End Role="Admin" EntitySet="Admin" />
+      <End Role="BuyHouse" EntitySet="BuyHouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StagesBuyHouse_Admin" Association="HomeDBModel.FK_StagesBuyHouse_Admin">
+      <End Role="Admin" EntitySet="Admin" />
+      <End Role="StagesBuyHouse" EntitySet="StagesBuyHouse" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FK_Lease_Admin">
     <End Type="HomeDBModel.Admin" Role="Admin" Multiplicity="1" />
@@ -299,4 +315,28 @@
     <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Position" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
   </EntityType>
+  <Association Name="FK_BuyHouse_Admin">
+    <End Type="HomeDBModel.Admin" Role="Admin" Multiplicity="1" />
+    <End Type="HomeDBModel.BuyHouse" Role="BuyHouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="AdminID" />
+      </Principal>
+      <Dependent Role="BuyHouse">
+        <PropertyRef Name="AdminID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StagesBuyHouse_Admin">
+    <End Type="HomeDBModel.Admin" Role="Admin" Multiplicity="1" />
+    <End Type="HomeDBModel.StagesBuyHouse" Role="StagesBuyHouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="AdminID" />
+      </Principal>
+      <Dependent Role="StagesBuyHouse">
+        <PropertyRef Name="AdminID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

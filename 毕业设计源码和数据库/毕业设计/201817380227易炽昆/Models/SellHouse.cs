@@ -31,6 +31,8 @@ namespace _201817380227易炽昆.Models
         public string IsSell { get; set; }
         public string Contacts { get; set; }
         public string ContactsPhone { get; set; }
+        public Nullable<int> BuyType { get; set; }
+        public string HousePhone { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BuyHouse> BuyHouse { get; set; }

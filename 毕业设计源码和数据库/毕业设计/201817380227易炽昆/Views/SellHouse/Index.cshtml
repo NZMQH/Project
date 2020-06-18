@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/BackstageView.cshtml";
+}
+
+@using _201817380227易炽昆.Models
+@{
+    List<SellHouse> list = ViewBag.list;
+}
+@* 面包屑导航 *@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/BackStage/Index">首页</a></li>
+        <li class="breadcrumb-item"><a href="/LeaseHouse/Index">出售房信息管理</a></li>
+        <li class="breadcrumb-item active" aria-current="page">出售房信息</li>
+    </ol>
+</nav>
+<div class="grid">
+    <form action="/SellHouse/Index" method="post">
+        <div style="width:100%;margin-top:2%;">
+            <input type="submit" class="btn btn-primary" value="查询未出售房屋" />
+        </div>
+    </form>
+    <div style="">
+        <a href="/SellHouse/AddHouse" class="btn btn-primary">添加房屋</a>
+    </div>
+    <form action="/SellHouse/Index">
+        <div class="form-group form-inline" style="width:500px;margin-left:30%;margin-top:1%;">
+            <label style="font-size:18px">搜索：</label>
+            <input type="text" name="Position" style="width:200px" class="form-control" placeholder="请输入位置" />
+            <input type="submit" value="搜 索" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+<br />
+<table class="table table-hover" border="1" style="text-align:center;width:98%;margin-left:1%;">
+    <tr>
+        <th>ID</th>
+        <th>位置</th>
+        <th>面积</th>
+        <th>类型</th>
+        <th>价格</th>
+        <th>全款/分期</th>
+        <th>是否出售</th>
+        <th>中介</th>
+        <th>中介电话</th>
+        <th>房主电话</th>
+        <th>操作</th>
+    </tr>
+    @foreach (var item in list)
+    {
+        <tr>
+            <td>@item.SellID</td>
+            <td>@item.Position</td>
+            <td>@item.Area</td>
+            <td>@item.HouseType</td>
+            <td>@item.SellPrice</td>
+            <td>
+                @if (item.BuyType == null)
+                {
+                    @:未选定
+                }
+                else
+                {
+                    @:@item.BuyType
+                }
+            </td>
+            <td>@item.IsSell</td>
+            <td>@item.Contacts</td>
+            <td>@item.ContactsPhone</td>
+            <td>@item.HousePhone</td>
+            <td>
+                <a href="/SellHouse/HouseSee?SellID=@item.SellID" class="btn btn-primary">查看</a>
+                <a href="/SellHouse/HouseEdit?SellID=@item.SellID" class="btn btn-primary">编辑</a>
+                <a href="/SellHouse/HouseUser?SellID=@item.SellID" class="btn btn-primary">客户</a>
+                <a href="/SellHouse/HouseDelete?SellID=@item.SellID" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</a>
+            </td>
+        </tr>
+    }
+</table>
+

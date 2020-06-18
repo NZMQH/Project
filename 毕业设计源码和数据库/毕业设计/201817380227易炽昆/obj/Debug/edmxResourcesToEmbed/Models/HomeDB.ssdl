@@ -82,13 +82,15 @@
     </Key>
     <Property Name="SellID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Position" Type="nvarchar" MaxLength="500" Nullable="false" />
-    <Property Name="SellPrice" Type="money" Nullable="false" />
     <Property Name="Describe" Type="nvarchar" MaxLength="500" Nullable="false" />
     <Property Name="Area" Type="float" Nullable="false" />
     <Property Name="HouseType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SellPrice" Type="money" Nullable="false" />
+    <Property Name="BuyType" Type="int" />
     <Property Name="IsSell" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="Contacts" Type="nvarchar" MaxLength="20" />
     <Property Name="ContactsPhone" Type="nvarchar" MaxLength="11" />
+    <Property Name="HousePhone" Type="nvarchar" MaxLength="11" />
   </EntityType>
   <EntityType Name="StagesBuyHouse">
     <Key>
@@ -96,10 +98,12 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Time" Type="date" Nullable="false" />
-    <Property Name="IsFinish" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="SellID" Type="int" Nullable="false" />
     <Property Name="AdminID" Type="int" Nullable="false" />
+    <Property Name="NowStages" Type="int" Nullable="false" />
+    <Property Name="ByStages" Type="int" Nullable="false" />
+    <Property Name="IsFinish" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="State" Type="int" />
   </EntityType>
   <EntityType Name="sysdiagrams">
@@ -125,6 +129,18 @@
     <Property Name="UserPhone" Type="nvarchar" MaxLength="11" Nullable="false" />
     <Property Name="State" Type="int" Nullable="false" />
   </EntityType>
+  <Association Name="FK_BuyHouse_Admin">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="1" />
+    <End Role="BuyHouse" Type="Self.BuyHouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="AdminID" />
+      </Principal>
+      <Dependent Role="BuyHouse">
+        <PropertyRef Name="AdminID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_BuyHouse_SellHouse">
     <End Role="SellHouse" Type="Self.SellHouse" Multiplicity="1" />
     <End Role="BuyHouse" Type="Self.BuyHouse" Multiplicity="*" />
@@ -209,6 +225,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_StagesBuyHouse_Admin">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="1" />
+    <End Role="StagesBuyHouse" Type="Self.StagesBuyHouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="AdminID" />
+      </Principal>
+      <Dependent Role="StagesBuyHouse">
+        <PropertyRef Name="AdminID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_StagesBuyHouse_SellHouse">
     <End Role="SellHouse" Type="Self.SellHouse" Multiplicity="1" />
     <End Role="StagesBuyHouse" Type="Self.StagesBuyHouse" Multiplicity="*" />
@@ -244,6 +272,10 @@
     <EntitySet Name="StagesBuyHouse" EntityType="Self.StagesBuyHouse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BuyHouse_Admin" Association="Self.FK_BuyHouse_Admin">
+      <End Role="Admin" EntitySet="Admin" />
+      <End Role="BuyHouse" EntitySet="BuyHouse" />
+    </AssociationSet>
     <AssociationSet Name="FK_BuyHouse_SellHouse" Association="Self.FK_BuyHouse_SellHouse">
       <End Role="SellHouse" EntitySet="SellHouse" />
       <End Role="BuyHouse" EntitySet="BuyHouse" />
@@ -271,6 +303,10 @@
     <AssociationSet Name="FK_Picture_SellHouse" Association="Self.FK_Picture_SellHouse">
       <End Role="SellHouse" EntitySet="SellHouse" />
       <End Role="Picture" EntitySet="Picture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StagesBuyHouse_Admin" Association="Self.FK_StagesBuyHouse_Admin">
+      <End Role="Admin" EntitySet="Admin" />
+      <End Role="StagesBuyHouse" EntitySet="StagesBuyHouse" />
     </AssociationSet>
     <AssociationSet Name="FK_StagesBuyHouse_SellHouse" Association="Self.FK_StagesBuyHouse_SellHouse">
       <End Role="SellHouse" EntitySet="SellHouse" />
