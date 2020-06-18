@@ -15,9 +15,9 @@ namespace _201817380227易炽昆.Models
     public partial class Picture
     {
         public int ID { get; set; }
-        public string Picture1 { get; set; }
         public Nullable<int> LeaseID { get; set; }
         public Nullable<int> SellID { get; set; }
+        public string PictureName { get; set; }
     
         public virtual LeaseHouse LeaseHouse { get; set; }
         public virtual SellHouse SellHouse { get; set; }

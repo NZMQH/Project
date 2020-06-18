@@ -135,6 +135,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaseHouseController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\RequestHouseController.cs" />
     <Compile Include="Controllers\UIController.cs" />
     <Compile Include="Global.asax.cs">
@@ -379,6 +380,11 @@
     <Content Include="Views\Admin\AdminEdit.cshtml" />
     <Content Include="Views\LeaseHouse\Together.cshtml" />
     <Content Include="Views\LeaseHouse\TogetherSee.cshtml" />
+    <Content Include="Views\LeaseHouse\TogetherEdit.cshtml" />
+    <Content Include="Views\UITemplate.cshtml" />
+    <Content Include="Views\Picture\LeasePicture.cshtml" />
+    <Content Include="Views\Picture\PictureSee.cshtml" />
+    <Content Include="Views\Picture\PictureAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

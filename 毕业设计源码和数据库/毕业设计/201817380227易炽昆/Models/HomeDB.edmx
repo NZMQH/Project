@@ -65,7 +65,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Picture" Type="nvarchar" MaxLength="100" />
+          <Property Name="PictureName" Type="nvarchar" MaxLength="100" />
           <Property Name="LeaseID" Type="int" />
           <Property Name="SellID" Type="int" />
         </EntityType>
@@ -358,11 +358,11 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Picture1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LeaseID" Type="Int32" />
           <Property Name="SellID" Type="Int32" />
           <NavigationProperty Name="LeaseHouse" Relationship="Self.FK_Picture_LeaseHouse" FromRole="Picture" ToRole="LeaseHouse" />
           <NavigationProperty Name="SellHouse" Relationship="Self.FK_Picture_SellHouse" FromRole="Picture" ToRole="SellHouse" />
+          <Property Name="PictureName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SellHouse">
           <Key>
@@ -657,8 +657,8 @@
           <EntitySetMapping Name="Picture">
             <EntityTypeMapping TypeName="HomeDBModel.Picture">
               <MappingFragment StoreEntitySet="Picture">
+                <ScalarProperty Name="PictureName" ColumnName="PictureName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Picture1" ColumnName="Picture" />
                 <ScalarProperty Name="LeaseID" ColumnName="LeaseID" />
                 <ScalarProperty Name="SellID" ColumnName="SellID" />
               </MappingFragment>

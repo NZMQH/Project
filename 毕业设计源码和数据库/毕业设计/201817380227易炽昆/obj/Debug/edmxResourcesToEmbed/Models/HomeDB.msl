@@ -63,8 +63,8 @@
     <EntitySetMapping Name="Picture">
       <EntityTypeMapping TypeName="HomeDBModel.Picture">
         <MappingFragment StoreEntitySet="Picture">
+          <ScalarProperty Name="PictureName" ColumnName="PictureName" />
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Picture1" ColumnName="Picture" />
           <ScalarProperty Name="LeaseID" ColumnName="LeaseID" />
           <ScalarProperty Name="SellID" ColumnName="SellID" />
         </MappingFragment>

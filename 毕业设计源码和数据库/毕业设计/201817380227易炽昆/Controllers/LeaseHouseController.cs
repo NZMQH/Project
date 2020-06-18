@@ -256,5 +256,54 @@ namespace _201817380227易炽昆.Controllers
             ViewBag.lease = lease;
             return View();
         }
+        /// <summary>
+        /// 合租信息编辑
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TogetherEdit(int ID)
+        {
+            Lease lease = db.Lease.Find(ID);
+            ViewBag.lease = lease;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult TogetherEdit(Lease lease)
+        {
+            var startTime = lease.StartTime;
+            var endTime = lease.EndTime;
+            var nowTime = DateTime.Now;
+            if (endTime <= startTime)
+            {
+                return Content("<script >alert('到期时间必须大于入住时间');window.history.go(-1);</script >", "text/html");
+            }
+            else if (endTime < nowTime)
+            {
+                Lease lea = db.Lease.Find(lease.ID);
+                lea.Time = lease.Time;
+                lea.StartTime = lease.StartTime;
+                lea.EndTime = lease.EndTime;
+                lea.UserID = lease.UserID;
+                lea.LeaseID = lease.LeaseID;
+                lea.AdminID = lease.AdminID;
+                lea.RentingState = 1;
+                db.SaveChanges();
+                ViewBag.lease = lea;
+                return Content("<script >alert('修改成功');window.open('" + Url.Content("/LeaseHouse/TogetherEdit?ID=" + lease.ID) + "', '_self')</script >", "text/html");
+            }
+            else
+            {
+                Lease lea = db.Lease.Find(lease.ID);
+                lea.Time = lease.Time;
+                lea.StartTime = lease.StartTime;
+                lea.EndTime = lease.EndTime;
+                lea.UserID = lease.UserID;
+                lea.LeaseID = lease.LeaseID;
+                lea.AdminID = lease.AdminID;
+                lea.RentingState = 0;
+                db.SaveChanges();
+                ViewBag.lease = lea;
+                return Content("<script >alert('修改成功');window.open('" + Url.Content("/LeaseHouse/TogetherEdit?ID=" + lease.ID) + "', '_self')</script >", "text/html");
+            }
+        }
     }
 }

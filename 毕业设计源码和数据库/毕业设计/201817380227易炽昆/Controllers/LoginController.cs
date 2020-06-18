@@ -14,22 +14,24 @@ namespace _201817380227易炽昆.Controllers
         //用户登录
         public ActionResult Index()
         {
+            Session["User"] = null;
             return View();
         }
         [HttpPost]
         public ActionResult Index(User user)
         {
-            var user1 = db.User.Where(p => p.UserLogin == user.UserLogin && p.UserPwd == user.UserPwd).ToList();
-            if (user1.Count>0)
+            var user1 = db.User.Where(p => p.UserLogin == user.UserLogin && p.UserPwd == user.UserPwd).FirstOrDefault();
+            if (user1 != null)
             {
-                return Content("<script>alert('登录成功');</script>");
+                Session["User"] = user1;
+                return RedirectToAction("Index", "UI");
             }
             else
             {
                 return Content("<script>alert('账号或密码输入错误，请重新输入！');javascript:history.go(-1)</script>");
                 //return RedirectToAction("Index", "Login");
             }
-            
+
         }
         //用户注册
         public ActionResult Register()
