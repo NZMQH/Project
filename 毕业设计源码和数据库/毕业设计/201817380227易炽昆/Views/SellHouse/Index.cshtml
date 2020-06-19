@@ -64,7 +64,14 @@
                 }
                 else
                 {
-                    @:@item.BuyType
+                    if (item.BuyType==0)
+                    {
+                        @:全款
+                    }
+                    else
+                    {
+                        @:分期
+                    }
                 }
             </td>
             <td>@item.IsSell</td>

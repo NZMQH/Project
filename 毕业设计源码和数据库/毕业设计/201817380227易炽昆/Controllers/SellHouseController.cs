@@ -121,7 +121,7 @@ namespace _201817380227易炽昆.Controllers
             }
         }
         /// <summary>
-        /// 添加客户
+        /// 全款买
         /// </summary>
         /// <returns></returns>
         public ActionResult HouseUser(int SellID,string UserName)
@@ -133,10 +133,38 @@ namespace _201817380227易炽昆.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult HouseUser(SellHouse sellHouse)
+        public ActionResult HouseUser(BuyHouse buyHouse)
         {
-            
+            SellHouse sell = db.SellHouse.Find(buyHouse.SellID);
+            sell.BuyType = 0;
+            sell.IsSell = "是";
+            db.BuyHouse.Add(buyHouse);
+            db.SaveChanges();
+            return Content("<script >alert('添加成功');window.open('" + Url.Content("/SellHouse/Index") + "', '_self')</script >", "text/html");
+        }
+        /// <summary>
+        /// 分期买
+        /// </summary>
+        /// <param name="SellID"></param>
+        /// <param name="UserName"></param>
+        /// <returns></returns>
+        public ActionResult HouseUser1(int SellID, string UserName)
+        {
+            SellHouse sellHouse = db.SellHouse.Find(SellID);
+            List<User> list = db.User.Where(p => p.UserName == UserName || p.UserName.Contains(UserName)).ToList();
+            ViewBag.list = list;
+            ViewBag.sellHouse = sellHouse;
             return View();
+        }
+        [HttpPost]
+        public ActionResult HouseUser1(StagesBuyHouse stagebuy)
+        {
+            SellHouse sell = db.SellHouse.Find(stagebuy.SellID);
+            sell.BuyType = 1;
+            sell.IsSell = "是";
+            db.StagesBuyHouse.Add(stagebuy);
+            db.SaveChanges();
+            return Content("<script >alert('添加成功');window.open('" + Url.Content("/SellHouse/Index") + "', '_self')</script >", "text/html");
         }
     }
 }

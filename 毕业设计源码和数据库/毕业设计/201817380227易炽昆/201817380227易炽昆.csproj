@@ -390,6 +390,8 @@
     <Content Include="Views\SellHouse\AddHouse.cshtml" />
     <Content Include="Views\SellHouse\HouseSee.cshtml" />
     <Content Include="Views\SellHouse\HouseEdit.cshtml" />
+    <Content Include="Views\SellHouse\HouseUser.cshtml" />
+    <Content Include="Views\SellHouse\HouseUser1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
