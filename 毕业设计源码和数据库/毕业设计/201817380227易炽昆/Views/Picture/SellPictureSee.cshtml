@@ -1,12 +1,12 @@
 ﻿
 @{
-    ViewBag.Title = "PictureSee";
+    ViewBag.Title = "SellPictureSee";
     Layout = "~/Views/BackstageView.cshtml";
 }
 
 @using _201817380227易炽昆.Models
 @{
-    LeaseHouse lease = ViewBag.lease;
+    SellHouse sellHouse = ViewBag.sellHouse;
     List<Picture> list = ViewBag.list;
 }
 
@@ -14,12 +14,12 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/BackStage/Index">首页</a></li>
-        <li class="breadcrumb-item"><a href="#">出租房信息</a></li>
+        <li class="breadcrumb-item"><a href="#">出售房信息</a></li>
         <li class="breadcrumb-item"><a href="#">房屋图片管理</a></li>
         <li class="breadcrumb-item active" aria-current="page">查看图片</li>
     </ol>
 </nav>
-<h1 style="text-align:center;">@lease.Position</h1>
+<h1 style="text-align:center;">@sellHouse.Position</h1>
 <table class="table table-hover" border="1" style="text-align:center;width:98%;margin-left:1%;">
     <tr>
         <th>ID</th>
@@ -36,11 +36,11 @@
                 <img src="~/Image/@item.PictureName" width="200" height="120" />
             </td>
             <td>
-                <a href="/Picture/PictureDelete?ID=@item.ID" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</a>
+                <a href="/Picture/SellPictureDelete?ID=@item.ID" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</a>
             </td>
         </tr>
     }
 </table>
-        <a href="javascript:history.back(-1)" class="btn btn-primary" style="width:200px;margin-left:5%;">返回</a>
+<a href="javascript:history.back(-1)" class="btn btn-primary" style="width:200px;margin-left:5%;">返回</a>
 
 

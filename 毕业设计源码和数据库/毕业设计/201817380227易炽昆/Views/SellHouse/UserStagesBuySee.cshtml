@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "UserStagesBuySee";
+    Layout = "~/Views/BackstageView.cshtml";
+}
+
+
+@using _201817380227易炽昆.Models
+@{
+    StagesBuyHouse stagesBuy = ViewBag.stagesBuy;
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/BackStage/Index">首页</a></li>
+        <li class="breadcrumb-item"><a href="#">出售房屋信息</a></li>
+        <li class="breadcrumb-item"><a href="/SellHouse/UserStagesBuy">分期买房管理</a></li>
+        <li class="breadcrumb-item active" aria-current="page">查看信息</li>
+    </ol>
+</nav>
+
+<div style="width:80%;margin-left:10%;margin-top:6%;">
+    <div class="form-group row">
+        <label for="Position" class="col-sm-2 col-form-label">位置：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@stagesBuy.SellHouse.Position" id="Position" name="Position">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Area" class="col-sm-2 col-form-label">面积：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@stagesBuy.SellHouse.Area" id="Area" name="Area">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="SellPrice" class="col-sm-2 col-form-label">价格：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@stagesBuy.SellHouse.SellPrice" id="SellPrice" name="SellPrice">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="HouseType" class="col-sm-2 col-form-label">类型：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@stagesBuy.SellHouse.HouseType" id="HouseType" name="HouseType">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="ByStages" class="col-sm-2 col-form-label">总分期：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@stagesBuy.ByStages" id="ByStages" name="ByStages">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="NowStages" class="col-sm-2 col-form-label">已交分期：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@stagesBuy.NowStages" id="NowStages" name="NowStages">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="UserName" class="col-sm-2 col-form-label">客户：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@stagesBuy.User.UserName" id="UserName" name="UserName">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="UserPhone" class="col-sm-2 col-form-label">客户电话：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@stagesBuy.User.UserPhone" id="UserPhone" name="UserPhone">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="AdminName" class="col-sm-2 col-form-label">中介人：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@stagesBuy.Admin.AdminName" id="AdminName" name="AdminName">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="AdminPhone" class="col-sm-2 col-form-label">中介电话：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" readonly value="@stagesBuy.Admin.AdminPhone" id="AdminPhone" name="AdminPhone">
+        </div>
+    </div>
+    <a href="javascript:history.back(-1)" class="btn btn-primary" style="width:200px;">返回</a>
+</div>
+

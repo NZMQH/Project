@@ -9,6 +9,8 @@
     SellHouse sellHouse = ViewBag.sellHouse;
     Admin admin = Session["Admin"] as Admin;
     List<User> list = ViewBag.list;
+    BuyHouse buyhouse = ViewBag.buyhouse;
+    StagesBuyHouse stagesBuy = ViewBag.stagesBuy;
 }
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
@@ -62,66 +64,111 @@
             <input type="text" class="form-control" readonly value="@sellHouse.HousePhone" name="HousePhone">
         </div>
     </div>
-    <form action="/SellHouse/HouseUser" method="post" id="HouseUserForm">
-        <div class="form-group row">
-            <label for="Time" class="col-sm-2 col-form-label">购买时间：</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" readonly value="@DateTime.Now" name="Time">
+    @if (sellHouse.IsSell == "是")
+    {
+        if (sellHouse.BuyType == 0 && buyhouse != null)
+        {
+            <div class="form-group row">
+                <label for="UserName" class="col-sm-2 col-form-label">客户：</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" readonly value="@buyhouse.User.UserName" name="UserName">
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="UserID" class="col-sm-2 col-form-label">客户ID：</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="UserID">
+            <div class="form-group row">
+                <label for="UserPhone" class="col-sm-2 col-form-label">客户电话：</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" readonly value="@buyhouse.User.UserPhone" name="UserPhone">
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-10">
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <a href="javascript:history.go(-1)" class="btn btn-primary" style="width:200px;">返回</a>
+                </div>
+            </div>
+        }
+        else if (sellHouse.BuyType == 1 && stagesBuy != null)
+        {
+            <div class="form-group row">
+                <label for="UserName" class="col-sm-2 col-form-label">客户：</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" readonly value="@stagesBuy.User.UserName" name="UserName">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="UserPhone" class="col-sm-2 col-form-label">客户电话：</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" readonly value="@stagesBuy.User.UserPhone" name="UserPhone">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <a href="javascript:history.go(-1)" class="btn btn-primary" style="width:200px;">返回</a>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <form action="/SellHouse/HouseUser" method="post" id="HouseUserForm">
+            <div class="form-group row">
+                <label for="Time" class="col-sm-2 col-form-label">购买时间：</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" readonly value="@DateTime.Now" name="Time">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="UserID" class="col-sm-2 col-form-label">客户ID：</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="UserID">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <input type="hidden" name="SellID" value="@sellHouse.SellID" />
+                    <input type="hidden" name="AdminID" value="@admin.AdminID" />
+                    <input type="hidden" name="State" value="0" />
+                    <input type="submit" class="btn btn-primary" value="提交">
+                    <a href="/SellHouse/HouseUser1?SellID=@sellHouse.SellID" class="btn btn-primary">我要分期</a>
+                </div>
+            </div>
+        </form>
+        <form action="/SellHouse/HouseUser">
+            <div class="form-group row" style="margin-left:0.1%;">
+                <label for="UserName">搜索：</label>
                 <input type="hidden" name="SellID" value="@sellHouse.SellID" />
-                <input type="hidden" name="AdminID" value="@admin.AdminID" />
-                <input type="hidden" name="State" value="0" />
-                <input type="submit" class="btn btn-primary" value="提交">
-                <a href="/SellHouse/HouseUser1?SellID=@sellHouse.SellID" class="btn btn-primary">我要分期</a>
+                <input type="text" name="UserName" placeholder="请输入客户名" style="width:200px;" class="form-control" />
+                <input type="submit" value="搜索" class="btn btn-primary" />
             </div>
-        </div>
-    </form>
-    <form action="/SellHouse/HouseUser">
-        <div class="form-group row" style="margin-left:0.1%;">
-            <label for="UserName">搜索：</label>
-            <input type="hidden" name="SellID" value="@sellHouse.SellID" />
-            <input type="text" name="UserName" placeholder="请输入客户名" style="width:200px;" class="form-control" />
-            <input type="submit" value="搜索" class="btn btn-primary" />
-        </div>
-    </form>
-    <table class="table table-bordered">
-        <tr>
-            <th>ID</th>
-            <th>姓名</th>
-            <th>账号</th>
-            <th>性别</th>
-            <th>年龄</th>
-            <th>电话</th>
-        </tr>
-        @if (list.Count == 0)
-        {
-
-        }
-        else
-        {
-            foreach (var item in list)
+        </form>
+        <table class="table table-bordered">
+            <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>账号</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>电话</th>
+            </tr>
+            @if (list.Count == 0)
             {
-                <tr>
-                    <td>@item.UserID</td>
-                    <td>@item.UserName</td>
-                    <td>@item.UserLogin</td>
-                    <td>@item.UserSex</td>
-                    <td>@item.UserAge</td>
-                    <td>@item.UserPhone</td>
-                </tr>
-            }
-        }
 
-    </table>
+            }
+            else
+            {
+                foreach (var item in list)
+                {
+                    <tr>
+                        <td>@item.UserID</td>
+                        <td>@item.UserName</td>
+                        <td>@item.UserLogin</td>
+                        <td>@item.UserSex</td>
+                        <td>@item.UserAge</td>
+                        <td>@item.UserPhone</td>
+                    </tr>
+                }
+            }
+        </table>
+    }
 </div>
 
 <script type="text/javascript">

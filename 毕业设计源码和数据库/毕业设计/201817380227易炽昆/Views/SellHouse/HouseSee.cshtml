@@ -62,7 +62,14 @@
             }
             else
             {
-                <input type="text" class="form-control" readonly value="@sellHouse.BuyType" id="BuyType" name="BuyType">
+                if (sellHouse.BuyType == 0)
+                {
+                    <input type="text" class="form-control" readonly value="全款" id="BuyType" name="BuyType">
+                }
+                else
+                {
+                    <input type="text" class="form-control" readonly value="分期" id="BuyType" name="BuyType">
+                }
             }
         </div>
     </div>

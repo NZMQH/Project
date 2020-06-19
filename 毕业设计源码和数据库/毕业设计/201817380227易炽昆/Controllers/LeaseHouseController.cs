@@ -131,7 +131,7 @@ namespace _201817380227易炽昆.Controllers
         /// <returns></returns>
         public ActionResult SingleLease(string Position = "")
         {
-            var list = db.Lease.Where(p => (p.LeaseHouse.LeaseType == 0 && p.LeaseHouse.Position == Position) || (p.LeaseHouse.LeaseType == 0 && p.LeaseHouse.Position.Contains(Position))).ToList();
+            var list = db.Lease.Where(p => (p.LeaseHouse.LeaseType == 0 && p.LeaseHouse.Position == Position && p.RentingState == 0) || (p.LeaseHouse.LeaseType == 0 && p.LeaseHouse.Position.Contains(Position) && p.RentingState == 0)).ToList();
             //var list = db.Lease.ToList();
             ViewBag.list = list;
             return View();
@@ -159,7 +159,7 @@ namespace _201817380227易炽昆.Controllers
         public ActionResult Overtime(string Position="")
         {
             DateTime nowTime = DateTime.Now;
-            var list = db.Lease.Where(p => (p.EndTime < nowTime  && p.LeaseHouse.Position == Position) || (p.EndTime < nowTime && p.LeaseHouse.Position.Contains(Position))).ToList();
+            var list = db.Lease.Where(p => (p.EndTime < nowTime  && p.LeaseHouse.Position == Position && p.RentingState==0) || (p.EndTime < nowTime && p.LeaseHouse.Position.Contains(Position) && p.RentingState == 0)).ToList();
             ViewBag.list = list;
             return View();
         }
@@ -224,13 +224,32 @@ namespace _201817380227易炽昆.Controllers
             }
         }
         /// <summary>
+        /// 标记删除
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public ActionResult SingleDelete(int ID)
+        {
+            var lease = db.Lease.Find(ID);
+            lease.RentingState = 1;
+            db.SaveChanges();
+            var list = db.Lease.Where(p => p.LeaseID == lease.LeaseID && p.RentingState==0).ToList();
+            if (list.Count == 0)
+            {
+                var leaseHouse = db.LeaseHouse.Find(lease.LeaseID);
+                leaseHouse.IsLease = "否";
+            }
+            db.SaveChanges();
+            return Content("<script >alert('删除成功');window.open('" + Url.Content("/LeaseHouse/Index") + "', '_self')</script >", "text/html");
+        }
+        /// <summary>
         /// 合租信息
         /// </summary>
         /// <param name="Position"></param>
         /// <returns></returns>
         public ActionResult Together(string Position = "")
         {
-            var list = db.Lease.Where(p => (p.LeaseHouse.LeaseType == 1 && p.LeaseHouse.Position == Position) || (p.LeaseHouse.LeaseType == 1 && p.LeaseHouse.Position.Contains(Position))).GroupBy(p=>p.LeaseID).ToList();
+            var list = db.Lease.Where(p => (p.LeaseHouse.LeaseType == 1 && p.LeaseHouse.Position == Position && p.RentingState == 0) || (p.LeaseHouse.LeaseType == 1 && p.LeaseHouse.Position.Contains(Position) && p.RentingState == 0)).GroupBy(p => p.LeaseID).ToList();
             ViewBag.list = list;
             return View();
         }

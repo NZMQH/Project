@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "SellPicture";
+    Layout = "~/Views/BackstageView.cshtml";
+}
+
+@using _201817380227易炽昆.Models
+@{
+    List<SellHouse> list = ViewBag.list;
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<style>
+    label.error {
+        color: red;
+    }
+</style>
+
+@* 面包屑导航 *@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/BackStage/Index">首页</a></li>
+        <li class="breadcrumb-item"><a href="#">出售房信息</a></li>
+        <li class="breadcrumb-item active" aria-current="page">房屋图片管理</li>
+    </ol>
+</nav>
+
+
+<div class="grid">
+    <div style="width:100%;margin-top:2%;">
+
+    </div>
+    <div style="">
+
+    </div>
+    <form action="/Picture/LeasePicture">
+        <div class="form-group form-inline" style="width:500px;margin-left:30%;margin-top:1%;">
+            <label style="font-size:18px">搜索：</label>
+            <input type="text" name="Position" style="width:200px" class="form-control" placeholder="请输入位置" />
+            <input type="submit" value="搜 索" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+
+<table class="table table-hover" border="1" style="text-align:center;width:98%;margin-left:1%;">
+    <tr>
+        <th>房屋ID</th>
+        <th>位置</th>
+        <th>类型</th>
+        <th>操作</th>
+    </tr>
+    @foreach (var item in list)
+    {
+        <tr>
+            <td>@item.SellID</td>
+            <td>@item.Position</td>
+            <td>
+                @if (item.BuyType == 0)
+                {
+                    @:全款
+                }
+                else if(item.BuyType==1)
+                {
+                    @:分期
+                }
+                else
+                {
+                    @:未选定
+                }
+            </td>
+            <td>
+                <a href="/Picture/SellPictureSee?SellID=@item.SellID" class="btn btn-primary">查看图片</a>
+                <a href="/Picture/SellPictureAdd?SellID=@item.SellID" class="btn btn-primary">添加图片</a>
+                @*<a href="/Picture/LeasePicture?LeaseID=@item.LeaseID" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</a>*@
+            </td>
+        </tr>
+    }
+</table>
+
+

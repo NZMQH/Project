@@ -64,9 +64,19 @@
                 }
             </td>
             <td>
-                <a href="/BackStage/UserSee?UserID=@item.UserID" id="UserSee" class="btn btn-primary">查看</a>
-                <a href="/BackStage/UserEdit?UserID=@item.UserID" class="btn btn-primary">编辑</a>
-                <a href="/BackStage/DeleteUser?UserID=@item.UserID" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</a>
+
+                @if (item.State == 1)
+                {
+                    <a href="/BackStage/UserSee?UserID=@item.UserID" id="UserSee" class="btn btn-primary">查看</a>
+                    <a href="/BackStage/UserEdit?UserID=@item.UserID" class="btn btn-primary">编辑</a>
+                    <a href="#"  class="btn btn-danger">已删</a>
+                }
+                else
+                {
+                    <a href="/BackStage/UserSee?UserID=@item.UserID" id="UserSee" class="btn btn-primary">查看</a>
+                    <a href="/BackStage/UserEdit?UserID=@item.UserID" class="btn btn-primary">编辑</a>
+                    <a href="/BackStage/DeleteUser?UserID=@item.UserID" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</a>
+                }
             </td>
         </tr>
     }

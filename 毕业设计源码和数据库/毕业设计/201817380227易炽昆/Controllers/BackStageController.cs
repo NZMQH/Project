@@ -86,9 +86,9 @@ namespace _201817380227易炽昆.Controllers
         {
             var user = db.User.Find(UserID);
             //2为注销状态，此处用来做标记删除
-            user.State = 2;
+            user.State = 1;
             db.SaveChanges();
-            return RedirectToAction("UserMsg", "BackStage");
+            return Content("<script >alert('删除成功');window.open('" + Url.Content("/BackStage/UserMsg") + "', '_self')</script >", "text/html");
         }
     }
 }

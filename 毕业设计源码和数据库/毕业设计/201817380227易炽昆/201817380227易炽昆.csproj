@@ -392,6 +392,14 @@
     <Content Include="Views\SellHouse\HouseEdit.cshtml" />
     <Content Include="Views\SellHouse\HouseUser.cshtml" />
     <Content Include="Views\SellHouse\HouseUser1.cshtml" />
+    <Content Include="Views\SellHouse\UserBuy.cshtml" />
+    <Content Include="Views\SellHouse\UserBuySee.cshtml" />
+    <Content Include="Views\SellHouse\UserStagesBuy.cshtml" />
+    <Content Include="Views\SellHouse\UserStagesBuySee.cshtml" />
+    <Content Include="Views\SellHouse\UserStagesBuyEdit.cshtml" />
+    <Content Include="Views\Picture\SellPicture.cshtml" />
+    <Content Include="Views\Picture\SellPictureSee.cshtml" />
+    <Content Include="Views\Picture\SellPictureAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

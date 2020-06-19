@@ -79,7 +79,7 @@
                 @if (user.State == 0)
                 {
                     <input type="radio" value="@user.State" checked="checked" name="State"><span>正常&nbsp;&nbsp;</span>
-                    <input type="radio" value="2" name="State" /><span>注销</span>
+                    <input type="radio" value="1" name="State" /><span>注销</span>
                 }
                 else if (user.State == 1)
                 {
@@ -91,6 +91,7 @@
         </div>
         <input type="hidden" name="UserID" value="@user.UserID" />
         <input type="submit" value="保 存" class="btn btn-primary" style="width:200px;" />
+        <a href="javascript:history.back(-1)" class="btn btn-primary" style="width:200px;">返回</a>
     </div>
 </form>
 

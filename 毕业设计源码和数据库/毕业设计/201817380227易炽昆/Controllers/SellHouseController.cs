@@ -127,9 +127,28 @@ namespace _201817380227易炽昆.Controllers
         public ActionResult HouseUser(int SellID,string UserName)
         {
             SellHouse sellHouse = db.SellHouse.Find(SellID);
-            List<User> list = db.User.Where(p => p.UserName == UserName || p.UserName.Contains(UserName)).ToList();
-            ViewBag.list = list;
-            ViewBag.sellHouse = sellHouse;
+            if (sellHouse.BuyType == 0)
+            {
+                BuyHouse buyhouse = db.BuyHouse.Where(p => p.SellID == SellID).FirstOrDefault();
+                ViewBag.buyhouse = buyhouse;
+                List<User> list = db.User.Where(p => p.UserName == UserName || p.UserName.Contains(UserName)).ToList();
+                ViewBag.list = list;
+                ViewBag.sellHouse = sellHouse;
+            }
+            else if (sellHouse.BuyType == 1)
+            {
+                StagesBuyHouse stagesBuy = db.StagesBuyHouse.Where(p => p.SellID == SellID).FirstOrDefault();
+                ViewBag.stagesBuy = stagesBuy;
+                List<User> list = db.User.Where(p => p.UserName == UserName || p.UserName.Contains(UserName)).ToList();
+                ViewBag.list = list;
+                ViewBag.sellHouse = sellHouse;
+            }
+            else
+            {
+                List<User> list = db.User.Where(p => p.UserName == UserName || p.UserName.Contains(UserName)).ToList();
+                ViewBag.list = list;
+                ViewBag.sellHouse = sellHouse;
+            }
             return View();
         }
         [HttpPost]
@@ -165,6 +184,79 @@ namespace _201817380227易炽昆.Controllers
             db.StagesBuyHouse.Add(stagebuy);
             db.SaveChanges();
             return Content("<script >alert('添加成功');window.open('" + Url.Content("/SellHouse/Index") + "', '_self')</script >", "text/html");
+        }
+        /// <summary>
+        /// 客户-买房管理
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult UserBuy(string Position = "")
+        {
+            var list = db.BuyHouse.Where(p => (p.SellHouse.Position == Position && p.State == 0) || (p.SellHouse.Position.Contains(Position) && p.State == 0)).ToList();
+            ViewBag.list = list;
+            return View();
+        }
+        /// <summary>
+        /// 查看详情
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public ActionResult UserBuySee(int ID)
+        {
+            BuyHouse buyHouse = db.BuyHouse.Find(ID);
+            ViewBag.buyHouse = buyHouse;
+            return View();
+        }
+        /// <summary>
+        /// 标记删除
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public ActionResult UserBuyDelete(int ID)
+        {
+            BuyHouse buyHouse = db.BuyHouse.Find(ID);
+            buyHouse.State = 1;
+            db.SaveChanges();
+            return Content("<script >alert('删除成功');window.open('" + Url.Content("/SellHouse/UserBuy") + "', '_self')</script >", "text/html");
+        }
+        /// <summary>
+        /// 分期管理
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult UserStagesBuy(string Position = "")
+        {
+            var list = db.StagesBuyHouse.Where(p => (p.SellHouse.Position == Position && p.State == 0) || (p.SellHouse.Position.Contains(Position) && p.State == 0)).ToList();
+            ViewBag.list = list;
+            return View();
+        }
+        /// <summary>
+        /// 查看详情
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public ActionResult UserStagesBuySee(int ID)
+        {
+            var stagesBuy = db.StagesBuyHouse.Find(ID);
+            ViewBag.stagesBuy = stagesBuy;
+            return View();
+        }
+        /// <summary>
+        /// 分期编辑
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public ActionResult UserStagesBuyEdit(int ID)
+        {
+            var stagesBuy = db.StagesBuyHouse.Find(ID);
+            ViewBag.stagesBuy = stagesBuy;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UserStagesBuyEdit(StagesBuyHouse stagesBuy)
+        {
+            var stages = db.StagesBuyHouse.Find(stagesBuy.ID);
+            stages.NowStages = stagesBuy.NowStages;
+            db.SaveChanges();
+            return Content("<script >alert('修改成功');window.open('" + Url.Content("/SellHouse/UserStagesBuy") + "', '_self')</script >", "text/html");
         }
     }
 }
