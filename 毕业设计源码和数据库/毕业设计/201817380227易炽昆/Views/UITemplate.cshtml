@@ -1,13 +1,137 @@
 ﻿<!DOCTYPE html>
 
+@using _201817380227易炽昆.Models
+@{
+    User user = Session["user"] as User;
+}
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>Security房屋中介</title>
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/buju.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        .Hover:hover {
+            background-color: #ebf19e;
+            transition-duration: 1s;
+            border-radius: 10px;
+        }
+
+        #Head {
+            width: 100%;
+            position: fixed;
+            left: 0%;
+            top: 0%;
+        }
+
+        #mao {
+            position: fixed;
+            right: 2%;
+            bottom: 5%;
+        }
+
+            #mao:hover {
+                color: white;
+                background-color: #66bbf3;
+                transition-duration: 0.5s;
+            }
+    </style>
+
 </head>
 <body>
-    <div>
+    @* 头部 *@
+    <div id="head">
+        <div class="grid" id="Head" style="background-color:#66bbf3;height:60px;text-align:center;line-height:60px;color:white;font-size:22px;font-family:KaiTi">
+            <div class="grid-cell-1">
+                <div>
+                    <img src="~/Image/Logo.png" width="64" height="48" />&nbsp;Security房屋中介
+                </div>
+            </div>
+            <div class="grid-cell-1">
+                <div>
+
+                </div>
+            </div>
+            <div class="grid grid-cell-3">
+                <div class="grid-cell-1">
+                    <a href="#" class="Hover" style="color:white;text-decoration-line:none;display:block">首页</a>
+                </div>
+                <div class="grid-cell-1">
+                    <a href="#" class="Hover" style="color:white;text-decoration-line:none;display:block">租房</a>
+                </div>
+                <div class="grid-cell-1">
+                    <a href="#" class="Hover" style=" color: white; text-decoration-line: none; display: block">买房</a>
+                </div>
+                <div class="grid-cell-1">
+                    <a href="#" class="Hover" style="color:white;text-decoration-line:none;display:block">求租</a>
+                </div>
+            </div>
+            <div class="grid-cell-1">
+                <div>
+
+                </div>
+            </div>
+            <div class="grid-cell-2">
+                @if (user == null)
+                {
+                    <div>
+                        <a href="/Login/Index" style="color: white;text-decoration-line: none;">登录</a>
+                        <span>&nbsp;|&nbsp;</span>
+                        <a href="/Login/Register" style="color: white;text-decoration-line: none;">注册</a>
+                    </div>
+                }
+                else
+                {
+                    <a href="#" style="color:white;text-decoration-line: none;display: block">个人中心</a>
+                }
+            </div>
+        </div>
+        <a name="Ding"></a>
+    </div>
+
+
+
+    <div style="margin-top:60px;">
         @RenderBody()
+        <a href="#Ding" id="mao" style="display:block;width:50px;height:50px;color:black;text-align:center;line-height:50px;font-size:14px;text-decoration-line:none;border-radius:5px;border:2px solid #66bbf3">顶部</a>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    @* 底部 *@
+    <div id="foot">
+        <div class="grid">
+            <div class="grid-cell-2">
+                <div style="width:100%;line-height:40px;height:40px;text-align:center;background-color:#3b3b3b;color:white"></div>
+            </div>
+            <div class="grid-cell-4">
+                <div style="width:100%;line-height:40px;height:40px;text-align:center;background-color:#3b3b3b;color:white">版权所有</div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

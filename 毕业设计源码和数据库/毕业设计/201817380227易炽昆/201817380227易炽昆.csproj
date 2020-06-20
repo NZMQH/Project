@@ -400,10 +400,10 @@
     <Content Include="Views\Picture\SellPicture.cshtml" />
     <Content Include="Views\Picture\SellPictureSee.cshtml" />
     <Content Include="Views\Picture\SellPictureAdd.cshtml" />
+    <Content Include="Views\UI\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\UI\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

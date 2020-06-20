@@ -11,6 +11,10 @@ namespace _201817380227易炽昆.Controllers
     {
         HomeDBEntities db = new HomeDBEntities();
         // GET: UI
+        /// <summary>
+        /// 前端首页
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View();
