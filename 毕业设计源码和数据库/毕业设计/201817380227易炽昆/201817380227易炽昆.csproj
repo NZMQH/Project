@@ -208,7 +208,38 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Image\1.jpg" />
+    <Content Include="Image\10.jpg" />
+    <Content Include="Image\11.jpg" />
+    <Content Include="Image\12.jpg" />
+    <Content Include="Image\13.jpg" />
+    <Content Include="Image\14.jpg" />
+    <Content Include="Image\15.jpg" />
+    <Content Include="Image\2.jpg" />
+    <Content Include="Image\3.jpg" />
+    <Content Include="Image\4.jpg" />
+    <Content Include="Image\5.jpg" />
+    <Content Include="Image\6.jpg" />
+    <Content Include="Image\7.jpg" />
+    <Content Include="Image\8.jpg" />
+    <Content Include="Image\9.jpg" />
     <Content Include="Image\Logo.png" />
+    <Content Include="Image\pic_other.jpg" />
+    <Content Include="Image\UIImage\1.jpg" />
+    <Content Include="Image\UIImage\10.jpg" />
+    <Content Include="Image\UIImage\11.jpg" />
+    <Content Include="Image\UIImage\12.jpg" />
+    <Content Include="Image\UIImage\13.jpg" />
+    <Content Include="Image\UIImage\14.jpg" />
+    <Content Include="Image\UIImage\15.jpg" />
+    <Content Include="Image\UIImage\2.jpg" />
+    <Content Include="Image\UIImage\3.jpg" />
+    <Content Include="Image\UIImage\4.jpg" />
+    <Content Include="Image\UIImage\5.jpg" />
+    <Content Include="Image\UIImage\6.jpg" />
+    <Content Include="Image\UIImage\7.jpg" />
+    <Content Include="Image\UIImage\8.jpg" />
+    <Content Include="Image\UIImage\9.jpg" />
     <Content Include="Models\HomeDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>HomeDB.Context.cs</LastGenOutput>
@@ -255,6 +286,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

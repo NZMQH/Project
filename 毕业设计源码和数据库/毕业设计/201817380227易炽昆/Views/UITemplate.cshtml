@@ -27,8 +27,12 @@
             list-style: none;
         }
 
+        #bodyall {
+            background-color: #f3f3f3;
+        }
+
         .Hover:hover {
-            background-color: #ebf19e;
+            background-color: #66bbf3;
             transition-duration: 1s;
             border-radius: 10px;
         }
@@ -42,22 +46,24 @@
 
         #mao {
             position: fixed;
-            right: 2%;
+            right: 1%;
             bottom: 5%;
+            z-index: 999;
         }
 
             #mao:hover {
                 color: white;
-                background-color: #66bbf3;
+                background-color: #3c8fd7;
                 transition-duration: 0.5s;
+                color: white;
             }
     </style>
 
 </head>
-<body>
+<body id="bodyall">
     @* 头部 *@
     <div id="head">
-        <div class="grid" id="Head" style="background-color:#66bbf3;height:60px;text-align:center;line-height:60px;color:white;font-size:22px;font-family:KaiTi">
+        <div class="grid" id="Head" style="background-color:#3c8fd7;height:60px;text-align:center;line-height:60px;color:white;font-size:22px;font-family:KaiTi">
             <div class="grid-cell-1">
                 <div>
                     <img src="~/Image/Logo.png" width="64" height="48" />&nbsp;Security房屋中介
@@ -70,16 +76,16 @@
             </div>
             <div class="grid grid-cell-3">
                 <div class="grid-cell-1">
-                    <a href="#" class="Hover" style="color:white;text-decoration-line:none;display:block">首页</a>
+                    <a href="#" class="Hover" style="color:white;text-decoration-line:none;display:block;">首页</a>
                 </div>
                 <div class="grid-cell-1">
-                    <a href="#" class="Hover" style="color:white;text-decoration-line:none;display:block">租房</a>
+                    <a href="#" class="Hover" style="color:white;text-decoration-line:none;display:block;">租房</a>
                 </div>
                 <div class="grid-cell-1">
-                    <a href="#" class="Hover" style=" color: white; text-decoration-line: none; display: block">买房</a>
+                    <a href="#" class="Hover" style=" color: white; text-decoration-line: none; display: block;">买房</a>
                 </div>
                 <div class="grid-cell-1">
-                    <a href="#" class="Hover" style="color:white;text-decoration-line:none;display:block">求租</a>
+                    <a href="#" class="Hover" style="color:white;text-decoration-line:none;display:block;">求租</a>
                 </div>
             </div>
             <div class="grid-cell-1">
@@ -87,29 +93,37 @@
 
                 </div>
             </div>
-            <div class="grid-cell-2">
-                @if (user == null)
-                {
-                    <div>
-                        <a href="/Login/Index" style="color: white;text-decoration-line: none;">登录</a>
-                        <span>&nbsp;|&nbsp;</span>
-                        <a href="/Login/Register" style="color: white;text-decoration-line: none;">注册</a>
-                    </div>
-                }
-                else
-                {
-                    <a href="#" style="color:white;text-decoration-line: none;display: block">个人中心</a>
-                }
-            </div>
+            @if (user == null)
+            {
+                <div class="grid-cell-2">
+                    <a href="/Login/Index" style="color: white;text-decoration-line: none;display:inline-block;width:100px;" class="Hover">登录</a>
+                    <span>&nbsp;|&nbsp;</span>
+                    <a href="/Login/Register" style="color: white;text-decoration-line: none;display:inline-block;width:100px" class="Hover">注册</a>
+                </div>
+            }
+            else
+            {
+                <div class="grid-cell-2 grid">
+                    <div class="grid-cell-1"></div>
+                    <a href="#" class="Hover grid-cell-2" style="color:white;text-decoration-line: none;display: block">个人中心</a>
+                    <a href="/UI/Index" onclick="return confirm('确定注销吗？')" class="Hover grid-cell-2" style="color:white;text-decoration-line: none;display: block">注销</a>
+                    <div class="grid-cell-1"></div>
+                </div>
+            }
         </div>
-        <a name="Ding"></a>
+        <div style="height:10px">
+            <a name="Ding"></a>
+        </div>
     </div>
 
 
-
     <div style="margin-top:60px;">
-        @RenderBody()
-        <a href="#Ding" id="mao" style="display:block;width:50px;height:50px;color:black;text-align:center;line-height:50px;font-size:14px;text-decoration-line:none;border-radius:5px;border:2px solid #66bbf3">顶部</a>
+        <div style="width:70%;margin-left:15%;">
+            <div style="width:96%;margin-left:2%;">
+                @RenderBody()
+                <a href="#Ding" id="mao" style="display:block;width:60px;height:60px;color:black;text-align:center;line-height:60px;font-size:14px;text-decoration-line:none;border-radius:5px;border:2px solid #66bbf3;">返回顶部</a>
+            </div>
+        </div>
     </div>
 
 
@@ -123,7 +137,7 @@
 
 
     @* 底部 *@
-    <div id="foot">
+    <div id="foot" style="margin-top:10px;">
         <div class="grid">
             <div class="grid-cell-2">
                 <div style="width:100%;line-height:40px;height:40px;text-align:center;background-color:#3b3b3b;color:white"></div>
