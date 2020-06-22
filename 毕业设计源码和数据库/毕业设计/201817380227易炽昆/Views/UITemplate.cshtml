@@ -49,11 +49,12 @@
             right: 1%;
             bottom: 5%;
             z-index: 999;
+            color:#b66ae4;
         }
 
             #mao:hover {
                 color: white;
-                background-color: #3c8fd7;
+                background-color: #b110a9;
                 transition-duration: 0.5s;
                 color: white;
             }
@@ -121,7 +122,7 @@
         <div style="width:70%;margin-left:15%;">
             <div style="width:96%;margin-left:2%;">
                 @RenderBody()
-                <a href="#Ding" id="mao" style="display:block;width:60px;height:60px;color:black;text-align:center;line-height:60px;font-size:14px;text-decoration-line:none;border-radius:5px;border:2px solid #66bbf3;">返回顶部</a>
+                <a href="#Ding" id="mao" style="display:block;width:60px;height:60px;text-align:center;line-height:60px;font-size:14px;text-decoration-line:none;border-radius:5px;border:2px solid #b110a9;">返回顶部</a>
             </div>
         </div>
     </div>
@@ -139,11 +140,8 @@
     @* 底部 *@
     <div id="foot" style="margin-top:10px;">
         <div class="grid">
-            <div class="grid-cell-2">
-                <div style="width:100%;line-height:40px;height:40px;text-align:center;background-color:#3b3b3b;color:white"></div>
-            </div>
-            <div class="grid-cell-4">
-                <div style="width:100%;line-height:40px;height:40px;text-align:center;background-color:#3b3b3b;color:white">版权所有</div>
+            <div class="grid-cell-4" style="height:300px;background-color:#3c8fd7;opacity:0.7;">
+                <div style="width:100%;line-height:40px;height:40px;text-align:center;color:white">版权所有</div>
             </div>
         </div>
     </div>
