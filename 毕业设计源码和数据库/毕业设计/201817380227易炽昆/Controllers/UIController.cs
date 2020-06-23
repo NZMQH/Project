@@ -32,7 +32,11 @@ namespace _201817380227易炽昆.Controllers
             ViewBag.sell = sell;
             return View();
         }
-        public ActionResult SelectHouse()
+        /// <summary>
+        /// 租房
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult LeaseHouse()
         {
             return View();
         }
