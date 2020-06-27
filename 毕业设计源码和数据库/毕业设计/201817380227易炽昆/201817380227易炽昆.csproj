@@ -435,9 +435,13 @@
     <Content Include="Views\Picture\SellPictureAdd.cshtml" />
     <Content Include="Views\UI\Index.cshtml" />
     <Content Include="Views\UI\LeaseHouse.cshtml" />
+    <Content Include="Views\UI\LeaseHouseMsg.cshtml" />
+    <Content Include="Views\UI\SellHouse.cshtml" />
+    <Content Include="Views\UI\SellHouseMsg.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\lunbo\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
