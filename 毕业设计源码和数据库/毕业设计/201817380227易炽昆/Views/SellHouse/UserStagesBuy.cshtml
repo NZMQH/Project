@@ -21,7 +21,7 @@
             <div class="form-group form-inline" style="margin-left:10%;margin-top:1%;">
                 <label style="font-size:18px">搜索：</label>
                 <input type="text" name="Position" style="width:200px" class="form-control" placeholder="请输入位置" />
-                <input type="submit" value="搜 索" class="btn btn-primary" />
+                <input type="submit" value="搜 索" class="btn btn-info" />
             </div>
         </form>
     </div>
@@ -54,9 +54,9 @@
             <td>@item.Admin.AdminName</td>
             <td>@item.Admin.AdminPhone</td>
             <td>
-                <a href="/SellHouse/UserStagesBuySee?ID=@item.ID" class="btn btn-primary">查看</a>
-                <a href="/SellHouse/UserStagesBuyEdit?ID=@item.ID" class="btn btn-primary">修改</a>
-                <a href="/SellHouse/UserStagesBuyDelete?ID=@item.ID" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</a>
+                <a href="/SellHouse/UserStagesBuySee?ID=@item.ID" class="btn btn-info">查看</a>
+                <a href="/SellHouse/UserStagesBuyEdit?ID=@item.ID" class="btn btn-info">修改</a>
+                <a href="/SellHouse/UserStagesBuyDelete?ID=@item.ID" onclick="return confirm('确定要删除吗？')" class="btn btn-primary">删除</a>
             </td>
         </tr>
     }

@@ -21,7 +21,7 @@
         <div class="form-group form-inline" style="width:500px;margin-left:30%;margin-top:1%;">
             <label style="font-size:18px">搜索：</label>
             <input type="text" name="AdminName" style="width:200px" class="form-control" placeholder="请输入管理员姓名" />
-            <input type="submit" value="搜 索" class="btn btn-primary" />
+            <input type="submit" value="搜 索" class="btn btn-info" />
         </div>
     </form>
     <div style="">
@@ -46,7 +46,7 @@
             <td>@item.AdminAge</td>
             <td>@item.AdminPhone</td>
             <td>
-                <a href="/Admin/AdminSee?AdminID=@item.AdminID" class="btn btn-primary">查看</a>
+                <a href="/Admin/AdminSee?AdminID=@item.AdminID" class="btn btn-info">查看</a>
                 @*<a href="/Admin/AdminDelete?AdminID=@item.AdminID" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</a>*@
             </td>
         </tr>

@@ -4,44 +4,66 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>后台管理</title>
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/buju.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-
-    <style type="text/css">
-        * {
-            margin: 0px;
-            padding: 0px;
-            text-decoration: none;
-            list-style: none;
-        }
-    </style>
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link href="~/Scripts/back/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+    <!-- Font Awesome CSS-->
+    <link href="~/Scripts/back/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Custom Font Icons CSS-->
+    <link href="~/Scripts/back/css/font.css" rel="stylesheet" />
+    <!-- Google fonts - Muli-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,700">
+    <!-- theme stylesheet-->
+    <link href="~/Scripts/back/css/style.default.css" rel="stylesheet" id="theme-stylesheet" />
+    <!-- Custom stylesheet - for your changes-->
+    <link href="~/Scripts/back/css/custom.css" rel="stylesheet" />
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <body>
-    @* 头部 *@
-    <div id="head">
-        <div class="grid">
-            <div class="grid-cell-1">
-                <div style="height:60px;text-align:center;line-height:60px;background-color:#444444;color:white;font-size:30px;font-family:KaiTi">
-                    <img src="~/Image/Logo.png" width="64" height="48" />&nbsp;Security房介后台管理系统
+    <header class="header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="search-panel">
+                <div class="search-inner d-flex align-items-center justify-content-center">
+                    <div class="close-btn">Close <i class="fa fa-close"></i></div>
+                    <form id="searchForm" action="#">
+                        <div class="form-group">
+                            <input type="search" name="search" placeholder="What are you searching for...">
+                            <button type="submit" class="submit">Search</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="grid-cell-4">
-                <div style="height:60px;text-align:center;line-height:60px;background-color:#444444;color:white;font-size:30px;font-family:KaiTi">
-                    @*Security房介后台管理系统*@
+            <div class="container-fluid d-flex align-items-center justify-content-between">
+                <div class="navbar-header">
+                    <!-- Navbar Header-->
+                    <a href="/BackStage/Index" class="navbar-brand">
+                        <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Security房屋中介</strong><strong>后台管理</strong></div>
+                        <div class="brand-text brand-sm"><strong class="text-primary">后台</strong><strong></strong></div>
+                    </a>
+                    <!-- Sidebar Toggle Btn-->
+                    <button class="sidebar-toggle"><i class="fa fa-long-arrow-left"></i></button>
                 </div>
+
             </div>
-            <div class="grid-cell-1">
-                <div style="height:60px;text-align:center;line-height:60px;background-color:#444444;color:white;font-size:30px;font-family:KaiTi">
+        </nav>
+    </header>
+    <div class="d-flex align-items-stretch">
+        <!-- Sidebar Navigation-->
+        <nav id="sidebar">
+            <!-- Sidebar Header-->
+            <div class="sidebar-header d-flex align-items-center">
+                <div class="title">
                     @if (Session["Admin"] == null)
                     {
                         <script>alert('请登录后再访问页面'); window.location.href = "/Login/AdminLogin";</script>
@@ -50,271 +72,90 @@
                     {
 
                         Admin admin = Session["Admin"] as Admin;
-
-                        <span>欢迎：</span><span>@admin.AdminName</span><span>&nbsp;|&nbsp;</span>
-                        <a href="/Login/AdminLogin" onclick="return confirm('确定要注销吗？')" class="btn btn-outline-danger" style="color:white;">注销</a>
+                        <div class="row">
+                            <h1 class="h5">欢迎：@admin.AdminName</h1>&nbsp;&nbsp;&nbsp;
+                            <a href="/Login/AdminLogin" onclick="return confirm('确定要注销吗？')" style="color:white;">注销</a>
+                        </div>
                     }
                 </div>
             </div>
-        </div>
-    </div>
-    <div id="body">
-        <div class="grid">
-            @* 左侧导航 *@
-            <div class="accordion" id="accordionExample" style="width:250px;background-color:#f7f7f7;text-decoration:none;">
-                <div class="card">
-                    <div class="card-header" id="headingOne" style="width:250px;text-align:center;">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-center" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <span class="glyphicon glyphicon-book"></span><span style="font-size:18px;">&nbsp;客户信息</span>
-                                <span style="float:right;font-weight:bold;" class="glyphicon glyphicon-chevron-right"></span>
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample"  style="width:100%;text-align:center;">
-                        <div class="card-body">
-                            <a href="/BackStage/UserMsg"><span class="glyphicon glyphicon-book"></span>&nbsp;客户信息管理</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingTwo">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-center collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <span class="glyphicon glyphicon-book"></span><span style="font-size: 18px; ">&nbsp;出租房信息</span>
-                                <span style="float:right;font-weight:bold;" class="glyphicon glyphicon-chevron-right"></span>
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample" style="width:100%;text-align:center;">
-                        <div class="card-body">
-                            <a href="/LeaseHouse/Index"><span class="glyphicon glyphicon-search"></span>&nbsp;出租房信息管理</a>
-                        </div>
-                        <div class="card-body">
-                            <a href="/LeaseHouse/SingleLease"><span class="glyphicon glyphicon-user"></span>&nbsp;单人租房管理</a>
-                        </div>
-                        <div class="card-body">
-                            <a href="/LeaseHouse/Together"><span style="font-size:18px">合租管理</span></a>
-                        </div>
-                        <div class="card-body">
-                            <a href="/LeaseHouse/Overtime"><span style="font-size:18px">超时信息</span></a>
-                        </div>
-                        <div class="card-body">
-                            <a href="/Picture/LeasePicture"><span style="font-size:18px">房屋图片管理</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-center collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                <span class="glyphicon glyphicon-book"></span><span style="font-size:18px;" >&nbsp;出售房信息</span>
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample" style="width:100%;text-align:center;">
-                        <div class="card-body">
-                            <a href="/SellHouse/Index"><span class="glyphicon glyphicon-search"></span>&nbsp;出售房信息管理</a>
-                        </div>
-                        <div class="card-body">
-                            <a href="/SellHouse/UserBuy"><span class="glyphicon glyphicon-edit"></span>&nbsp;客户-房屋管理</a>
-                        </div>
-                        <div class="card-body">
-                            <a href="/SellHouse/UserStagesBuy"><span class="glyphicon glyphicon-edit"></span>&nbsp;客户-分期管理</a>
-                        </div>
-                        <div class="card-body">
-                            <a href="/Picture/SellPicture"><span style="font-size:18px">房屋图片管理</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingFour">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-center collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                <span class="glyphicon glyphicon-book"></span><span style="font-size:18px;">&nbsp;求租信息</span>
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample" style="width:100%;text-align:center;">
-                        <div class="card-body">
-                            <a href="/RequestHouse/Index"><span class="glyphicon glyphicon-search"></span>&nbsp;求租信息管理</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingFive">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-center collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFour">
-                                <span class="glyphicon glyphicon-book"></span><span style="font-size:18px;">&nbsp;管理员信息</span>
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample" style="width:100%;text-align:center;">
-                        <div class="card-body">
-                            <a href="/Admin/Index"><span class="glyphicon glyphicon-search"></span>&nbsp;查询管理员信息</a>
-                        </div>
-                        <div class="card-body">
-                            <a href="/Admin/AdminEdit"><span class="glyphicon glyphicon-search"></span>&nbsp;修改信息</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @*<div style="width:250px;height:875px;background-color:#d9edf7;overflow:auto;">
-                    <div class="panel-group" id="accordion" style="width:250px;">
-                        <div class="panel panel-info">
-                            <a data-toggle="collapse" style="display:block;text-align:center;" class="panel-heading" data-parent="#accordion" href="#collapseOne">
-                                <span class="glyphicon glyphicon-book"></span><span style="font-size:18px;">&nbsp;客户信息</span>
-                                <span style="float:right;font-weight:bold;" class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                            <div id="collapseOne" style="text-align:center;" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <a href="/BackStage/UserMsg"><span class="glyphicon glyphicon-search"></span>&nbsp;客户信息管理</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-group" id="accordion" style="width:250px;">
-                        <div class="panel panel-info">
-                            <a data-toggle="collapse" style="display:block;text-align:center;" class="panel-heading" data-parent="#accordion" href="#collapseTwo">
-                                <span class="glyphicon glyphicon-book"></span><span style="font-size: 18px; ">&nbsp;出租房信息</span>
-                                <span style="float:right;font-weight:bold;" class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                            <div id="collapseTwo" style="text-align:center;" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <a href="#"><span class="glyphicon glyphicon-search"></span>&nbsp;出租房信息管理</a>
-                                </div>
-                                <div class="panel-body">
-                                    <a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;单人租房管理</a>
-                                </div>
-                                <div class="panel-body">
-                                    <a href="#">
-                                        <span class="glyphicon glyphicon-user">
-                                        </span><span class="glyphicon glyphicon-user">
-                                        </span>&nbsp;合租管理
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-group" id="accordion" style="width:250px;">
-                        <div class="panel panel-info">
-                            <a data-toggle="collapse" style="display:block;text-align:center;" class="panel-heading" data-parent="#accordion" href="#collapseThree">
-                                <span class="glyphicon glyphicon-book"></span><span style="font-size:18px;">&nbsp;出售房信息</span>
-                                <span style="float:right;font-weight:bold;" class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                            <div id="collapseThree" style="text-align:center;" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <a href="#"><span class="glyphicon glyphicon-search"></span>&nbsp;出售房信息管理</a>
-                                </div>
-                                <div class="panel-body">
-                                    <a href="#"><span class="glyphicon glyphicon-edit"></span>&nbsp;客户-房屋管理</a>
-                                </div>
-                                <div class="panel-body">
-                                    <a href="#"><span class="glyphicon glyphicon-edit"></span>&nbsp;客户-分期管理</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-group" id="accordion" style="width:250px;">
-                        <div class="panel panel-info">
-                            <a data-toggle="collapse" style="display:block;text-align:center;" class="panel-heading" data-parent="#accordion" href="#collapseFour">
-                                <span class="glyphicon glyphicon-book"></span><span style="font-size:18px;">&nbsp;管理员信息</span>
-                                <span style="float:right;font-weight:bold;" class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                            <div id="collapseFour" style="text-align:center;" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <a href="#"><span class="glyphicon glyphicon-search"></span>&nbsp;查询管理员信息</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>*@
-            @* 右侧内容 *@
-            <div class="grid-cell-6">
-                <div style="height:875px;background-color:#f7f7f7;">
-                    <div style="overflow:auto;width:100%;margin-left:0%;height:861px;background-color:white;border-radius:10px;">
-                        @RenderBody()
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-    @* 底部 *@
-    <div id="foot">
-        <div class="grid">
-            <div class="grid-cell-2">
-                <div style="width:100%;line-height:40px;height:40px;text-align:center;background-color:#444444;color:white" ></div>
-            </div>
-            <div class="grid-cell-4">
-                <div style="width:100%;line-height:40px;height:40px;text-align:center;background-color:#444444;color:white">版权所有</div>
-            </div>
-        </div>
-    </div>
-    @*<script type="text/javascript">
-        function NowTime() {
-            var time = new Date();
-            var y = time.getFullYear();
-            var m = time.getMonth() + 1;
-            var d = time.getDate();
-            var h = time.getHours();
-            var mi = time.getMinutes();
-            var s = time.getSeconds();
-            document.getElementById("clock").innerHTML = y + "年" + m + "月" + d + "日" + h + ":" + mi + ":" + s;
-            setTimeout("NowTime()", 1000);
-        }
-    </script>*@
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-@*<div class="grid">
-        <div class="row">
-            <div class="col-md-2">
-                <div class="panel-group table-responsive" role="tablist">
-                    <div class="leftMenu">
-                        <a class="panel-heading" id="collapseListGroupHeading1" data-toggle="collapse" data-target="#collapseListGroup1" role="tab" style="display:block;height:60px;line-height:60px;text-align:center;background-color:#2c2c2c;color:white;">
-                            <h4>分组1</h4>
-                        </a>
-                        <div id="collapseListGroup1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading1">
-                            <ul class="list-group">
-                                <li class="list-group-item"><a class="menu-item-left">分组项1-1</a></li>
-                                <li class="list-group-item"><a class="menu-item-left">分组项1-2</a></li>
-                                <li class="list-group-item"><a class="menu-item-left">分组项1-3</a></li>
-                                <li class="list-group-item"><a class="menu-item-left">分组项1-4</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="panel panel-primary leftMenu">
-                        <div class="panel-heading" id="collapseListGroupHeading2" data-toggle="collapse" data-target="#collapseListGroup2" role="tab">
-                            <h4 class="panel-title">分组2</h4>
-                        </div>
-                        <div id="collapseListGroup2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading2">
-                            <ul class="list-group">
-                                <li class="list-group-item"><a class="menu-item-left">分组项1-1</a></li>
-                                <li class="list-group-item"><a class="menu-item-left">分组项1-2</a></li>
-                                <li class="list-group-item"><a class="menu-item-left">分组项1-3</a></li>
-                                <li class="list-group-item"><a class="menu-item-left">分组项1-4</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-10">
+            <!-- Sidebar Navidation Menus-->
+            <ul class="list-unstyled">
+                <li>
+                    <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
+                        <i class="icon-user"></i><span style="color:white;">客户信息</span>
+                    </a>
+                    <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                        <li><a href="/BackStage/UserMsg"><span style="color:white;">客户信息管理</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#exampledropdownDropdown1" aria-expanded="false" data-toggle="collapse">
+                        <i class="icon-bill"></i><span style="color:white;">出租房信息</span>
+                    </a>
+                    <ul id="exampledropdownDropdown1" class="collapse list-unstyled ">
+                        <li><a href="/LeaseHouse/Index"><span style="color:white;">出租房信息管理</span></a></li>
+                        <li><a href="/LeaseHouse/SingleLease"><span style="color:white;">单人租房管理</span></a></li>
+                        <li><a href="/LeaseHouse/Together"><span style="color:white;">合租管理</span></a></li>
+                        <li><a href="/LeaseHouse/Overtime"><span style="color:white;">超时信息</span></a></li>
+                        <li><a href="/Picture/LeasePicture"><span style="color:white;">房屋图片管理</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#exampledropdownDropdown2" aria-expanded="false" data-toggle="collapse">
+                        <i class="icon-chart"></i><span style="color:white;">出售房信息</span>
+                    </a>
+                    <ul id="exampledropdownDropdown2" class="collapse list-unstyled ">
+                        <li><a href="/SellHouse/Index"><span style="color:white;">出售房信息管理</span></a></li>
+                        <li><a href="/SellHouse/UserBuy"><span style="color:white;">客户-房屋管理</span></a></li>
+                        <li><a href="/SellHouse/UserStagesBuy"><span style="color:white;">客户-分期管理</span></a></li>
+                        <li><a href="/Picture/SellPicture"><span style="color:white;">房屋图片管理</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#exampledropdownDropdown3" aria-expanded="false" data-toggle="collapse">
+                        <i class="icon-bars"></i><span style="color:white;">求租信息</span>
+                    </a>
+                    <ul id="exampledropdownDropdown3" class="collapse list-unstyled ">
+                        <li><a href="/RequestHouse/Index"><span style="color:white;">求租信息管理</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#exampledropdownDropdown4" aria-expanded="false" data-toggle="collapse">
+                        <i class="icon-user-1"></i><span style="color:white;">管理员信息</span>
+                    </a>
+                    <ul id="exampledropdownDropdown4" class="collapse list-unstyled ">
+                        <li><a href="/Admin/Index"><span style="color:white;">查询管理员信息</span></a></li>
+                        <li><a href="/Admin/AdminEdit"><span style="color:white;">修改信息</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- Sidebar Navigation end-->
+        <div class="page-content">
+            <div style="height:904px;overflow:auto;">
                 @RenderBody()
             </div>
         </div>
-    </div>*@
+
+        <footer class="footer">
+            <div class="footer__block block no-margin-bottom">
+                <div class="container-fluid text-center">
+                    <p class="no-margin-bottom">
+                        版权所有
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- JavaScript files-->
+    <script src="~/Scripts/back/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Scripts/back/vendor/popper.js/umd/popper.min.js"></script>
+    <script src="~/Scripts/back/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/back/vendor/jquery.cookie/jquery.cookie.js"></script>
+    <script src="~/Scripts/back/vendor/chart.js/Chart.min.js"></script>
+    <script src="~/Scripts/back/vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/Scripts/back/js/charts-home.js"></script>
+    <script src="~/Scripts/back/js/front.js"></script>
+</body>
+</html>

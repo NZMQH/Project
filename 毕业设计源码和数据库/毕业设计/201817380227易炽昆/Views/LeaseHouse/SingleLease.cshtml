@@ -16,22 +16,22 @@
         <li class="breadcrumb-item active" aria-current="page">单人租房管理</li>
     </ol>
 </nav>
-<div class="grid">
-    <div class="grid-cell-3">
+<div class="grid row" style="margin:0px 0px">
+    <div class="grid-cell-3" style="width:50%;">
         <form action="/LeaseHouse/SingleLease">
             <div class="form-group form-inline" style="margin-left:10%;margin-top:1%;">
                 <label style="font-size:18px">搜索：</label>
                 <input type="text" name="Position" style="width:200px" class="form-control" placeholder="请输入位置" />
-                <input type="submit" value="搜 索" class="btn btn-primary" />
+                <input type="submit" value="搜 索" class="btn btn-info" />
             </div>
         </form>
     </div>
-    <div class="grid-cell-3">
+    <div class="grid-cell-3" style="width:50%;">
         <form action="/LeaseHouse/SingleLease" method="post">
             <div class="form-group form-inline" style="margin-left:10%;margin-top:1%;">
                 <label style="font-size:18px">搜索：</label>
                 <input type="text" name="LeaseID" style="width:200px" class="form-control" placeholder="请输入房屋ID" />
-                <input type="submit" value="搜 索" class="btn btn-primary" />
+                <input type="submit" value="搜 索" class="btn btn-info" />
             </div>
         </form>
     </div>
@@ -67,9 +67,9 @@
                 <td>@item.Admin.AdminName</td>
                 <td>@item.Admin.AdminPhone</td>
                 <td>
-                    <a href="/LeaseHouse/SingleSee?ID=@item.ID" class="btn btn-primary">查看</a>
-                    <a href="/LeaseHouse/SingleEdit?ID=@item.ID" class="btn btn-primary">编辑</a>
-                    <a href="/LeaseHouse/SingleDelete?ID=@item.ID" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</a>
+                    <a href="/LeaseHouse/SingleSee?ID=@item.ID" class="btn btn-info">查看</a>
+                    <a href="/LeaseHouse/SingleEdit?ID=@item.ID" class="btn btn-info">编辑</a>
+                    <a href="/LeaseHouse/SingleDelete?ID=@item.ID" onclick="return confirm('确定要删除吗？')" class="btn btn-primary">删除</a>
                 </td>
             </tr>
         }
@@ -103,9 +103,9 @@ else if (list == null)
                 <td>@item.Admin.AdminName</td>
                 <td>@item.Admin.AdminPhone</td>
                 <td>
-                    <a href="/LeaseHouse/SingleSee?ID=@item.ID" class="btn btn-primary">查看</a>
-                    <a href="/LeaseHouse/SingleEdit?ID=@item.ID" class="btn btn-primary">编辑</a>
-                    <a href="/LeaseHouse/SingleDelete?ID=@item.ID" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</a>
+                    <a href="/LeaseHouse/SingleSee?ID=@item.ID" class="btn btn-info">查看</a>
+                    <a href="/LeaseHouse/SingleEdit?ID=@item.ID" class="btn btn-info">编辑</a>
+                    <a href="/LeaseHouse/SingleDelete?ID=@item.ID" onclick="return confirm('确定要删除吗？')" class="btn btn-primary">删除</a>
                 </td>
             </tr>
         }

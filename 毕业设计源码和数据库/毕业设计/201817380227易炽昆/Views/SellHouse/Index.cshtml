@@ -16,20 +16,20 @@
         <li class="breadcrumb-item active" aria-current="page">出售房信息</li>
     </ol>
 </nav>
-<div class="grid">
+<div class="grid row" style="margin:0px 0px">
     <form action="/SellHouse/Index" method="post">
-        <div style="width:100%;margin-top:2%;">
-            <input type="submit" class="btn btn-primary" value="查询未出售房屋" />
+        <div style="width:100%;margin-left:10%;" class="grid-cell-2">
+            <input type="submit" class="btn btn-info" value="查询未出售房屋" />
         </div>
     </form>
-    <div style="">
-        <a href="/SellHouse/AddHouse" class="btn btn-primary">添加房屋</a>
+    <div class="grid-cell-1" style="margin-left:3%">
+        <a href="/SellHouse/AddHouse" class="btn btn-info">添加房屋</a>
     </div>
     <form action="/SellHouse/Index">
-        <div class="form-group form-inline" style="width:500px;margin-left:30%;margin-top:1%;">
+        <div class="form-group form-inline grid-cell-3" style="width:500px;margin-left:150%;margin-top:1%;">
             <label style="font-size:18px">搜索：</label>
             <input type="text" name="Position" style="width:200px" class="form-control" placeholder="请输入位置" />
-            <input type="submit" value="搜 索" class="btn btn-primary" />
+            <input type="submit" value="搜 索" class="btn btn-info" />
         </div>
     </form>
 </div>
@@ -64,7 +64,7 @@
                 }
                 else
                 {
-                    if (item.BuyType==0)
+                    if (item.BuyType == 0)
                     {
                         @:全款
                     }
@@ -79,10 +79,10 @@
             <td>@item.ContactsPhone</td>
             <td>@item.HousePhone</td>
             <td>
-                <a href="/SellHouse/HouseSee?SellID=@item.SellID" class="btn btn-primary">查看</a>
-                <a href="/SellHouse/HouseEdit?SellID=@item.SellID" class="btn btn-primary">编辑</a>
-                <a href="/SellHouse/HouseUser?SellID=@item.SellID" class="btn btn-primary">客户</a>
-                <a href="/SellHouse/HouseDelete?SellID=@item.SellID" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</a>
+                <a href="/SellHouse/HouseSee?SellID=@item.SellID" class="btn btn-info">查看</a>
+                <a href="/SellHouse/HouseEdit?SellID=@item.SellID" class="btn btn-info">编辑</a>
+                <a href="/SellHouse/HouseUser?SellID=@item.SellID" class="btn btn-info">客户</a>
+                <a href="/SellHouse/HouseDelete?SellID=@item.SellID" onclick="return confirm('确定要删除吗？')" class="btn btn-primary">删除</a>
             </td>
         </tr>
     }

@@ -75,5 +75,13 @@ namespace _201817380227易炽昆.Controllers
             ViewBag.sellHouse = sellHouse;
             return View();
         }
+        /// <summary>
+        /// 求租信息
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RequestLease()
+        {
+            return View();
+        }
     }
 }
