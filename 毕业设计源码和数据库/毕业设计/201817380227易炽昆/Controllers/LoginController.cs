@@ -24,7 +24,7 @@ namespace _201817380227易炽昆.Controllers
             if (user1 != null)
             {
                 Session["User"] = user1;
-                return Content("<script >window.open('" + Url.Content("/UI/Index?UserLogin=" + user1.UserLogin) + "', '_self')</script >", "text/html");
+                return Content("<script >window.open('" + Url.Content("/UI1/Index?UserLogin=" + user1.UserLogin) + "', '_self')</script >", "text/html");
             }
             else
             {

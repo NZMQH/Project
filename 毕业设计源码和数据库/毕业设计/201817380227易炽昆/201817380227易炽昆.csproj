@@ -138,6 +138,7 @@
     <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\RequestHouseController.cs" />
     <Compile Include="Controllers\SellHouseController.cs" />
+    <Compile Include="Controllers\UI1Controller.cs" />
     <Compile Include="Controllers\UIController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -204,6 +205,30 @@
     <Content Include="Content\styleLogin.css" />
     <Content Include="Content\table-responsive.css" />
     <Content Include="Content\to-do.css" />
+    <Content Include="Content\UI\css\animate.css" />
+    <Content Include="Content\UI\css\bootstrap.css" />
+    <Content Include="Content\UI\css\demo.css" />
+    <Content Include="Content\UI\css\font-icon.css" />
+    <Content Include="Content\UI\css\main.css" />
+    <Content Include="Content\UI\img\1.png" />
+    <Content Include="Content\UI\img\10.jpg" />
+    <Content Include="Content\UI\img\11.png" />
+    <Content Include="Content\UI\img\12.png" />
+    <Content Include="Content\UI\img\13.jpg" />
+    <Content Include="Content\UI\img\2.png" />
+    <Content Include="Content\UI\img\3.png" />
+    <Content Include="Content\UI\img\7.jpg" />
+    <Content Include="Content\UI\img\8.jpg" />
+    <Content Include="Content\UI\img\9.jpg" />
+    <Content Include="Content\UI\img\logo.png" />
+    <Content Include="Content\UI\img\logo2.png" />
+    <Content Include="Content\UI\js\bootstrap.js" />
+    <Content Include="Content\UI\js\hm.js" />
+    <Content Include="Content\UI\js\jquery.js" />
+    <Content Include="Content\UI\js\jquery.min.js" />
+    <Content Include="Content\UI\js\jquery.qrcode.min.js" />
+    <Content Include="Content\UI\js\protect.js" />
+    <Content Include="Content\UI\js\wow.js" />
     <Content Include="Content\zabuto_calendar.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -938,6 +963,8 @@
     <Content Include="Views\UI\SellHouse.cshtml" />
     <Content Include="Views\UI\SellHouseMsg.cshtml" />
     <Content Include="Views\UI\RequestLease.cshtml" />
+    <Content Include="Views\UI1.cshtml" />
+    <Content Include="Views\UI1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
