@@ -62,7 +62,7 @@
                                     <img class="mr-3" src="@str" alt="Generic placeholder image">
                                 </div>
                                 <div class="media-body art-content">
-                                    <h5 class="mt-0 mb-1"><a href="#">@item.Position</a></h5>
+                                    <h5 class="mt-0 mb-1"><a href="/UI1/LeaseHouseMsg?LeaseID=@item.LeaseID">@item.Position</a></h5>
                                     <p>@item.Describe</p>
                                     <ul>
                                         <li><a title="@item.Area 平方米"><i class="el-time"></i>@item.Area ㎡</a></li>
@@ -79,7 +79,7 @@
                                                 <i class="el-th-list"></i>
                                                 @if (item.LeaseType == 0)
                                                 {
-                                                    @:整组
+                                                    @:整租
                                                 }
                                                 else
                                                 {
@@ -174,60 +174,94 @@
                     </ul>
 
                 </div>
+                <div class="row mt-2 wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                    <div class="col-md-12 bgc">
+                        <div class="new">
+                            <span><i class="el-certificate"></i></span>
 
+                            <span>大房子</span>
+                            <small>Area</small>
+                        </div>
+                    </div>
+                </div>
                 <div class="row ">
 
                     <div class="container mt-4">
                         <div class="row">
-                            <div class="col-md-4 bgc mb-4 ">
-                                <div class="card mb-4 box-shadow  mt-4">
-                                    <div class="showimg">
-                                        <img class="card-img-top" style=" width: 100%; display: block;" src="~/Content/UI/img/7.jpg" data-holder-rendered="true">
-                                    </div>
+                            @{
+                                List<SellHouse> AreaList = db.SellHouse.Where(p=>p.IsSell=="否").OrderByDescending(p => p.Area).ToList();
+                                int area = 0;
+                            }
+                            @foreach (var item in AreaList)
+                            {
+                                Picture pic1 = db.Picture.Where(p => p.SellID == item.SellID).FirstOrDefault();
+                                if (pic1 == null)
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                   string str1 = "../../Image/" + pic1.PictureName;
+                                    <div class="col-md-4 bgc mb-4 ">
+                                        <div class="card mb-4 box-shadow  mt-4">
+                                            <div class="showimg">
+                                                <img class="card-img-top" style=" width: 100%; display: block;" src="@str1" data-holder-rendered="true">
+                                            </div>
 
-                                    <div class="card-body">
-                                        <a href="#">测试图文</a>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group showtitle">
-                                                <i class="el-time"></i>2019-04-03
+                                            <div class="card-body">
+                                                <a href="#">@item.Position</a>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="btn-group showtitle">
+                                                        <i class="el-time"></i>@item.Area ㎡
+                                                    </div>
+                                                    <small class="text-muted"><i class="el-fire"></i>@string.Format("{0:C2}", item.SellPrice)</small>
+                                                </div>
                                             </div>
-                                            <small class="text-muted"><i class="el-fire"></i>9 mins</small>
+                                        </div>
+                                    </div>
+                                    area++;
+                                    if (area == 3)
+                                    {
+                                        break;
+                                    }
+
+                                }
+
+                            }
+
+
+                            @*<div class="col-md-4 bgc mb-4">
+                                    <div class="card mb-4 box-shadow mt-4">
+                                        <div class="showimg showtitle">
+                                            <img class="card-img-top" style=" width: 100%; display: block;" src="~/Content/UI/img/9.jpg" data-holder-rendered="true">
+                                        </div>
+                                        <div class="card-body">
+                                            <a href="#">测试图文</a>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="btn-group showtitle">
+                                                    <i class="el-time"></i>2019-04-03
+                                                </div>
+                                                <small class="text-muted">9 mins</small>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4 bgc mb-4">
-                                <div class="card mb-4 box-shadow mt-4">
-                                    <div class="showimg showtitle">
-                                        <img class="card-img-top" style=" width: 100%; display: block;" src="~/Content/UI/img/9.jpg" data-holder-rendered="true">
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="#">测试图文</a>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group showtitle">
-                                                <i class="el-time"></i>2019-04-03
+                                <div class="col-md-4 bgc mb-4">
+                                    <div class="card  box-shadow mt-4">
+                                        <div class="showimg">
+                                            <img class="card-img-top" style=" width: 100%; display: block;" src="~/Content/UI/img/9.jpg" data-holder-rendered="true">
+                                        </div>
+                                        <div class="card-body">
+                                            <a href="#">测试图文</a>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="btn-group showtitle">
+                                                    <i class="el-time"></i>2019-04-03
+                                                </div>
+                                                <small class="text-muted">9 mins</small>
                                             </div>
-                                            <small class="text-muted">9 mins</small>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 bgc mb-4">
-                                <div class="card  box-shadow mt-4">
-                                    <div class="showimg">
-                                        <img class="card-img-top" style=" width: 100%; display: block;" src="~/Content/UI/img/9.jpg" data-holder-rendered="true">
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="#">测试图文</a>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group showtitle">
-                                                <i class="el-time"></i>2019-04-03
-                                            </div>
-                                            <small class="text-muted">9 mins</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                </div>*@
 
 
                         </div>
@@ -242,13 +276,14 @@
 
 
         <style>
-            .LoginA{
-                text-decoration:none;
+            .LoginA {
+                text-decoration: none;
             }
-            .LoginA:hover{
-                color:darkorange;
-                transition-duration:0.5s;
-            }
+
+                .LoginA:hover {
+                    color: darkorange;
+                    transition-duration: 0.5s;
+                }
         </style>
 
 
@@ -286,11 +321,20 @@
 
                             <div class="auth-name">
                                 <span>欢迎~：@user.UserName</span>
-                                <p style="font-size:14px;"><a href="#" class="userMsg">个人中心</a> <a href="#" class="LoginA">注销</a></p>
+                                <p style="font-size:14px;"><a href="#" class="userMsg">个人中心</a> <a href="/UI1/Index" onclick="return confirm('确定注销吗？')" class="LoginA">注销</a></p>
                             </div>
                             <div class="auth-info">
                                 <ul>
-                                    <li><strong>2</strong><span>今日访问量</span></li>
+                                    @{
+                                        List<Lease> leaseList = db.Lease.Where(p => p.UserID == user.UserID).ToList();
+                                        List<BuyHouse> buyList = db.BuyHouse.Where(p => p.UserID == user.UserID).ToList();
+                                        List<StagesBuyHouse> stagesBuyList = db.StagesBuyHouse.Where(p => p.UserID == user.UserID).ToList();
+                                        var num1 = leaseList.Count();
+                                        var num2 = buyList.Count();
+                                        var num3 = stagesBuyList.Count();
+                                        var num = num1 + num2 + num3;
+                                    }
+                                    <li><strong>@num</strong><span>我的房屋记录</span></li>
                                     <li><strong>2</strong><span>今日访问量</span></li>
                                     <li><strong>2</strong><span>今日访问量</span></li>
                                 </ul>
@@ -305,16 +349,25 @@
                 <div class="row bgc mt-4">
                     <div class="new new-right">
                         <span><i class="el-arrow-up"></i></span>
-                        <span>网站公告</span>
-                        <small>New Article</small>
+                        <span>实惠租房</span>
+                        <small>Renting</small>
                     </div>
                     <div class="col-md-12 ">
                         <div class="notice">
                             <ul>
-                                <li><a href="#">Thinkphp5模型添加数据方法</a></li>
-                                <li><a href="#">Thinkphp5模型添加数据方法</a></li>
-                                <li><a href="#">Thinkphp5模型添加数据方法</a></li>
-                                <li><a href="#">Thinkphp5模型添加数据方法</a></li>
+                                @{
+                                    List<LeaseHouse> list = db.LeaseHouse.OrderBy(p => p.Price).ToList();
+                                    int Leasecount = 0;
+                                }
+                                @foreach (var item in list)
+                                {
+                                    <li><a href="/UI1/LeaseHouseMsg?LeaseID=@item.LeaseID">@item.Position (@string.Format("{0:C2}", item.Price)/月)</a></li>
+                                    Leasecount++;
+                                    if (Leasecount == 4)
+                                    {
+                                        break;
+                                    }
+                                }
 
                             </ul>
                         </div>
@@ -328,47 +381,32 @@
 
                 <div class="row bgc mt-3">
                     <div class="new new-right">
-                        <span><i class="el-headphones"></i>说说</span>
-                        <small>New Article</small>
+                        <span><i class="el-headphones"></i>优惠购房</span>
+                        <small>Purchase</small>
                     </div>
                     <div class="col-md-12 ">
                         <div class="tab-pane" role="tabpanel" aria-labelledby="nav-profile-tab">
                             <ul class="art-sort">
-                                <li>
-                                    <span>1</span>
-                                    <a href="#">
-                                        thinkphp5随机抽取数据的方法
-                                        <b>(235)</b>
-                                    </a>
-                                </li>
-                                <li>
-                                    <span>2</span>
-                                    <a href="#">
-                                        thinkphp5随机抽取数据的方法
-                                        <b>(235)</b>
-                                    </a>
-                                </li>
-                                <li>
-                                    <span>3</span>
-                                    <a href="#">
-                                        thinkphp5随机抽取数据的方法
-                                        <b>(235)</b>
-                                    </a>
-                                </li>
-                                <li>
-                                    <span>4</span>
-                                    <a href="#">
-                                        thinkphp5随机抽取数据的方法
-                                        <b>(235)</b>
-                                    </a>
-                                </li>
-                                <li>
-                                    <span>5</span>
-                                    <a href="#">
-                                        thinkphp5随机抽取数据的方法
-                                        <b>(235)</b>
-                                    </a>
-                                </li>
+                                @{
+                                    List<SellHouse> sellList = db.SellHouse.OrderBy(p => p.SellPrice).ToList();
+                                    int sellCount = 1;
+                                }
+                                @foreach (var item in sellList)
+                                {
+                                    <li>
+                                        <span>@sellCount</span>
+                                        <a href="#">
+                                            @item.Position
+                                            <b>@string.Format("{0:C2}", item.SellPrice)</b>
+                                        </a>
+                                    </li>
+                                    sellCount++;
+                                    if (sellCount == 6)
+                                    {
+                                        break;
+                                    }
+                                }
+
                             </ul>
                         </div>
 
@@ -377,14 +415,14 @@
                 </div>
                 <div class="row bgc mt-5">
                     <div class="new new-right">
-                        <span><i class="el-paper-clip"></i>友情连接</span>
+                        <span><i class="el-paper-clip"></i>链接</span>
                         <small>Friend Links</small>
                     </div>
                     <div class="col-md-12 ">
                         <ul class="links">
-                            <li><a href="https://www.baidu.com">百度一下</a></li>
-                            <li><a href="https://www.baidu.com">惜缘个人博客</a></li>
-                            <li><a href="https://www.baidu.com">百度一下</a></li>
+                            <li><a href="/UI1/Index">首页</a></li>
+                            <li><a href="/UI1/Lease">租房</a></li>
+                            <li><a href="/UI1/Sell">购房</a></li>
                             <li><a href="https://www.baidu.com">百度一下</a></li>
                         </ul>
 

@@ -153,23 +153,17 @@
 
 
 <div class="prosum_box">
-    <dl id="routeImg" class="prosum_left">
-        <dt>
-            @{
-                string url = "https://localhost:44388/Image/" + pic[0].PictureName;
-            }
-            <img alt="" class="big_img" src="@url">
-        </dt>
-        <dd>
-            <a class="up_img up_img_disable"></a>
-            @foreach (var item in pic)
-            {
-                <a title="" class="little_img" data-bigpic="https://localhost:44388/Image/@item.PictureName">
-                    <img src="https://localhost:44388/Image/@item.PictureName">
+    <div class="prosum_box">
+        <dl id="routeImg" class="prosum_left">
+            <dt>
+                <img alt="" class="big_img" src="https://localhost:44388/Image/UIImage/1.jpg">
+            </dt>
+            <dd>
+                <a class="up_img up_img_disable"></a>
+                <a title="" class="little_img" data-bigpic="https://localhost:44388/Image/UIImage/1.jpg">
+                    <img src="https://localhost:44388/Image/UIImage/1.jpg">
                 </a>
-            }
-
-            @*<a title="" class="little_img cur_img" data-bigpic="https://localhost:44388/Image/UIImage/2.jpg">
+                <a title="" class="little_img cur_img" data-bigpic="https://localhost:44388/Image/UIImage/2.jpg">
                     <img src="https://localhost:44388/Image/UIImage/2.jpg">
                 </a>
                 <a title="" class="little_img" data-bigpic="https://localhost:44388/Image/UIImage/3.jpg">
@@ -180,11 +174,12 @@
                 </a>
                 <a title="" class="little_img" data-bigpic="https://localhost:44388/Image/UIImage/1.jpg" style="display:none;">
                     <img src="https://localhost:44388/Image/UIImage/1.jpg">
-                </a>*@
+                </a>
 
-            <a class="down_img down_img_disable" style="margin-bottom: 0;"></a>
-        </dd>
-    </dl>
+                <a class="down_img down_img_disable" style="margin-bottom: 0;"></a>
+            </dd>
+        </dl>
+    </div>
     <div class="prosum_right" style="font-size:20px">
         <div id="msg2" class="msg">
             @*<p id="title" style="font-size:24px" class="pros_title">@sellHouse.Position</p>

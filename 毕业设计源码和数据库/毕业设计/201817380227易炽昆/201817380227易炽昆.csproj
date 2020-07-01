@@ -817,6 +817,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\lizi.js" />
+    <Content Include="Scripts\lunbo.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -965,6 +966,11 @@
     <Content Include="Views\UI\RequestLease.cshtml" />
     <Content Include="Views\UI1.cshtml" />
     <Content Include="Views\UI1\Index.cshtml" />
+    <Content Include="Views\UI1\Lease.cshtml" />
+    <Content Include="Views\UI1\LeaseHouseMsg.cshtml" />
+    <Content Include="Views\UI1\Sell.cshtml" />
+    <Content Include="Views\UI1\SellHouseMsg.cshtml" />
+    <Content Include="Views\UI1\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

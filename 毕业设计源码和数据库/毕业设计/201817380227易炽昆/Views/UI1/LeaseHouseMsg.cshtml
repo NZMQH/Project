@@ -1,0 +1,452 @@
+﻿
+@{
+    ViewBag.Title = "LeaseHouseMsg";
+    Layout = "~/Views/UI1.cshtml";
+}
+
+@using _201817380227易炽昆.Models
+@{
+    User user = Session["User"] as User;
+    HomeDBEntities db = new HomeDBEntities();
+    List<Picture> pic = ViewBag.pic;
+    LeaseHouse leaseHouse = ViewBag.leaseHouse;
+}
+    <script src="~/Scripts/lunbo.js"></script>
+
+<style>
+    .prosum_box {
+        width: 720px;
+        border: solid 1px #ddd;
+        background: #ebebeb;
+        overflow: hidden;
+        margin: 0 auto 20px;
+        border-radius: 10px;
+    }
+
+        .prosum_box .prosum_left {
+            margin: 20px;
+            overflow: hidden;
+            width: 684px;
+            float: left;
+        }
+
+            .prosum_box .prosum_left .big_img {
+                width: 570px;
+                height: 340px;
+            }
+
+            .prosum_box .prosum_left .little_img img {
+                width: 110px;
+                height: 70px;
+                opacity: 0.6;
+            }
+
+                .prosum_box .prosum_left .little_img img:hover {
+                    opacity: 1.0;
+                }
+
+            .prosum_box .prosum_left .cur_img img {
+                opacity: 1.0;
+            }
+
+            .prosum_box .prosum_left .up_img,
+            .prosum_box .prosum_left .down_img {
+                width: 110px;
+                height: 20px;
+                background: #333;
+            }
+
+            .prosum_box .prosum_left .up_img {
+                background: url("../images/arrows.jpg") no-repeat;
+                background-position: 0px -20px;
+            }
+
+            .prosum_box .prosum_left .up_img_disable {
+                background-position: 0px 0px;
+            }
+
+            .prosum_box .prosum_left .down_img {
+                background: url("../images/arrows.jpg") no-repeat;
+                background-position: 0px -60px;
+            }
+
+            .prosum_box .prosum_left .down_img_disable {
+                background-position: 0px -40px;
+            }
+
+            .prosum_box .prosum_left dt {
+                float: left;
+                margin-right: 4px;
+            }
+
+            .prosum_box .prosum_left dd a {
+                display: block;
+                margin-bottom: 4px;
+            }
+
+        .prosum_box .prosum_right {
+            float: left;
+            width: 462px;
+            margin: 20px 0px 20px 0px;
+        }
+
+            .prosum_box .prosum_right .pros_title {
+                font-size: 18px;
+                line-height: 28px;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+    #BgImg {
+        background-image: url(/Image/pic_other.jpg);
+    }
+
+    
+</style>
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="container">
+                <div class="row wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class=""></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2" class="active"></li>
+                        </ol>
+                        <div class="carousel-inner">
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-2 wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                    <div class="col-md-12 bgc">
+                        <div class="new">
+                            <span><i class="el-certificate"></i></span>
+
+                            <span>租房</span>
+                            <small>Renting</small>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="prosum_box">
+                    <dl id="routeImg" class="prosum_left">
+                        <dt>
+                            <img alt="" class="big_img" src="https://localhost:44388/Image/UIImage/1.jpg">
+                        </dt>
+                        <dd>
+                            <a class="up_img up_img_disable"></a>
+
+                            @foreach (var item in pic)
+                            {
+                                string str = "https://localhost:44388/Image/" + item.PictureName;
+                                <a title="" class="little_img" data-bigpic="@str">
+                                    <img src="@str">
+                                </a>
+                            }
+                            <a class="down_img down_img_disable" style="margin-bottom: 0;"></a>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="row mt-2 ">
+
+
+                    <style>
+                        .Login {
+                            text-decoration: none;
+                        }
+
+                            .Login:hover {
+                                color: darkorange;
+                                transition-duration: 0.5s;
+                            }
+                    </style>
+                    <ul class="" style="border:1px solid #e0abf2;width:100%;border-radius:10px;">
+                        <li style="height:36px;line-height:36px;margin-left:10%;"><span style="font-weight:bolder;font-size:18px;">位置： </span>@leaseHouse.Position</li>
+                        <li style="height:36px;line-height:36px;margin-left:10%;"><span style="font-weight:bolder;font-size:18px;">介绍： </span>@leaseHouse.Describe</li>
+                        <li style="height:36px;line-height:36px;margin-left:10%;"><span style="font-weight:bolder;font-size:18px;">房型： </span>@leaseHouse.HouseType</li>
+                        <li style="height:36px;line-height:36px;margin-left:10%;"><span style="font-weight:bolder;font-size:18px;">面积： </span>@leaseHouse.Area ㎡</li>
+                        <li style="height:36px;line-height:36px;margin-left:10%;"><span style="font-weight:bolder;font-size:18px;">价格： </span>@string.Format("{0:C2}", leaseHouse.Price)/月</li>
+                        <li style="height:36px;line-height:36px;margin-left:10%;"><span style="font-weight:bolder;font-size:18px;">联系人： </span>@leaseHouse.Contacts</li>
+                        @if (user == null)
+                        {
+                            <li style="height:36px;line-height:36px;margin-left:10%;">
+                                <a href="/Login/Index" class="Login">登录后查看联系方式</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li style="height:36px;line-height:36px;margin-left:10%;">
+                                <span style="font-weight:bolder;font-size:18px;">联系人电话： </span>@leaseHouse.ContactsPhone
+                            </li>
+                            <li style="height:36px;line-height:36px;margin-left:10%;">
+                                <span style="font-weight:bolder;font-size:18px; ">房东电话：</span>@leaseHouse.HousePhone
+                            </li>
+                        }
+
+                        <li><a href="javascript:history.go(-1)" class="LoginA" style="margin-left:10%;">返回</a></li>
+                    </ul>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+        <style>
+            .LoginA {
+                text-decoration: none;
+            }
+
+                .LoginA:hover {
+                    color: darkorange;
+                    transition-duration: 0.5s;
+                }
+        </style>
+
+
+        <!--右边-->
+        <div class="col-md-4 ">
+            <div class="container">
+
+                @if (user == null)
+                {
+                    <div class="row bgc mt-5 right-author">
+                        <div class="col-md-12 ">
+
+                            <div class="auth-name">
+                                <p style="font-size:16px">
+                                    <a href="/Login/Index" class="LoginA">登录</a>
+                                    &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                    <a href="/Login/Register" class="LoginA">注册</a>
+                                </p>
+                            </div>
+                            <div class="auth-info">
+                                <ul>
+                                    @*<li><strong>2</strong><span>今日访问量</span></li>
+                            <li><strong>2</strong><span>今日访问量</span></li>
+                            <li><strong>2</strong><span>今日访问量</span></li>*@
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row bgc mt-5 right-author">
+                        <div class="col-md-12 ">
+
+                            <div class="auth-name">
+                                <span>欢迎~：@user.UserName</span>
+                                <p style="font-size:14px;"><a href="#" class="userMsg">个人中心</a> <a href="/UI1/Index" onclick="return confirm('确定注销吗？')" class="LoginA">注销</a></p>
+                            </div>
+                            <div class="auth-info">
+                                <ul>
+                                    @{
+                                        List<Lease> leaseList = db.Lease.Where(p => p.UserID == user.UserID).ToList();
+                                        List<BuyHouse> buyList = db.BuyHouse.Where(p => p.UserID == user.UserID).ToList();
+                                        List<StagesBuyHouse> stagesBuyList = db.StagesBuyHouse.Where(p => p.UserID == user.UserID).ToList();
+                                        var num1 = leaseList.Count();
+                                        var num2 = buyList.Count();
+                                        var num3 = stagesBuyList.Count();
+                                        var num = num1 + num2 + num3;
+                                    }
+                                    <li><strong>@num</strong><span>我的房屋记录</span></li>
+                                    <li><strong>2</strong><span>今日访问量</span></li>
+                                    <li><strong>2</strong><span>今日访问量</span></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+
+
+                <div class="row bgc mt-4">
+                    <div class="new new-right">
+                        <span><i class="el-arrow-up"></i></span>
+                        <span>实惠租房</span>
+                        <small>Renting</small>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="notice">
+                            <ul>
+                                @{
+                                    List<LeaseHouse> list = db.LeaseHouse.OrderBy(p => p.Price).ToList();
+                                    int Leasecount = 0;
+                                }
+                                @foreach (var item in list)
+                                {
+                                    <li><a href="/UI1/LeaseHouseMsg?LeaseID=@item.LeaseID">@item.Position (@string.Format("{0:C2}", item.Price)/月)</a></li>
+                                    Leasecount++;
+                                    if (Leasecount == 4)
+                                    {
+                                        break;
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="row bgc mt-3">
+                    <div class="new new-right">
+                        <span><i class="el-headphones"></i>优惠购房</span>
+                        <small>Purchase</small>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="tab-pane" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <ul class="art-sort">
+                                @{
+                                    List<SellHouse> sellList = db.SellHouse.OrderBy(p => p.SellPrice).ToList();
+                                    int sellCount = 1;
+                                }
+                                @foreach (var item in sellList)
+                                {
+                                    <li>
+                                        <span>@sellCount</span>
+                                        <a href="#">
+                                            @item.Position
+                                            <b>@string.Format("{0:C2}", item.SellPrice)</b>
+                                        </a>
+                                    </li>
+                                    sellCount++;
+                                    if (sellCount == 6)
+                                    {
+                                        break;
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row bgc mt-5">
+                    <div class="new new-right">
+                        <span><i class="el-paper-clip"></i>链接</span>
+                        <small>Friend Links</small>
+                    </div>
+                    <div class="col-md-12 ">
+                        <ul class="links">
+                            <li><a href="/UI1/Index">首页</a></li>
+                            <li><a href="/UI1/Lease">租房</a></li>
+                            <li><a href="/UI1/Sell">购房</a></li>
+                            <li><a href="https://www.baidu.com">百度一下</a></li>
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+        //自动播放
+        getImg();
+        var timer = setInterval("auto_play()", 3000);
+    });
+
+    function getImg() {
+        //焦点图效果
+        //点击图片切换图片
+        $('.little_img').on('mousemove', function () {
+            $('.little_img').removeClass('cur_img');
+            var big_pic = $(this).data('bigpic');
+            $('.big_img').attr('src', big_pic);
+            $(this).addClass('cur_img');
+        });
+        //上下切换
+        var picindex = 0;
+        var nextindex = 4;
+        $('.down_img').on('click', function () {
+            var num = $('.little_img').length;
+            if ((nextindex + 1) <= num) {
+                $('.little_img:eq(' + picindex + ')').hide();
+                $('.little_img:eq(' + nextindex + ')').show();
+                picindex = picindex + 1;
+                nextindex = nextindex + 1;
+            }
+        });
+        $('.up_img').on('click', function () {
+            var num = $('.little_img').length;
+            if (picindex > 0) {
+                $('.little_img:eq(' + (nextindex - 1) + ')').hide();
+                $('.little_img:eq(' + (picindex - 1) + ')').show();
+                picindex = picindex - 1;
+                nextindex = nextindex - 1;
+            }
+        });
+        //自动播放
+        // var timer = setInterval("auto_play()", 5000);
+    }
+
+    //自动轮播方法
+    function auto_play() {
+        var cur_index = $('.prosum_left dd').find('a.cur_img').index();
+        cur_index = cur_index - 1;
+        var num = $('.little_img').length;
+        var max_index = 3;
+        if ((num - 1) < 3) {
+            max_index = num - 1;
+        }
+        if (cur_index < max_index) {
+            var next_index = cur_index + 1;
+            var big_pic = $('.little_img:eq(' + next_index + ')').data('bigpic');
+            $('.little_img').removeClass('cur_img');
+            $('.little_img:eq(' + next_index + ')').addClass('cur_img');
+            $('.big_img').attr('src', big_pic);
+        } else {
+            var big_pic = $('.little_img:eq(0)').data('bigpic');
+            $('.little_img').removeClass('cur_img');
+            $('.little_img:eq(0)').addClass('cur_img');
+            $('.big_img').attr('src', big_pic);
+        }
+    }
+</script>
+
+<script>
+    window.onload = function () {
+        var art_list = document.getElementById('box');
+        var art_list_a = art_list.getElementsByTagName('a');
+
+        for (var i = 0; i < art_list_a.length; i++) {
+
+            var aclick = art_list_a[i];
+
+            aclick.onclick = function () {
+
+                for (var j = 0; j < art_list_a.length; j++) {
+                    art_list_a[j].className = '';
+                    art_list_a[j].style.color = '#000000';
+                }
+                this.className = 'actives';
+                this.style.color = '#ffffff';
+            };
+
+
+        }
+
+    }</script>
+
+
+
