@@ -49,7 +49,15 @@
                         <a class="nav-link" href="/UI1/Sell">购房</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="#">关于</a>
+                        @if (user==null)
+                        {
+
+                        }
+                        else
+                        {
+                            <a class="nav-link" href="/Personal/Index">个人中心</a>
+                        }
+                        
                     </li>
                 </ul>
             </div>
@@ -66,7 +74,7 @@
             right: 2%;
             bottom: 6%;
             z-index: 999;
-            color: #ffdea2;
+            color: #ff773b;
         }
         #mao:hover{
             color:#a14eea;

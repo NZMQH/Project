@@ -321,7 +321,7 @@
 
                             <div class="auth-name">
                                 <span>欢迎~：@user.UserName</span>
-                                <p style="font-size:14px;"><a href="#" class="userMsg">个人中心</a> <a href="/UI1/Index" onclick="return confirm('确定注销吗？')" class="LoginA">注销</a></p>
+                                <p style="font-size:14px;"><a href="/Personal/Index" class="userMsg">个人中心</a> <a href="/UI1/Index" onclick="return confirm('确定注销吗？')" class="LoginA">注销</a></p>
                             </div>
                             <div class="auth-info">
                                 <ul>
@@ -333,10 +333,11 @@
                                         var num2 = buyList.Count();
                                         var num3 = stagesBuyList.Count();
                                         var num = num1 + num2 + num3;
+                                        var numBuy = num2 + num3;
                                     }
                                     <li><strong>@num</strong><span>我的房屋记录</span></li>
-                                    <li><strong>2</strong><span>今日访问量</span></li>
-                                    <li><strong>2</strong><span>今日访问量</span></li>
+                                    <li><strong>@num1</strong><span>租房信息</span></li>
+                                    <li><strong>@numBuy</strong><span>购房信息</span></li>
                                 </ul>
                             </div>
 
