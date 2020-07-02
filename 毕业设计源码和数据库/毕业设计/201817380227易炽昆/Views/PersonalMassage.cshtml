@@ -78,7 +78,7 @@
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
-                                <a class="btn btn-link btn-block collapsed" href="#" style="font-size:18px;">
+                                <a class="btn btn-link btn-block collapsed" href="/Personal/Index" style="font-size:18px;">
                                     个人信息
                                 </a>
                             </h2>
@@ -87,7 +87,7 @@
                     <div class="card">
                         <div class="card-header" id="headingTwo">
                             <h2 class="mb-0">
-                                <a class="btn btn-link btn-block collapsed" href="#" style="font-size:18px;">
+                                <a class="btn btn-link btn-block collapsed" href="/Personal/LeaseMessage" style="font-size:18px;">
                                     租房记录
                                 </a>
                             </h2>
@@ -96,7 +96,7 @@
                     <div class="card">
                         <div class="card-header" id="headingThree">
                             <h2 class="mb-0">
-                                <a class="btn btn-link btn-block  collapsed" href="#" style="font-size:18px;">
+                                <a class="btn btn-link btn-block  collapsed" href="/Personal/SellMessage" style="font-size:18px;">
                                     购房记录
                                 </a>
                             </h2>
@@ -156,28 +156,29 @@
         <script src="~/Content/UI/js/wow.js"></script>
         <script>new WOW().init();//把wow初始化</script>
         <script>
-            window.onload = function () {
-                var art_list = document.getElementById('box');
-                var art_list_a = art_list.getElementsByTagName('a');
+            //window.onload = function () {
+            //    var art_list = document.getElementById('box');
+            //    var art_list_a = art_list.getElementsByTagName('a');
 
-                for (var i = 0; i < art_list_a.length; i++) {
+            //    for (var i = 0; i < art_list_a.length; i++) {
 
-                    var aclick = art_list_a[i];
+            //        var aclick = art_list_a[i];
 
-                    aclick.onclick = function () {
+            //        aclick.onclick = function () {
 
-                        for (var j = 0; j < art_list_a.length; j++) {
-                            art_list_a[j].className = '';
-                            art_list_a[j].style.color = '#000000';
-                        }
-                        this.className = 'actives';
-                        this.style.color = '#ffffff';
-                    };
+            //            for (var j = 0; j < art_list_a.length; j++) {
+            //                art_list_a[j].className = '';
+            //                art_list_a[j].style.color = '#000000';
+            //            }
+            //            this.className = 'actives';
+            //            this.style.color = '#ffffff';
+            //        };
 
 
-                }
+            //    }
 
-            }</script>
+            //}
+        </script>
    
 </body>
 </html>
