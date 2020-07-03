@@ -145,7 +145,7 @@
                                     <img class="mr-3" src="@str" alt="Generic placeholder image">
                                 </div>
                                 <div class="media-body art-content">
-                                    <h5 class="mt-0 mb-1"><a href="#">@item.Position</a></h5>
+                                    <h5 class="mt-0 mb-1"><a href="/UI1/SellHouseMsg?SellID=@item.SellID">@item.Position</a></h5>
                                     <p>@item.Describe</p>
                                     <ul>
                                         <li><a title="@item.Area 平方米"><i class="el-time"></i>@item.Area ㎡</a></li>
@@ -209,7 +209,7 @@
                                             </div>
 
                                             <div class="card-body">
-                                                <a href="#">@item.Position</a>
+                                                <a href="/UI1/SellHouseMsg?SellID=@item.SellID">@item.Position</a>
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div class="btn-group showtitle">
                                                         <i class="el-time"></i>@item.Area ㎡
@@ -362,6 +362,11 @@
                                 }
                                 @foreach (var item in list)
                                 {
+                                    Picture pic = db.Picture.Where(p => p.LeaseID == item.LeaseID).FirstOrDefault();
+                                    if (pic==null)
+                                    {
+                                        continue;
+                                    }
                                     <li><a href="/UI1/LeaseHouseMsg?LeaseID=@item.LeaseID">@item.Position (@string.Format("{0:C2}", item.Price)/月)</a></li>
                                     Leasecount++;
                                     if (Leasecount == 4)
@@ -394,9 +399,14 @@
                                 }
                                 @foreach (var item in sellList)
                                 {
+                                    Picture pic = db.Picture.Where(p => p.SellID == item.SellID).FirstOrDefault();
+                                    if (pic==null)
+                                    {
+                                        continue;
+                                    }
                                     <li>
                                         <span>@sellCount</span>
-                                        <a href="#">
+                                        <a href="/UI1/SellHouseMsg?SellID=@item.SellID">
                                             @item.Position
                                             <b>@string.Format("{0:C2}", item.SellPrice)</b>
                                         </a>

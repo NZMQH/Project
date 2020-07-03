@@ -43,8 +43,18 @@ namespace _201817380227易炽昆.Controllers
         public ActionResult LeaseMessage(int UserID)
         {
             List<Lease> list = db.Lease.Where(p => p.UserID == UserID).ToList();
+            ViewBag.list = list;
             return View();
         }
+        public ActionResult Lease()
+        {
+            return View();
+        }
+
+
+
+
+
         /// <summary>
         /// 用户购房信息
         /// </summary>

@@ -26,7 +26,7 @@
             <!--导航-->
             <nav class="navbar navbar-expand-lg navbar-light nav-color-nav  navbar-lk text-dark">
                 <div class="container">
-                    <a class="navbar-brand xiyuan" href="https://www.17sucai.com/preview/806169/2020-04-18/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html#">
+                    <a class="navbar-brand xiyuan" href="/UI1/Index">
                         <img src="~/Content/UI/img/logo.png" alt=""><span style="font-family:STXingkai;font-size:22px;">&nbsp;&nbsp;Security房屋中介</span>
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nabmune" aria-controls="nabmune" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,7 @@
                                 }
                                 else
                                 {
-                                    <a class="nav-link" href="/UI1/Personal">个人中心</a>
+                                    <a class="nav-link" href="/Personal/Index">个人中心</a>
                                 }
 
                             </li>
@@ -87,7 +87,7 @@
                     <div class="card">
                         <div class="card-header" id="headingTwo">
                             <h2 class="mb-0">
-                                <a class="btn btn-link btn-block collapsed" href="/Personal/LeaseMessage" style="font-size:18px;">
+                                <a class="btn btn-link btn-block collapsed" href="/Personal/LeaseMessage?UserID=@user.UserID" style="font-size:18px;">
                                     租房记录
                                 </a>
                             </h2>
@@ -96,7 +96,7 @@
                     <div class="card">
                         <div class="card-header" id="headingThree">
                             <h2 class="mb-0">
-                                <a class="btn btn-link btn-block  collapsed" href="/Personal/SellMessage" style="font-size:18px;">
+                                <a class="btn btn-link btn-block  collapsed" href="/Personal/SellMessage?UserID=@user.UserID" style="font-size:18px;">
                                     购房记录
                                 </a>
                             </h2>

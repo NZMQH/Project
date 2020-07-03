@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "LeaseMessage";
+    Layout = "~/Views/PersonalMassage.cshtml";
+}
+@using _201817380227易炽昆.Models
+@{ 
+    List<Lease> list = ViewBag.list;
+}
+
+
+@if (list.Count>0)
+{
+
+}
+else
+{
+    <p style="font-size:26px;font-weight:bolder;width:100%;text-align:center;height:813px;line-height:813px;">暂无租房记录</p>
+}
+

@@ -187,6 +187,11 @@
                                 }
                                 @foreach (var item in list)
                                 {
+                                    Picture pic = db.Picture.Where(p => p.LeaseID == item.LeaseID).FirstOrDefault();
+                                    if (pic==null)
+                                    {
+                                        continue;
+                                    }
                                     <li><a href="/UI1/LeaseHouseMsg?LeaseID=@item.LeaseID">@item.Position (@string.Format("{0:C2}", item.Price)/月)</a></li>
                                     Leasecount++;
                                     if (Leasecount == 4)
@@ -219,9 +224,14 @@
                                 }
                                 @foreach (var item in sellList)
                                 {
+                                    Picture pic = db.Picture.Where(p => p.SellID == item.SellID).FirstOrDefault();
+                                    if (pic==null)
+                                    {
+                                        continue;
+                                    }
                                     <li>
                                         <span>@sellCount</span>
-                                        <a href="#">
+                                        <a href="/UI1/SellHouseMsg?SellID=@item.SellID">
                                             @item.Position
                                             <b>@string.Format("{0:C2}", item.SellPrice)</b>
                                         </a>
