@@ -1,23 +1,21 @@
 ﻿
 @{
-    ViewBag.Title = "UserStagesBuySee";
-    Layout = "~/Views/BackstageView.cshtml";
+    ViewBag.Title = "SellStageDetail";
+    Layout = "~/Views/PersonalMassage.cshtml";
 }
-
 
 @using _201817380227易炽昆.Models
 @{
-    StagesBuyHouse stagesBuy = ViewBag.stagesBuy;
+    User user = Session["User"] as User;
+    StagesBuyHouse stagesBuy = ViewBag.stageBuyHouse;
 }
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/BackStage/Index">首页</a></li>
-        <li class="breadcrumb-item"><a href="#">出售房屋信息</a></li>
-        <li class="breadcrumb-item"><a href="/SellHouse/UserStagesBuy">分期买房管理</a></li>
-        <li class="breadcrumb-item active" aria-current="page">查看信息</li>
-    </ol>
-</nav>
-
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Personal/Index">个人中心</a></li>
+            <li class="breadcrumb-item"><a href="/Personal/SellStageMessage?UserID=@stagesBuy.UserID">分期购房记录</a></li>
+            <li class="breadcrumb-item active" aria-current="page">查看信息</li>
+        </ol>
+    </nav>
 <div style="width:80%;margin-left:10%;margin-top:6%;">
     <div class="form-group row">
         <label for="Position" class="col-sm-2 col-form-label">位置：</label>
@@ -79,12 +77,7 @@
             <input type="text" class="form-control" readonly value="@stagesBuy.Admin.AdminPhone" id="AdminPhone" name="AdminPhone">
         </div>
     </div>
-    <div class="form-group row">
-        <label for="AdminPhone" class="col-sm-2 col-form-label">房主电话：</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" readonly value="@stagesBuy.SellHouse.HousePhone" id="HousePhone" name="HousePhone">
-        </div>
-    </div>
     <a href="javascript:history.back(-1)" class="btn btn-info" style="width:200px;">返回</a>
 </div>
+
 

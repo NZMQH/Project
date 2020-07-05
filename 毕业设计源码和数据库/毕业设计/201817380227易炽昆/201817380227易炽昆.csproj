@@ -975,7 +975,11 @@
     <Content Include="Views\PersonalMassage.cshtml" />
     <Content Include="Views\Personal\Index.cshtml" />
     <Content Include="Views\Personal\LeaseMessage.cshtml" />
-    <Content Include="Views\Personal\SellMessage.cshtml" />
+    <Content Include="Views\Personal\SellBuyMessage.cshtml" />
+    <Content Include="Views\Personal\SellStageMessage.cshtml" />
+    <Content Include="Views\Personal\SellStageDetail.cshtml" />
+    <Content Include="Views\Personal\SellBuyDetail.cshtml" />
+    <Content Include="Views\Personal\LeaseDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

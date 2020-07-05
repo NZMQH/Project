@@ -6,6 +6,7 @@
 
 @using _201817380227易炽昆.Models
 @{
+    HomeDBEntities db = new HomeDBEntities();
     List<SellHouse> list = ViewBag.list;
 }
 
@@ -49,6 +50,7 @@
         <th>房屋ID</th>
         <th>位置</th>
         <th>类型</th>
+        <th>图片数量</th>
         <th>操作</th>
     </tr>
     @foreach (var item in list)
@@ -69,6 +71,12 @@
                 {
                     @:未选定
                 }
+            </td>
+            <td>
+                @{ 
+                    List<Picture> pic = db.Picture.Where(p => p.SellID == item.SellID).ToList();
+                }
+                @pic.Count
             </td>
             <td>
                 <a href="/Picture/SellPictureSee?SellID=@item.SellID" class="btn btn-info">查看图片</a>

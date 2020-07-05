@@ -1,17 +1,19 @@
 ﻿
 @{
-    ViewBag.Title = "SingleSee";
-    Layout = "~/Views/BackstageView.cshtml";
+    ViewBag.Title = "LeaseDetail";
+    Layout = "~/Views/PersonalMassage.cshtml";
 }
+
 @using _201817380227易炽昆.Models
 @{
+    User user = Session["User"] as User;
     Lease lease = ViewBag.lease;
 }
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/BackStage/Index">首页</a></li>
-        <li class="breadcrumb-item"><a href="#">出租房信息</a></li>
-        <li class="breadcrumb-item"><a href="/LeaseHouse/SingleLease">单人租房信息</a></li>
+        <li class="breadcrumb-item"><a href="/Personal/Index">个人中心</a></li>
+        <li class="breadcrumb-item"><a href="/Personal/LeaseMessage?UserID=@lease.UserID">租房记录</a></li>
         <li class="breadcrumb-item active" aria-current="page">查看信息</li>
     </ol>
 </nav>
@@ -53,18 +55,6 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="UserName" class="col-sm-2 col-form-label">客户：</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" readonly value="@lease.User.UserName" id="UserName" name="UserName">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="UserPhone" class="col-sm-2 col-form-label">客户电话：</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" readonly value="@lease.User.UserPhone" id="UserPhone" name="UserPhone">
-        </div>
-    </div>
-    <div class="form-group row">
         <label for="AdminName" class="col-sm-2 col-form-label">中介人：</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" readonly value="@lease.Admin.AdminName" id="AdminName" name="AdminName">
@@ -84,4 +74,3 @@
     </div>
     <a href="javascript:history.back(-1)" class="btn btn-info" style="width:200px;">返回</a>
 </div>
-

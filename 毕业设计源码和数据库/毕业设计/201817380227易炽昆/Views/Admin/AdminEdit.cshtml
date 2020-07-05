@@ -9,6 +9,7 @@
 }
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
+<link href="~/Scripts/back/css/style.default.css" rel="stylesheet" />
 <style>
     label.error {
         color: red;
@@ -24,49 +25,49 @@
 <div style="width:80%;margin-left:10%;margin-top:6%;">
     <form action="/Admin/AdminEdit" method="post" id="AdminEdit">
         <div class="form-group row">
-            <label for="AdminID" class="col-sm-2 col-form-label">ID：</label>
+            <label for="AdminID" class="col-sm-2 col-form-label" style="color:white">ID：</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" readonly value="@admin.AdminID" id="AdminID" name="AdminID">
             </div>
         </div>
         <div class="form-group row">
-            <label for="AdminName" class="col-sm-2 col-form-label">姓名：</label>
+            <label for="AdminName" class="col-sm-2 col-form-label" style="color:white">姓名：</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" readonly value="@admin.AdminName" id="AdminName" name="AdminName">
             </div>
         </div>
         <div class="form-group row">
-            <label for="AdminLogin" class="col-sm-2 col-form-label">账号：</label>
+            <label for="AdminLogin" class="col-sm-2 col-form-label" style="color:white">账号：</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" readonly value="@admin.AdminLogin" id="AdminLogin" name="AdminLogin">
             </div>
         </div>
         <div class="form-group row">
-            <label for="AdminSex" class="col-sm-2 col-form-label">性别：</label>
+            <label for="AdminSex" class="col-sm-2 col-form-label" style="color:white">性别：</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" readonly value="@admin.AdminSex" id="AdminSex" name="AdminSex">
             </div>
         </div>
         <div class="form-group row">
-            <label for="AdminIdentity" class="col-sm-2 col-form-label">身份证：</label>
+            <label for="AdminIdentity" class="col-sm-2 col-form-label" style="color:white">身份证：</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" required="required" value="@admin.AdminIdentity" id="AdminIdentity" name="AdminIdentity">
             </div>
         </div>
         <div class="form-group row">
-            <label for="AdminAge" class="col-sm-2 col-form-label">年龄：</label>
+            <label for="AdminAge" class="col-sm-2 col-form-label" style="color:white">年龄：</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" required="required" value="@admin.AdminAge" id="AdminAge" name="AdminAge">
             </div>
         </div>
         <div class="form-group row">
-            <label for="AdminPwd" class="col-sm-2 col-form-label">密码：</label>
+            <label for="AdminPwd" class="col-sm-2 col-form-label" style="color:white">密码：</label>
             <div class="col-sm-10">
                 <input type="password" class="form-control" required="required" value="@admin.AdminPwd" id="AdminPwd" name="AdminPwd">
             </div>
         </div>
         <div class="form-group row">
-            <label for="AdminPhone" class="col-sm-2 col-form-label">电话：</label>
+            <label for="AdminPhone" class="col-sm-2 col-form-label" style="color:white">电话：</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" required="required" value="@admin.AdminPhone" id="AdminPhone" name="AdminPhone">
             </div>
@@ -75,7 +76,7 @@
         <div class="form-group row">
             <div class="col-sm-10">
                 <input type="submit" value="保存" class="btn btn-info" style="width:200px;" />
-                <a href="javascript:history.back(-1)" class="btn btn-info" style="width:200px;">返回</a>
+                <a href="/Admin/Index" class="btn btn-info" style="width:200px;">返回</a>
             </div>
         </div>
     </form>

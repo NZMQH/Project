@@ -131,7 +131,7 @@ namespace _201817380227易炽昆.Controllers
         /// <returns></returns>
         public ActionResult SingleLease(string Position = "")
         {
-            var list = db.Lease.Where(p => (p.LeaseHouse.LeaseType == 0 && p.LeaseHouse.Position == Position && p.RentingState == 0) || (p.LeaseHouse.LeaseType == 0 && p.LeaseHouse.Position.Contains(Position) && p.RentingState == 0)).ToList();
+            var list = db.Lease.Where(p => (p.LeaseHouse.LeaseType == 0 && p.LeaseHouse.Position == Position) || (p.LeaseHouse.LeaseType == 0 && p.LeaseHouse.Position.Contains(Position))).ToList();
             //var list = db.Lease.ToList();
             ViewBag.list = list;
             return View();
@@ -141,13 +141,13 @@ namespace _201817380227易炽昆.Controllers
         {
             if (LeaseID == null)
             {
-                var list = db.Lease.ToList();
+                var list = db.Lease.Where(p=>p.LeaseHouse.LeaseType==0).ToList();
                 ViewBag.list = list;
                 return View();
             }
             else
             {
-                var lease = db.Lease.Where(p => p.LeaseID == LeaseID).ToList();
+                var lease = db.Lease.Where(p => p.LeaseID == LeaseID && p.LeaseHouse.LeaseType == 0).ToList();
                 ViewBag.lease = lease;
                 return View();
             }
@@ -233,15 +233,47 @@ namespace _201817380227易炽昆.Controllers
             var lease = db.Lease.Find(ID);
             lease.RentingState = 1;
             db.SaveChanges();
-            var list = db.Lease.Where(p => p.LeaseID == lease.LeaseID && p.RentingState==0).ToList();
-            if (list.Count == 0)
-            {
-                var leaseHouse = db.LeaseHouse.Find(lease.LeaseID);
-                leaseHouse.IsLease = "否";
-            }
-            db.SaveChanges();
-            return Content("<script >alert('删除成功');window.open('" + Url.Content("/LeaseHouse/Index") + "', '_self')</script >", "text/html");
+            //var list = db.Lease.Where(p => p.LeaseID == lease.LeaseID && p.RentingState==0).ToList();
+            //if (list.Count == 0)
+            //{
+            //    var leaseHouse = db.LeaseHouse.Find(lease.LeaseID);
+            //    leaseHouse.IsLease = "否";
+            //}
+            //db.SaveChanges();
+            return Content("<script >alert('删除成功');window.open('" + Url.Content("/LeaseHouse/SingleLease") + "', '_self')</script >", "text/html");
         }
+        public ActionResult SingleDelete1(int ID)
+        {
+            var lease = db.Lease.Find(ID);
+            lease.RentingState = 1;
+            db.SaveChanges();
+            return Content("<script >alert('删除成功');window.open('" + Url.Content("/LeaseHouse/Together") + "', '_self')</script >", "text/html");
+        }
+        public ActionResult SingleBack(int ID)
+        {
+            var lease = db.Lease.Find(ID);
+            lease.RentingState = 0;
+            db.SaveChanges();
+            return Content("<script >alert('恢复成功');window.open('" + Url.Content("/LeaseHouse/SingleLease") + "', '_self')</script >", "text/html");
+        }
+        public ActionResult SingleBack1(int ID)
+        {
+            var lease = db.Lease.Find(ID);
+            lease.RentingState = 0;
+            db.SaveChanges();
+            return Content("<script >alert('恢复成功');window.open('" + Url.Content("/LeaseHouse/Together") + "', '_self')</script >", "text/html");
+        }
+
+
+
+
+
+
+
+
+
+
+
         /// <summary>
         /// 合租信息
         /// </summary>
@@ -249,7 +281,7 @@ namespace _201817380227易炽昆.Controllers
         /// <returns></returns>
         public ActionResult Together(string Position = "")
         {
-            var list = db.Lease.Where(p => (p.LeaseHouse.LeaseType == 1 && p.LeaseHouse.Position == Position && p.RentingState == 0) || (p.LeaseHouse.LeaseType == 1 && p.LeaseHouse.Position.Contains(Position) && p.RentingState == 0)).GroupBy(p => p.LeaseID).ToList();
+            var list = db.Lease.Where(p => (p.LeaseHouse.LeaseType == 1 && p.LeaseHouse.Position == Position) || (p.LeaseHouse.LeaseType == 1 && p.LeaseHouse.Position.Contains(Position))).GroupBy(p => p.LeaseID).ToList();
             ViewBag.list = list;
             return View();
         }
@@ -258,13 +290,13 @@ namespace _201817380227易炽昆.Controllers
         {
             if (LeaseID == null)
             {
-                var list = db.Lease.GroupBy(p=>p.LeaseID).ToList();
+                var list = db.Lease.Where(p => p.LeaseHouse.LeaseType == 1).GroupBy(p => p.LeaseID).ToList();
                 ViewBag.list = list;
                 return View();
             }
             else
             {
-                var lease = db.Lease.Where(p => p.LeaseID == LeaseID).GroupBy(p => p.LeaseID).ToList();
+                var lease = db.Lease.Where(p => p.LeaseID == LeaseID && p.LeaseHouse.LeaseType == 1).GroupBy(p => p.LeaseID).ToList();
                 ViewBag.lease = lease;
                 return View();
             }

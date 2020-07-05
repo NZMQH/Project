@@ -93,7 +93,7 @@ namespace _201817380227易炽昆.Controllers
                 {
                     SellHouse sell = db.SellHouse.Find(SellID);
                     db.SellHouse.Remove(sell);
-                    db.SaveChanges();
+                    
                     return Content("<script >alert('删除成功');window.open('" + Url.Content("/SellHouse/Index") + "', '_self')</script >", "text/html");
                 }
             }
@@ -195,6 +195,13 @@ namespace _201817380227易炽昆.Controllers
             ViewBag.list = list;
             return View();
         }
+        [HttpPost]
+        public ActionResult UserBuy()
+        {
+            var list = db.BuyHouse.Where(p => p.State==1).ToList();
+            ViewBag.list = list;
+            return View();
+        }
         /// <summary>
         /// 查看详情
         /// </summary>
@@ -218,6 +225,19 @@ namespace _201817380227易炽昆.Controllers
             db.SaveChanges();
             return Content("<script >alert('删除成功');window.open('" + Url.Content("/SellHouse/UserBuy") + "', '_self')</script >", "text/html");
         }
+        public ActionResult UserBuyBack(int ID)
+        {
+            var buyHouse = db.BuyHouse.Find(ID);
+            buyHouse.State = 0;
+            db.SaveChanges();
+            return Content("<script >alert('恢复成功');window.open('" + Url.Content("/SellHouse/UserBuy") + "', '_self')</script >", "text/html");
+        }
+
+
+
+
+
+
         /// <summary>
         /// 分期管理
         /// </summary>
@@ -225,6 +245,13 @@ namespace _201817380227易炽昆.Controllers
         public ActionResult UserStagesBuy(string Position = "")
         {
             var list = db.StagesBuyHouse.Where(p => (p.SellHouse.Position == Position && p.State == 0) || (p.SellHouse.Position.Contains(Position) && p.State == 0)).ToList();
+            ViewBag.list = list;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UserStagesBuy()
+        {
+            var list = db.StagesBuyHouse.Where(p => p.State==1).ToList();
             ViewBag.list = list;
             return View();
         }
@@ -257,6 +284,20 @@ namespace _201817380227易炽昆.Controllers
             stages.NowStages = stagesBuy.NowStages;
             db.SaveChanges();
             return Content("<script >alert('修改成功');window.open('" + Url.Content("/SellHouse/UserStagesBuy") + "', '_self')</script >", "text/html");
+        }
+        public ActionResult UserStagesBuyDelete(int ID)
+        {
+            StagesBuyHouse stage = db.StagesBuyHouse.Find(ID);
+            stage.State = 1;
+            db.SaveChanges();
+            return Content("<script >alert('删除成功');window.open('" + Url.Content("/SellHouse/UserStagesBuy") + "', '_self')</script >", "text/html");
+        }
+        public ActionResult UserStagesBuyBack(int ID)
+        {
+            StagesBuyHouse stage = db.StagesBuyHouse.Find(ID);
+            stage.State = 0;
+            db.SaveChanges();
+            return Content("<script >alert('恢复成功');window.open('" + Url.Content("/SellHouse/UserStagesBuy") + "', '_self')</script >", "text/html");
         }
     }
 }

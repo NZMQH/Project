@@ -19,8 +19,14 @@
 
 
 
-<br />
-<h2 style="text-align:center;">个人信息</h2>
+@*<br />
+<h2 style="text-align:center;">个人信息</h2>*@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/UI1/Index?UserLogin=@user.UserLogin">首页</a></li>
+        <li class="breadcrumb-item active" aria-current="page">个人信息</li>
+    </ol>
+</nav>
 <div style="margin-top:5%;">
     <form action="/Personal/Index" method="post" id="EditForm">
         <div class="form-group row" style="width:50%;margin:0px auto;margin-top:1%;">

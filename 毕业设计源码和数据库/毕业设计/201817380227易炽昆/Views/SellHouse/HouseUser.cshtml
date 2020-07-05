@@ -75,6 +75,12 @@
         if (sellHouse.BuyType == 0 && buyhouse != null)
         {
             <div class="form-group row">
+                <label class="col-sm-2 col-form-label">购买类型：</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" readonly value="全款">
+                </div>
+            </div>
+            <div class="form-group row">
                 <label for="UserName" class="col-sm-2 col-form-label">客户：</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" readonly value="@buyhouse.User.UserName" name="UserName">
@@ -94,6 +100,12 @@
         }
         else if (sellHouse.BuyType == 1 && stagesBuy != null)
         {
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">购买类型：</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" readonly value="分期">
+                </div>
+            </div>
             <div class="form-group row">
                 <label for="UserName" class="col-sm-2 col-form-label">客户：</label>
                 <div class="col-sm-10">

@@ -46,8 +46,14 @@ namespace _201817380227易炽昆.Controllers
             ViewBag.list = list;
             return View();
         }
-        public ActionResult Lease()
+        /// <summary>
+        /// 用户租房信息页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult LeaseDetail(int ID)
         {
+            Lease lease = db.Lease.Find(ID);
+            ViewBag.lease = lease;
             return View();
         }
 
@@ -56,14 +62,41 @@ namespace _201817380227易炽昆.Controllers
 
 
         /// <summary>
-        /// 用户购房信息
+        /// 用户全款购房信息
         /// </summary>
         /// <returns></returns>
-        public ActionResult SellMessage(int UserID)
+        public ActionResult SellBuyMessage(int UserID)
         {
             List<BuyHouse> buyList = db.BuyHouse.Where(p => p.UserID == UserID).ToList();
-            List<StagesBuyHouse> stageBuyList = db.StagesBuyHouse.Where(p => p.UserID == UserID).ToList();
+            ViewBag.buyList = buyList;
             return View();
         }
+        public ActionResult SellBuyDetail(int ID)
+        {
+            BuyHouse buyHouse = db.BuyHouse.Find(ID);
+            ViewBag.buyHouse = buyHouse;
+            return View();
+        }
+
+
+
+        /// <summary>
+        /// 用户分期购房信息
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SellStageMessage(int UserID)
+        {
+            List<StagesBuyHouse> stagesBuyHouse = db.StagesBuyHouse.Where(p => p.UserID == UserID).ToList();
+            ViewBag.stagesBuyHouse = stagesBuyHouse;
+            return View();
+        }
+        public ActionResult SellStageDetail(int ID)
+        {
+            StagesBuyHouse stageBuyHouse = db.StagesBuyHouse.Find(ID);
+            ViewBag.stageBuyHouse = stageBuyHouse;
+            return View();
+        }
+
+
     }
 }
