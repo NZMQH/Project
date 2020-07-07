@@ -13,6 +13,30 @@ namespace _201817380227易炽昆.Controllers
         // GET: BackStage
         public ActionResult Index()
         {
+            //用户数量
+            int users = db.User.ToList().Count();
+            //出租房数量
+            int leaseHouses = db.LeaseHouse.ToList().Count();
+            //出租房订单数量
+            int leases = db.Lease.ToList().Count();
+            //出售房数量
+            int sellHouses = db.SellHouse.ToList().Count();
+            //全款订单数量
+            int buy = db.BuyHouse.ToList().Count();
+            //分期订单数量
+            int stageBuy = db.StagesBuyHouse.ToList().Count();
+            //求租信息数量
+            int request = db.RequestHouse.ToList().Count();
+
+
+            ViewBag.users = users;
+            ViewBag.leaseHouses = leaseHouses;
+            ViewBag.leases = leases;
+            ViewBag.sellHouses = sellHouses;
+            ViewBag.buy = buy;
+            ViewBag.stageBuy = stageBuy;
+            ViewBag.request = request;
+
             return View();
         }
         public ActionResult UserMsg(string UserName = "")
