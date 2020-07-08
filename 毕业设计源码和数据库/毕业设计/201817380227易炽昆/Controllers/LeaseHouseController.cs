@@ -110,6 +110,11 @@ namespace _201817380227易炽昆.Controllers
         [HttpPost]
         public ActionResult HouseUser(Lease lease)
         {
+            var test = db.Lease.Where(p => p.UserID == lease.UserID && p.LeaseID == lease.LeaseID && p.LeaseHouse.LeaseType == 1).ToList();
+            if (test.Count()>0)
+            {
+                return Content("<script >alert('该客户已租用此房屋');window.history.go(-1);</script >", "text/html");
+            }
             var startTime = lease.StartTime;
             var endTime = lease.EndTime;
             if (endTime<=startTime)
