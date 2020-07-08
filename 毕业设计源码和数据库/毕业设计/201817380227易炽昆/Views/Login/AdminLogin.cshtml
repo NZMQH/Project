@@ -33,20 +33,21 @@
         <h2>管理员登录</h2>
         <form action="/Login/AdminLogin" method="post">
             <div class="user-box">
-                <input type="text" id="AdminLogin" name="AdminLogin" required="">
+                <input type="text" id="AdminLogin" name="AdminLogin" required="" autocomplete="off">
                 <label>账号</label>
             </div>
             <div class="user-box">
                 <input type="password" id="AdminPwd" name="AdminPwd" required="">
                 <label>密码</label>
             </div>
-            @*<a href="#">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>*@
             <input type="submit" class="btn btn-primary" style="width:320px" value="管理员登录">
-            @*</a>*@
+            <a href="/Login/AdminRegister" style="width:320px;text-align:center;">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                注册
+            </a>
         </form>
     </div>
 
