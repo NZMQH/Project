@@ -83,7 +83,7 @@ namespace _201817380227易炽昆.Controllers
         public ActionResult HouseDelete(int LeaseID)
         {
             var list = db.Lease.Where(p => p.LeaseID == LeaseID).ToList();
-            if (list.Count>0)
+            if (list.Count > 0)
             {
                 return Content("<script >alert('该房间有租客存在，不能删除');window.history.go(-1);</script >", "text/html");
             }
@@ -110,21 +110,33 @@ namespace _201817380227易炽昆.Controllers
         [HttpPost]
         public ActionResult HouseUser(Lease lease)
         {
+            var user = db.User.Find(lease.UserID);
+            if (user == null)
+            {
+                return Content("<script >alert('该客户不存在');window.history.go(-1);</script >", "text/html");
+            }
             var test = db.Lease.Where(p => p.UserID == lease.UserID && p.LeaseID == lease.LeaseID && p.LeaseHouse.LeaseType == 1).ToList();
-            if (test.Count()>0)
+            if (test.Count() > 0)
             {
                 return Content("<script >alert('该客户已租用此房屋');window.history.go(-1);</script >", "text/html");
             }
             var startTime = lease.StartTime;
             var endTime = lease.EndTime;
-            if (endTime<=startTime)
+            if (endTime <= startTime)
             {
                 return Content("<script >alert('到期时间必须大于入住时间');window.history.go(-1);</script >", "text/html");
             }
             else
             {
                 var House = db.LeaseHouse.Find(lease.LeaseID);
-                House.IsLease = "是";
+                if (House.LeaseType == 0)
+                {
+                    House.IsLease = "是";
+                }
+                else if (House.LeaseType == 1)
+                {
+                    House.IsLease = "已有租客";
+                }
                 db.Lease.Add(lease);
                 db.SaveChanges();
                 return Content("<script >alert('提交成功');window.open('" + Url.Content("/LeaseHouse/Index") + "', '_self')</script >", "text/html");
@@ -146,7 +158,7 @@ namespace _201817380227易炽昆.Controllers
         {
             if (LeaseID == null)
             {
-                var list = db.Lease.Where(p=>p.LeaseHouse.LeaseType==0).ToList();
+                var list = db.Lease.Where(p => p.LeaseHouse.LeaseType == 0).ToList();
                 ViewBag.list = list;
                 return View();
             }
@@ -161,10 +173,10 @@ namespace _201817380227易炽昆.Controllers
         /// 查询已超过租用时间的信息
         /// </summary>
         /// <returns></returns>
-        public ActionResult Overtime(string Position="")
+        public ActionResult Overtime(string Position = "")
         {
             DateTime nowTime = DateTime.Now;
-            var list = db.Lease.Where(p => (p.EndTime < nowTime  && p.LeaseHouse.Position == Position && p.RentingState==0) || (p.EndTime < nowTime && p.LeaseHouse.Position.Contains(Position) && p.RentingState == 0)).ToList();
+            var list = db.Lease.Where(p => (p.EndTime < nowTime && p.LeaseHouse.Position == Position && p.RentingState == 0) || (p.EndTime < nowTime && p.LeaseHouse.Position.Contains(Position) && p.RentingState == 0)).ToList();
             ViewBag.list = list;
             return View();
         }
@@ -199,7 +211,7 @@ namespace _201817380227易炽昆.Controllers
             {
                 return Content("<script >alert('到期时间必须大于入住时间');window.history.go(-1);</script >", "text/html");
             }
-            else if(endTime<nowTime)
+            else if (endTime < nowTime)
             {
                 Lease lea = db.Lease.Find(lease.ID);
                 lea.Time = lease.Time;

@@ -154,6 +154,11 @@ namespace _201817380227易炽昆.Controllers
         [HttpPost]
         public ActionResult HouseUser(BuyHouse buyHouse)
         {
+            var user = db.User.Find(buyHouse.UserID);
+            if (user == null)
+            {
+                return Content("<script >alert('该客户不存在');window.history.go(-1);</script >", "text/html");
+            }
             SellHouse sell = db.SellHouse.Find(buyHouse.SellID);
             sell.BuyType = 0;
             sell.IsSell = "是";
@@ -178,6 +183,11 @@ namespace _201817380227易炽昆.Controllers
         [HttpPost]
         public ActionResult HouseUser1(StagesBuyHouse stagebuy)
         {
+            var user = db.User.Find(stagebuy.UserID);
+            if (user == null)
+            {
+                return Content("<script >alert('该客户不存在');window.history.go(-1);</script >", "text/html");
+            }
             SellHouse sell = db.SellHouse.Find(stagebuy.SellID);
             sell.BuyType = 1;
             sell.IsSell = "是";
