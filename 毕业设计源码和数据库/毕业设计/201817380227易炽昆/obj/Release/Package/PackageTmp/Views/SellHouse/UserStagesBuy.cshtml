@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "UserStagesBuy";
+    Layout = "~/Views/BackstageView.cshtml";
+}
+
+@using _201817380227易炽昆.Models
+@{
+    List<StagesBuyHouse> list = ViewBag.list as List<StagesBuyHouse>;
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/BackStage/Index">首页</a></li>
+        <li class="breadcrumb-item"><a href="#">出售房屋管理</a></li>
+        <li class="breadcrumb-item active" aria-current="page">分期买房</li>
+    </ol>
+</nav>
+@*<div class="grid">
+    <div class="grid-cell-3">
+        <form action="/SellHouse/UserBuy">
+            <div class="form-group form-inline" style="margin-left:10%;margin-top:1%;">
+                <label style="font-size:18px">搜索：</label>
+                <input type="text" name="Position" style="width:200px" class="form-control" placeholder="请输入位置" />
+                <input type="submit" value="搜 索" class="btn btn-info" />
+            </div>
+        </form>
+    </div>
+</div>*@
+<div class="grid row" style="margin:0px 0px">
+    <form action="/SellHouse/UserStagesBuy" method="post">
+        <div style="width:500px;margin-top:1%;text-align:center;" class="grid-cell-3">
+            <input type="submit" class="btn btn-info" value="查询已删除信息" />
+        </div>
+    </form>
+    <form action="/SellHouse/UserStagesBuy">
+        <div class="form-group form-inline grid-cell-3" style="width:500px;margin-left:50%;margin-top:1%;">
+            <label style="font-size:18px">搜索：</label>
+            <input type="text" name="Position" style="width:200px" class="form-control" placeholder="请输入位置" />
+            <input type="submit" value="搜 索" class="btn btn-info" />
+        </div>
+    </form>
+</div>
+<br />
+<table class="table table-hover" border="1" style="text-align:center;width:98%;margin-left:1%;">
+    <tr>
+        <th>房屋ID</th>
+        <th>位置</th>
+        <th>面积</th>
+        <th>类型</th>
+        <th>价格</th>
+        <th>客户</th>
+        <th>客户电话</th>
+        <th>中介人</th>
+        <th>中介人电话</th>
+        <th>操作</th>
+    </tr>
+    @foreach (var item in list)
+    {
+        <tr>
+            <td>@item.SellHouse.SellID</td>
+            <td>@item.SellHouse.Position</td>
+            <td>@item.SellHouse.Area</td>
+            <td>@item.SellHouse.HouseType</td>
+            <td>@item.SellHouse.SellPrice</td>
+            <td>@item.User.UserName</td>
+            <td>@item.User.UserPhone</td>
+            <td>@item.Admin.AdminName</td>
+            <td>@item.Admin.AdminPhone</td>
+            <td>
+                <a href="/SellHouse/UserStagesBuySee?ID=@item.ID" class="btn btn-info">查看</a>
+                @if (item.State == 0)
+                {
+                    <a href="/SellHouse/UserStagesBuyEdit?ID=@item.ID" class="btn btn-info">修改</a>
+                    <a href="/SellHouse/UserStagesBuyDelete?ID=@item.ID" onclick="return confirm('确定要删除吗？')" class="btn btn-primary">删除</a>
+                }
+                else
+                {
+                    <a href="/SellHouse/UserStagesBuyBack?ID=@item.ID" onclick="return confirm('确定要恢复该数据吗？')" class="btn btn-primary">恢复</a>
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+

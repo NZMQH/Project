@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0097)https://www.17sucai.com/preview/806169/2020-04-18/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Required meta tags -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="~/Content/UI/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/UI/css/main.css" rel="stylesheet" />
+    <link href="~/Content/UI/css/animate.css" rel="stylesheet" />
+    <link href="~/Content/UI/css/font-icon.css" rel="stylesheet" />
+    <title>房屋中介</title>
+</head>
+<body>
+    <!--导航-->
+    <nav class="navbar navbar-expand-lg navbar-light nav-color-nav  navbar-lk text-dark">
+        <div class="container">
+            <a class="navbar-brand xiyuan" href="/UI1/Index">
+                <img src="~/Content/UI/img/logo.png" alt=""><span style="font-family:STXingkai;font-size:22px;">&nbsp;&nbsp;Security房屋中介</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nabmune" aria-controls="nabmune" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="nabmune">
+                <ul class="navbar-nav nav-color ">
+                    <li class="nav-item active ">
+                        @using _201817380227易炽昆.Models;
+                        @{
+                            User user = Session["User"] as User;
+                        }
+                        @if (user == null)
+                        {
+                            <a class="nav-link" href="/UI1/Index">首页 <span class="sr-only">(current)</span></a>
+                        }
+                        else
+                        {
+                            <a class="nav-link" href="/UI1/Index?UserLogin=@user.UserLogin">首页 <span class="sr-only">(current)</span></a>
+                        }
+
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/UI1/Lease">租房</a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/UI1/Sell">购房</a>
+                    </li>
+                    <li class="nav-item ">
+                        @if (user==null)
+                        {
+
+                        }
+                        else
+                        {
+                            <a class="nav-link" href="/Personal/Index">个人中心</a>
+                        }
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <a name="Top"></a>
+    <!--内容-->
+    <div>
+        @RenderBody()
+    </div>
+    <style>
+        #mao{
+            position: fixed;
+            right: 2%;
+            bottom: 6%;
+            z-index: 999;
+            color: #ff773b;
+        }
+        #mao:hover{
+            color:#a14eea;
+            transition-duration:0.5s;
+        }
+    </style>
+    <a href="#Top" id="mao" title="返回顶部">
+        <svg width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-arrow-up-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+            <path fill-rule="evenodd" d="M4.646 8.354a.5.5 0 0 0 .708 0L8 5.707l2.646 2.647a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 0 0 0 .708z" />
+            <path fill-rule="evenodd" d="M8 11.5a.5.5 0 0 0 .5-.5V6a.5.5 0 0 0-1 0v5a.5.5 0 0 0 .5.5z" />
+        </svg>
+    </a>
+    <!--底部-->
+    <footer id="footer">
+        <div class="container">
+
+
+            <div class="row">
+
+            </div>
+        </div>
+        <div class="foot-nav text-center">
+            <div class="copy-right"><span>Copyright © xxxxxxxx 2018 </span></div>
+            <div class="bottom-nav">
+                <span>ICP备xxxx号 </span>
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="~/Content/UI/js/jquery.js"></script>
+    <script src="~/Content/UI/js/bootstrap.js"></script>
+    <script src="~/Content/UI/js/wow.js"></script>
+    <script>new WOW().init();//把wow初始化</script>
+    <script>
+        window.onload = function () {
+            var art_list = document.getElementById('box');
+            var art_list_a = art_list.getElementsByTagName('a');
+
+            for (var i = 0; i < art_list_a.length; i++) {
+
+                var aclick = art_list_a[i];
+
+                aclick.onclick = function () {
+
+                    for (var j = 0; j < art_list_a.length; j++) {
+                        art_list_a[j].className = '';
+                        art_list_a[j].style.color = '#000000';
+                    }
+                    this.className = 'actives';
+                    this.style.color = '#ffffff';
+                };
+
+
+            }
+
+        }</script>
+</body>
+</html>

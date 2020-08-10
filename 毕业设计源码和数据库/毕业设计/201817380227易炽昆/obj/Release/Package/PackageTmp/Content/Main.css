@@ -1,0 +1,157 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    text-decoration: none;
+}
+
+#con {
+    /*width: 1550px;*/
+    width: 100%;
+    height: auto;
+    margin: 0px auto;
+    /*border: 1px solid red;*/
+}
+
+/*.grid_cell_1,.grid_cell_4{
+	border: 1px solid red;
+}*/
+
+/*头部样式*/
+#top {
+    /*width: 1550px;*/
+    width: 100%;
+    height: 75px;
+    background-color: #5a5a5a;
+}
+
+.top_left {
+    color:;
+    padding-left: 50px;
+}
+
+.top_left_txt1 {
+    font-family: FZShuTi;
+    font-size: 45px;
+    line-height: 40px;
+    color: #009688;
+}
+
+.top_left_txt2 {
+    font-family: FZShuTi;
+    color: #009688;
+    font-size: 26px;
+    line-height: 75px;
+}
+
+.top_center {
+    height: 75px;
+    line-height: 75px;
+    color: white;
+    font-size: 26px;
+    text-align: center;
+}
+
+.top_right {
+    height: 75px;
+    line-height: 75px;
+}
+
+.UserImg {
+    border-radius: 50%;
+    border: 1px solid lightskyblue;
+    vertical-align: middle;
+}
+
+.userName a {
+    color: #e8e6e6;
+    font-size: 20px;
+}
+
+    .userName a:hover {
+        color: white;
+    }
+/*中间样式*/
+#content {
+    /*width: 1550px;*/
+    width: 100%;
+    height: 887px;
+}
+
+.content_left {
+    background-color: #393838;
+    width: 60px;
+}
+
+    .content_left > ul {
+        height: 60px;
+    }
+
+    .content_left ul li a {
+        color: white;
+        opacity: 0.6;
+        font-size: 16px;
+        display: block;
+        height: 60px;
+        line-height: 60px;
+        padding-left: 40px;
+        font-family: "微软雅黑";
+    }
+
+        .content_left ul li a:hover {
+            color: white;
+            opacity: 1;
+            border-left: 5px solid #5FB878;
+        }
+.content_right{
+    max-width:90%;
+}
+.menu_1 {
+    display: none;
+}
+/*#menu .menu_txts{
+	position: relative;
+}*/
+/*#menu li ul{
+	position: absolute;
+	border: 1px solid gainsboro;
+	border-top: none;
+	border: 1px solid pink;
+	
+}*/
+#menu li ul li {
+    background-color: #4f4f4f;
+}
+
+    #menu li ul li a {
+        display: block;
+        padding-left: 60px;
+    }
+
+        #menu li ul li a:hover {
+        }
+
+
+
+
+
+
+
+
+
+
+
+/*底部样式*/
+#footer {
+    /*width: 1550px;*/
+    width: 100%;
+    height: 45px;
+    background-color: #5a5a5a;
+    color: white;
+    font-size: 15px;
+    line-height: 45px;
+}
+
+    #footer span {
+        margin-left: 20px;
+    }

@@ -49,6 +49,8 @@ namespace _201817380227易炽昆.Controllers
             }
             else
             {
+                db.User.Add(user);
+                db.SaveChanges();
                 return Content("<script >alert('注册成功，跳转到登录页面');window.open('" + Url.Content("/Login/Index") + "', '_self')</script >", "text/html");
                 //return RedirectToAction("Index", "Login");
             }

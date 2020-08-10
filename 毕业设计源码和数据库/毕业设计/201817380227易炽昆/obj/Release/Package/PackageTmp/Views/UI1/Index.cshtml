@@ -1,0 +1,475 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/UI1.cshtml";
+}
+@using _201817380227易炽昆.Models
+@{
+    User user = Session["User"] as User;
+    List<LeaseHouse> lease = ViewBag.lease;
+    List<SellHouse> sell = ViewBag.sell;
+    HomeDBEntities db = new HomeDBEntities();
+    int i = 1;
+    int j = 1;
+}
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="container">
+                <div class="row wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class=""></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2" class="active"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img src="~/Content/UI/img/1.png" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="~/Content/UI/img/2.png" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item active">
+                                <img src="~/Content/UI/img/3.png" class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-2 wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                    <div class="col-md-12 bgc">
+                        <div class="new">
+                            <span><i class="el-certificate"></i></span>
+
+                            <span>租房</span>
+                            <small>Renting</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-2 ">
+
+
+
+                    <ul class="list-unstyled art-list">
+                        @foreach (var item in lease)
+                        {
+                            Picture pic = db.Picture.Where(p => p.LeaseID == item.LeaseID).FirstOrDefault();
+                            string str = "../../Image/" + pic.PictureName;
+                            <li class="media wow bounceInLeft" style="visibility: visible; animation-name: bounceInLeft;">
+                                <div class="art-img">
+                                    <img class="mr-3" src="@str" alt="Generic placeholder image">
+                                </div>
+                                <div class="media-body art-content">
+                                    <h5 class="mt-0 mb-1"><a href="/UI1/LeaseHouseMsg?LeaseID=@item.LeaseID">@item.Position</a></h5>
+                                    <p>@item.Describe</p>
+                                    <ul>
+                                        <li><a title="@item.Area 平方米"><i class="el-time"></i>@item.Area ㎡</a></li>
+                                        <li class="d-none d-sm-none d-md-none d-lg-block"><a href="#" title="联系人"><i class="el-user"></i>@item.Contacts</a></li>
+                                        <li><a title=""><i class="房型"></i>@item.HouseType</a></li>
+                                        <li>
+                                            <a title="价格">
+                                                <i class="el-eye-open"></i>
+                                                @string.Format("{0:C2}", item.Price)/月
+                                            </a>
+                                        </li>
+                                        <li class="d-none d-sm-none d-md-none d-lg-block">
+                                            <a href="#l" title="租房类型">
+                                                <i class="el-th-list"></i>
+                                                @if (item.LeaseType == 0)
+                                                {
+                                                    @:整租
+                                                }
+                                                else
+                                                {
+                                                    @:合租
+                                                }
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            i++;
+                            if (i > 3)
+                            {
+                                break;
+                            }
+                        }
+
+
+
+
+                        @*<li class="media wow bounceInLeft" style="visibility: visible; animation-name: bounceInLeft;">
+                                <div class="art-img">
+                                    <img class="mr-3" src="~/Content/UI/img/8.jpg" alt="Generic placeholder image">
+                                </div>
+                                <div class="media-body art-content">
+                                    <h5 class="mt-0 mb-1"><a href="#">js前端实现模糊查询</a></h5>
+                                    <p>js前端实现模糊查询对于模糊查询，一般都是传关键字给后端，由后端来做。但是有时候一些轻量级的列表前端来做可以减少ajax请求，在一定程度上提高用户体验。废话不多...</p>
+                                    <ul>
+                                        <li><a title="惜缘2019-04-03发表"><i class="el-time"></i>2019-04-03</a></li>
+                                        <li class="d-none d-sm-none d-md-none d-lg-block"><a href="#" title="作者： 惜缘"><i class="el-user"></i>惜缘</a></li>
+                                        <li><a title="已有 2 个赞"><i class="el-heart"></i>2</a></li>
+                                        <li><a title="已有 1次浏览"><i class="el-eye-open"></i>1</a></li>
+                                        <li class="d-none d-sm-none d-md-none d-lg-block"><a href="#" title="查看分类"><i class="el-th-list"></i>生活</a></li>
+                                    </ul>
+                                </div>
+                            </li>*@
+
+                    </ul>
+
+                </div>
+
+                <div class="row mt-2 wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                    <div class="col-md-12 bgc">
+                        <div class="new">
+                            <span><i class="el-certificate"></i></span>
+
+                            <span>购房</span>
+                            <small>Purchase</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2 ">
+
+
+
+                    <ul class="list-unstyled art-list">
+                        @foreach (var item in sell)
+                        {
+                            Picture pic = db.Picture.Where(p => p.SellID == item.SellID).FirstOrDefault();
+                            string str = "../../Image/" + pic.PictureName;
+                            <li class="media wow bounceInLeft" style="visibility: visible; animation-name: bounceInLeft;">
+                                <div class="art-img">
+                                    <img class="mr-3" src="@str" alt="Generic placeholder image">
+                                </div>
+                                <div class="media-body art-content">
+                                    <h5 class="mt-0 mb-1"><a href="/UI1/SellHouseMsg?SellID=@item.SellID">@item.Position</a></h5>
+                                    <p>@item.Describe</p>
+                                    <ul>
+                                        <li><a title="@item.Area 平方米"><i class="el-time"></i>@item.Area ㎡</a></li>
+                                        <li class="d-none d-sm-none d-md-none d-lg-block"><a href="#" title="联系人"><i class="el-user"></i>@item.Contacts</a></li>
+                                        <li><a title=""><i class="房型"></i>@item.HouseType</a></li>
+                                        <li>
+                                            <a title="价格">
+                                                <i class="el-eye-open"></i>
+                                                @string.Format("{0:C2}", item.SellPrice)
+                                            </a>
+                                        </li>
+                                        <li class="d-none d-sm-none d-md-none d-lg-block">
+                                            <a href="#l" title="购买方式">
+                                                <i class="el-th-list"></i>全款/分期
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            j++;
+                            if (j > 3)
+                            {
+                                break;
+                            }
+                        }
+                    </ul>
+
+                </div>
+                <div class="row mt-2 wow fadeInDown" style="visibility: visible; animation-name: fadeInDown;">
+                    <div class="col-md-12 bgc">
+                        <div class="new">
+                            <span><i class="el-certificate"></i></span>
+
+                            <span>大房子</span>
+                            <small>Area</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ">
+
+                    <div class="container mt-4">
+                        <div class="row">
+                            @{
+                                List<SellHouse> AreaList = db.SellHouse.Where(p=>p.IsSell=="否").OrderByDescending(p => p.Area).ToList();
+                                int area = 0;
+                            }
+                            @foreach (var item in AreaList)
+                            {
+                                Picture pic1 = db.Picture.Where(p => p.SellID == item.SellID).FirstOrDefault();
+                                if (pic1 == null)
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                   string str1 = "../../Image/" + pic1.PictureName;
+                                    <div class="col-md-4 bgc mb-4 ">
+                                        <div class="card mb-4 box-shadow  mt-4">
+                                            <div class="showimg">
+                                                <img class="card-img-top" style=" width: 100%; display: block;" src="@str1" data-holder-rendered="true">
+                                            </div>
+
+                                            <div class="card-body">
+                                                <a href="/UI1/SellHouseMsg?SellID=@item.SellID">@item.Position</a>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="btn-group showtitle">
+                                                        <i class="el-time"></i>@item.Area ㎡
+                                                    </div>
+                                                    <small class="text-muted"><i class="el-fire"></i>@string.Format("{0:C2}", item.SellPrice)</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    area++;
+                                    if (area == 3)
+                                    {
+                                        break;
+                                    }
+
+                                }
+
+                            }
+
+
+                            @*<div class="col-md-4 bgc mb-4">
+                                    <div class="card mb-4 box-shadow mt-4">
+                                        <div class="showimg showtitle">
+                                            <img class="card-img-top" style=" width: 100%; display: block;" src="~/Content/UI/img/9.jpg" data-holder-rendered="true">
+                                        </div>
+                                        <div class="card-body">
+                                            <a href="#">测试图文</a>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="btn-group showtitle">
+                                                    <i class="el-time"></i>2019-04-03
+                                                </div>
+                                                <small class="text-muted">9 mins</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 bgc mb-4">
+                                    <div class="card  box-shadow mt-4">
+                                        <div class="showimg">
+                                            <img class="card-img-top" style=" width: 100%; display: block;" src="~/Content/UI/img/9.jpg" data-holder-rendered="true">
+                                        </div>
+                                        <div class="card-body">
+                                            <a href="#">测试图文</a>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="btn-group showtitle">
+                                                    <i class="el-time"></i>2019-04-03
+                                                </div>
+                                                <small class="text-muted">9 mins</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <style>
+            .LoginA {
+                text-decoration: none;
+            }
+
+                .LoginA:hover {
+                    color: darkorange;
+                    transition-duration: 0.5s;
+                }
+        </style>
+
+
+        <!--右边-->
+        <div class="col-md-4 " style="position:relative" >
+            <div class="container" style="position:sticky;top:0;">
+
+                @if (user == null)
+                {
+                    <div class="row bgc mt-5 right-author">
+                        <div class="col-md-12 ">
+
+                            <div class="auth-name">
+                                <p style="font-size:16px">
+                                    <a href="/Login/Index" class="LoginA">登录</a>
+                                    &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                    <a href="/Login/Register" class="LoginA">注册</a>
+                                </p>
+                            </div>
+                            <div class="auth-info">
+                                <ul>
+                                    @*<li><strong>2</strong><span>今日访问量</span></li>
+                                        <li><strong>2</strong><span>今日访问量</span></li>
+                                        <li><strong>2</strong><span>今日访问量</span></li>*@
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row bgc mt-5 right-author">
+                        <div class="col-md-12 ">
+
+                            <div class="auth-name">
+                                <span>欢迎~：@user.UserName</span>
+                                <p style="font-size:14px;"><a href="/Personal/Index" class="userMsg">个人中心</a> <a href="/UI1/Index" onclick="return confirm('确定注销吗？')" class="LoginA">注销</a></p>
+                            </div>
+                            <div class="auth-info">
+                                <ul>
+                                    @{
+                                        List<Lease> leaseList = db.Lease.Where(p => p.UserID == user.UserID).ToList();
+                                        List<BuyHouse> buyList = db.BuyHouse.Where(p => p.UserID == user.UserID).ToList();
+                                        List<StagesBuyHouse> stagesBuyList = db.StagesBuyHouse.Where(p => p.UserID == user.UserID).ToList();
+                                        var num1 = leaseList.Count();
+                                        var num2 = buyList.Count();
+                                        var num3 = stagesBuyList.Count();
+                                        var num = num1 + num2 + num3;
+                                        var numBuy = num2 + num3;
+                                    }
+                                    <li><strong>@num</strong><span>我的房屋记录</span></li>
+                                    <li><strong>@num1</strong><span>租房信息</span></li>
+                                    <li><strong>@numBuy</strong><span>购房信息</span></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+
+
+                <div class="row bgc mt-4">
+                    <div class="new new-right">
+                        <span><i class="el-arrow-up"></i></span>
+                        <span>实惠租房</span>
+                        <small>Renting</small>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="notice">
+                            <ul>
+                                @{
+                                    List<LeaseHouse> list = db.LeaseHouse.OrderBy(p => p.Price).ToList();
+                                    int Leasecount = 0;
+                                }
+                                @foreach (var item in list)
+                                {
+                                    Picture pic = db.Picture.Where(p => p.LeaseID == item.LeaseID).FirstOrDefault();
+                                    if (pic==null)
+                                    {
+                                        continue;
+                                    }
+                                    <li><a href="/UI1/LeaseHouseMsg?LeaseID=@item.LeaseID">@item.Position (@string.Format("{0:C2}", item.Price)/月)</a></li>
+                                    Leasecount++;
+                                    if (Leasecount == 4)
+                                    {
+                                        break;
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="row bgc mt-3">
+                    <div class="new new-right">
+                        <span><i class="el-headphones"></i>优惠购房</span>
+                        <small>Purchase</small>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="tab-pane" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <ul class="art-sort">
+                                @{
+                                    List<SellHouse> sellList = db.SellHouse.OrderBy(p => p.SellPrice).ToList();
+                                    int sellCount = 1;
+                                }
+                                @foreach (var item in sellList)
+                                {
+                                    Picture pic = db.Picture.Where(p => p.SellID == item.SellID).FirstOrDefault();
+                                    if (pic==null)
+                                    {
+                                        continue;
+                                    }
+                                    <li>
+                                        <span>@sellCount</span>
+                                        <a href="/UI1/SellHouseMsg?SellID=@item.SellID">
+                                            @item.Position
+                                            <b>@string.Format("{0:C2}", item.SellPrice)</b>
+                                        </a>
+                                    </li>
+                                    sellCount++;
+                                    if (sellCount == 6)
+                                    {
+                                        break;
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row bgc mt-5">
+                    <div class="new new-right">
+                        <span><i class="el-paper-clip"></i>链接</span>
+                        <small>Friend Links</small>
+                    </div>
+                    <div class="col-md-12 ">
+                        <ul class="links">
+                            <li><a href="/UI1/Index">首页</a></li>
+                            <li><a href="/UI1/Lease">租房</a></li>
+                            <li><a href="/UI1/Sell">购房</a></li>
+                            <li><a href="https://www.baidu.com">百度一下</a></li>
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    window.onload = function () {
+        var art_list = document.getElementById('box');
+        var art_list_a = art_list.getElementsByTagName('a');
+
+        for (var i = 0; i < art_list_a.length; i++) {
+
+            var aclick = art_list_a[i];
+
+            aclick.onclick = function () {
+
+                for (var j = 0; j < art_list_a.length; j++) {
+                    art_list_a[j].className = '';
+                    art_list_a[j].style.color = '#000000';
+                }
+                this.className = 'actives';
+                this.style.color = '#ffffff';
+            };
+
+
+        }
+
+    }</script>
+
+
+

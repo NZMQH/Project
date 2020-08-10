@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "客户信息管理";
+    Layout = "~/Views/BackstageView.cshtml";
+}
+@using _201817380227易炽昆.Models
+@{
+    List<User> list = ViewBag.list;
+}
+
+@* 面包屑导航 *@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/BackStage/Index">首页</a></li>
+        <li class="breadcrumb-item"><a href="#">客户信息</a></li>
+        <li class="breadcrumb-item active" aria-current="page">客户信息管理</li>
+    </ol>
+</nav>
+<div class="grid row" style="margin:0px 0px">
+    <form action="/BackStage/UserMsg" method="post">
+        <div style="width:500px;margin-top:1%;text-align:center;" class="grid-cell-3">
+            <input type="submit" class="btn btn-info" value="查询已删除客户" />
+        </div>
+    </form>
+    <form action="/BackStage/UserMsg">
+        <div class="form-group form-inline grid-cell-3" style="width:500px;margin-left:50%;margin-top:1%;">
+            <label style="font-size:18px">搜索：</label>
+            <input type="text" name="UserName" style="width:200px" class="form-control" placeholder="请输入用户名" />
+            <input type="submit" value="搜 索" class="btn btn-info" />
+        </div>
+    </form>
+</div>
+<br />
+<table class="table table-hover" border="1" style="text-align:center;width:94%;margin-left:3%;">
+    <tr style="font-size:20px;font-weight:bolder;">
+        <td>ID</td>
+        <td>用户名</td>
+        <td>账号</td>
+        <td>密码</td>
+        <td>性别</td>
+        <td>年龄</td>
+        <td>手机号</td>
+        <td>状态</td>
+        <td>操作</td>
+    </tr>
+    @foreach (var item in list)
+    {
+        <tr style="font-size:16px;line-height:40px">
+            <td id="UserID">@item.UserID</td>
+            <td>@item.UserName</td>
+            <td>@item.UserLogin</td>
+            <td>@item.UserPwd</td>
+            <td>@item.UserSex</td>
+            <td>@item.UserAge</td>
+            <td>@item.UserPhone</td>
+            <td>
+                @if (item.State == 0)
+                {
+                    @:正常
+                }
+                else
+                {
+                    @:注销
+                }
+            </td>
+            <td>
+
+                @if (item.State == 1)
+                {
+                    <a href="/BackStage/UserSee?UserID=@item.UserID" id="UserSee" class="btn btn-info">查看</a>
+                    <a href="/BackStage/UserEdit?UserID=@item.UserID" class="btn btn-info">编辑</a>
+                    <a href="#" class="btn btn-primary">已删</a>
+                }
+                else
+                {
+                    <a href="/BackStage/UserSee?UserID=@item.UserID" id="UserSee" class="btn btn-info">查看</a>
+                    <a href="/BackStage/UserEdit?UserID=@item.UserID" class="btn btn-info">编辑</a>
+                    <a href="/BackStage/DeleteUser?UserID=@item.UserID" onclick="return confirm('确定要删除吗？')" class="btn btn-primary">删除</a>
+                }
+            </td>
+        </tr>
+    }
+</table>

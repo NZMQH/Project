@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="38d80e3406f549eebd66b6ba72c39b7b" Name="Diagram1" ZoomLevel="84">
+        <EntityTypeShape EntityType="HomeDBModel.Admin" Width="1.5" PointX="8" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeDBModel.BuyHouse" Width="1.5" PointX="0.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeDBModel.Lease" Width="1.5" PointX="10.625" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeDBModel.LeaseHouse" Width="1.5" PointX="11.375" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeDBModel.Picture" Width="1.5" PointX="7" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeDBModel.SellHouse" Width="1.5" PointX="3.625" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeDBModel.StagesBuyHouse" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeDBModel.sysdiagrams" Width="1.5" PointX="14.875" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeDBModel.User" Width="1.5" PointX="5.75" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="HomeDBModel.FK_BuyHouse_SellHouse" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeDBModel.FK_BuyHouse_User" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeDBModel.FK_Lease_LeaseHouse" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeDBModel.FK_Lease_User" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeDBModel.FK_Picture_LeaseHouse" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeDBModel.FK_Picture_SellHouse" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeDBModel.FK_StagesBuyHouse_SellHouse" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeDBModel.FK_StagesBuyHouse_User" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeDBModel.FK_Lease_Admin" />
+        <EntityTypeShape EntityType="HomeDBModel.RequestHouse" Width="1.5" PointX="14.875" PointY="4.25" />
+        <AssociationConnector Association="HomeDBModel.FK_BuyHouse_Admin" />
+        <AssociationConnector Association="HomeDBModel.FK_StagesBuyHouse_Admin" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

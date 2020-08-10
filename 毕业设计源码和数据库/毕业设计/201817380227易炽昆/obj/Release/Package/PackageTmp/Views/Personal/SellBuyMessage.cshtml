@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "SellBuyMessage";
+    Layout = "~/Views/PersonalMassage.cshtml";
+}
+
+@using _201817380227易炽昆.Models
+@{
+    List<BuyHouse> buyList = ViewBag.buyList;
+}
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Personal/Index">个人中心</a></li>
+            <li class="breadcrumb-item active" aria-current="page">全款购房记录</li>
+        </ol>
+    </nav>
+@if (buyList.Count > 0)
+{
+    <table class="table table-hover" style="width:80%;margin:0px auto;margin-top:2%;" border="1">
+        <tr style="font-weight:bolder;font-size:20px;text-align:center;">
+            <td>位置</td>
+            <td>介绍</td>
+            <td>房型</td>
+            <td>全款/分期</td>
+            <td>面积</td>
+            <td>价格</td>
+            <td>中介</td>
+            <td>中介联系电话</td>
+            <td>房东电话</td>
+            <td>操作</td>
+        </tr>
+        @foreach (var item in buyList)
+        {
+            <tr style="text-align:center;line-height:63px;">
+                <td>@item.SellHouse.Position</td>
+                <td>@item.SellHouse.Describe</td>
+                <td>@item.SellHouse.HouseType</td>
+                <td>
+                    @if (item.SellHouse.BuyType == 0)
+                    {
+                        @:全款
+                    }
+                    else
+                    {
+                        @:分期
+                    }
+                </td>
+                <td>@item.SellHouse.Area㎡</td>
+                <td>@string.Format("{0:C}", item.SellHouse.SellPrice)</td>
+                <td>@item.SellHouse.Contacts</td>
+                <td>@item.SellHouse.ContactsPhone</td>
+                <td>@item.SellHouse.HousePhone</td>
+                <td>
+                    <a href="/Personal/SellBuyDetail?ID=@item.ID" class="btn btn-primary">查看</a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p style="font-size:26px;font-weight:bolder;width:100%;text-align:center;height:813px;line-height:813px;">暂无购房记录</p>
+}

@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "LeaseHouse";
+    Layout = "~/Views/UITemplate.cshtml";
+}
+@using _201817380227易炽昆.Models;
+@{
+    List<LeaseHouse> list = ViewBag.list;
+    HomeDBEntities db = new HomeDBEntities();
+}
+<style>
+    .LeaseA {
+        color: black;
+        text-decoration: none;
+    }
+
+        .LeaseA:hover {
+            color: darkorange;
+            text-decoration: none;
+        }
+
+    .LeaseDiv:hover {
+        background-color: #dbdbdb;
+        transition-duration: 1s;
+    }
+</style>
+<div style="height: 150px;width: 80%;margin-left: 10%;border: 1px solid #f3f3f3;background-color: #f3f3f3;border-bottom: 1px solid gray;">
+    <form action="/UI/LeaseHouse">
+        <div class="grid" style="margin-top:5%;">
+            <div class="grid-cell-5">
+                租房
+            </div>
+            <div class="grid-cell-1 row">
+                <input type="text" name="Position" placeholder="请输入想租房的位置" style="width:300px" class="form-control" />
+                <input type="submit" class="btn btn-primary" value="搜索" />
+            </div>
+        </div>
+    </form>
+</div>
+<br />
+<br />
+@if (list != null && list.Count > 0)
+{
+    foreach (var item in list)
+    {
+        Picture pic = db.Picture.Where(p => p.LeaseID == item.LeaseID).FirstOrDefault();
+        if (pic == null)
+        {
+            continue;
+        }
+        <div style="width: 80%; margin-left: 10%; height: 180px;">
+            <a href="/UI/LeaseHouseMsg?LeaseID=@item.LeaseID" class="LeaseA">
+                <div class="grid LeaseDiv" style="width: 100%;">
+                    <div>
+                        <img src="~/Image/@pic.PictureName" width="300" height="150" />
+                    </div>
+                    <div class="grid-cell-3">
+                        <p style="font-weight:bolder;font-size:20px;margin-left:30px;">@item.Position</p>
+                        <span style="margin-left:30px;color:gray;">@item.HouseType</span>
+                        <span style="color:gray;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                        <span style="color:gray;">@item.Area ㎡</span>
+                        <p style="margin-left:30px;color:gray;">@item.Describe</p>
+                        <p style="margin-left:30px;color:gray;">
+                            @if (item.LeaseType == 0)
+                            {
+                                @:单人
+                            }
+                            else
+                            {
+                                @:合租
+                            }
+                        </p>
+                    </div>
+                    <div class="grid-cell-3">
+                        <div style="width:80%;height:150px;line-height:150px;margin-left:10%;text-align:center;font-size:20px">
+                            @string.Format("{0:C2}", item.Price) /月
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <hr style="width:80%;margin-left:10%;" />
+    }
+}
+else if (list == null || list.Count == 0)
+{
+    <div style="height:400px;line-height:400px;text-align:center;font-size:26px;font-weight:bolder;">
+        暂无信息
+    </div>
+}
+
+
+
+
+
+
+

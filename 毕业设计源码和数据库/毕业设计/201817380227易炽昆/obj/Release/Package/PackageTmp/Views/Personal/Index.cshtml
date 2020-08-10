@@ -1,0 +1,158 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/PersonalMassage.cshtml";
+}
+@using _201817380227易炽昆.Models
+@{
+    User user = Session["User"] as User;
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<style>
+    label.error {
+        color: red;
+    }
+</style>
+
+
+
+@*<br />
+<h2 style="text-align:center;">个人信息</h2>*@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/UI1/Index?UserLogin=@user.UserLogin">首页</a></li>
+        <li class="breadcrumb-item active" aria-current="page">个人信息</li>
+    </ol>
+</nav>
+<div style="margin-top:5%;">
+    <form action="/Personal/Index" method="post" id="EditForm">
+        <div class="form-group row" style="width:50%;margin:0px auto;margin-top:1%;">
+            <label for="UserName" class="col-sm-2 col-form-label">用户名：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" value="@user.UserName" id="UserName" name="UserName">
+            </div>
+        </div>
+        <div class="form-group row" style="width:50%;margin:0px auto;margin-top:1%;">
+            <label for="UserLogin" class="col-sm-2 col-form-label">账号：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" readonly value="@user.UserLogin" id="UserLogin" name="UserLogin">
+            </div>
+        </div>
+        <div class="form-group row" style="width:50%;margin:0px auto;margin-top:1%;">
+            <label for="UserPwd" class="col-sm-2 col-form-label">密码：</label>
+            <div class="col-sm-10 ">
+                <input type="password" class="form-control" value="@user.UserPwd" onblur="changepwd()" onfocus="changetext()" id="UserPwd" name="UserPwd">
+            </div>
+        </div>
+        <div class="form-group row" style="width:50%;margin:0px auto;margin-top:1%;">
+            <label for="UserAge" class="col-sm-2 col-form-label">年龄：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" value="@user.UserAge" id="UserAge" name="UserAge">
+            </div>
+        </div>
+        <div class="form-inline  col-lg-6" style="margin:0px auto;margin-top:1%;">
+            <label>性别：</label>
+            @if (user.UserSex == "男")
+            {
+                <input type="radio" name="UserSex" value="男" checked="checked" style="margin-left:11%;" /><span>男</span>
+                <input type="radio" name="UserSex" value="女" style="margin-left:1%;" /><span>女</span>
+            }
+            else if (user.UserSex == "女")
+            {
+                <input type="radio" name="UserSex" value="男" style="margin-left:11%;" /><span>男</span>
+                <input type="radio" name="UserSex" value="女" checked="checked" style="margin-left:1%;" /><span>女</span>
+            }
+
+        </div>
+        <div class="form-group row" style="width:50%;margin:0px auto;margin-top:1%;">
+            <label for="UserPhone" class="col-sm-2 col-form-label">电话：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" value="@user.UserPhone" id="UserPhone" name="UserPhone">
+            </div>
+        </div>
+        <div class="form-group row" style="width:50%;margin:0px auto;margin-top:1%;">
+            <div class="col-sm-10">
+                <input type="hidden" name="UserID" value="@user.UserID" />
+                <input type="hidden" name="State" value="@user.State" />
+                <input type="submit" value="修改" class="btn btn-primary" style="width:200px;" />
+            </div>
+        </div>
+    </form>
+
+
+
+    <script>
+        var pwd = document.getElementById('UserPwd');
+
+        function changetext() {
+            $("#UserPwd").attr('type', 'text');
+        }
+
+        function changepwd() {
+            $("#UserPwd").attr('type', 'password');
+        }
+
+    </script>
+
+
+
+
+
+
+    @*<form action="/" method="post">
+            <div class="form-inline  col-lg-6" style="margin:0px auto">
+                <label>用户名：</label>
+                <input type="text" name="UserName" style="width:80%;" value="@user.UserName" class="form-control" />
+            </div>
+            <div class="form-inline  col-lg-6" style="margin:0px auto">
+                <label>账号：</label>
+                <input type="text" name="UserLogin" readonly style="width:80%;" value="@user.UserLogin" class="form-control" />
+            </div>
+            <div class="form-inline  col-lg-6" style="margin:0px auto">
+                <label>密码：</label>
+                <input type="password" name="UserPwd" style="width:80%;" value="@user.UserPwd" id="Pwd" class="form-control" />
+            </div>
+            <div class="form-inline  col-lg-6" style="margin:0px auto">
+                <label>年龄：</label>
+                <input type="text" name="UserName" style="width:80%;" value="@user.UserAge" class="form-control" />
+            </div>
+            <div class="form-inline  col-lg-6" style="margin:0px auto">
+                <label>性别：</label>
+                <input type="radio" name="UserSex" value="@user.UserSex" />男
+                <input type="radio" name="UserSex" value="@user.UserSex" />女
+            </div>
+        </form>*@
+</div>
+
+
+
+<script type="text/javascript">
+    $("#EditForm").validate({
+        rules: {
+            UserName: { required: true, maxlength: 10 },
+            UserLogin: { required: true, maxlength: 20 },
+            UserPwd: { required: true, checkPwd: true },
+            UserAge: { required: true, checkAge: true },
+            UserPhone: { required: true, maxlength: 11, minlength: 11 }
+        },
+        messages: {
+            UserName: { required: "用户名不能为空", maxlength: "用户名不能超过10字" },
+            UserLogin: { required: "账号不能为空", maxlength: "账号不能超过20字符" },
+            UserPwd: { required: "密码不能为空", checkPwd: "密码组成：6-16位的字母数字组成" },
+            UserAge: { required: "年龄不能为空", checkAge: "请输入正确的年龄" },
+            UserPhone: { required: "手机号不能为空", maxlength: "请输入11位的手机号", minlength: "请输入11位的手机号" }
+        }
+    })
+
+    $.validator.addMethod("checkPwd", function (value, e) {
+        var reg = /^[A-Za-z0-9]{6,16}$/;
+        return reg.test(value);
+    })
+    $.validator.addMethod("checkAge", function (value, e) {
+        var reg = /^[0-9]{1,3}$/;
+        return reg.test(value);
+    })
+</script>

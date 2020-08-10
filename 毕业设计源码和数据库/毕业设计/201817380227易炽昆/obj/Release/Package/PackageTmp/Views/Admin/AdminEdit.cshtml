@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "AdminEdit";
+    Layout = "~/Views/BackstageView.cshtml";
+}
+@using _201817380227易炽昆.Models
+@{
+    Admin admin = Session["Admin"] as Admin;
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<link href="~/Scripts/back/css/style.default.css" rel="stylesheet" />
+<style>
+    label.error {
+        color: red;
+    }
+</style>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/BackStage/Index">首页</a></li>
+        <li class="breadcrumb-item"><a href="/Admin/Index">管理员信息</a></li>
+        <li class="breadcrumb-item active" aria-current="page">修改个人信息</li>
+    </ol>
+</nav>
+<div style="width:80%;margin-left:10%;margin-top:6%;">
+    <form action="/Admin/AdminEdit" method="post" id="AdminEdit">
+        <div class="form-group row">
+            <label for="AdminID" class="col-sm-2 col-form-label" style="color:white">ID：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" readonly value="@admin.AdminID" id="AdminID" name="AdminID">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="AdminName" class="col-sm-2 col-form-label" style="color:white">姓名：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" readonly value="@admin.AdminName" id="AdminName" name="AdminName">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="AdminLogin" class="col-sm-2 col-form-label" style="color:white">账号：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" readonly value="@admin.AdminLogin" id="AdminLogin" name="AdminLogin">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="AdminSex" class="col-sm-2 col-form-label" style="color:white">性别：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" readonly value="@admin.AdminSex" id="AdminSex" name="AdminSex">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="AdminIdentity" class="col-sm-2 col-form-label" style="color:white">身份证：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" required="required" value="@admin.AdminIdentity" id="AdminIdentity" name="AdminIdentity">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="AdminAge" class="col-sm-2 col-form-label" style="color:white">年龄：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" required="required" value="@admin.AdminAge" id="AdminAge" name="AdminAge">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="AdminPwd" class="col-sm-2 col-form-label" style="color:white">密码：</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" required="required" value="@admin.AdminPwd" id="AdminPwd" name="AdminPwd" onblur="changepwd()" onfocus="changetext()">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="AdminPhone" class="col-sm-2 col-form-label" style="color:white">电话：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" required="required" value="@admin.AdminPhone" id="AdminPhone" name="AdminPhone">
+            </div>
+            <input type="hidden" name="State" value="正常" />
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <input type="submit" value="保存" class="btn btn-info" style="width:200px;" />
+                <a href="/Admin/Index" class="btn btn-info" style="width:200px;">返回</a>
+            </div>
+        </div>
+    </form>
+
+</div>
+<script>
+    var pwd = document.getElementById('AdminPwd');
+
+    function changetext() {
+        $("#AdminPwd").attr('type', 'text');
+    }
+
+    function changepwd() {
+        $("#AdminPwd").attr('type', 'password');
+    }
+
+</script>
+<script>
+    $("#AdminEdit").validate({
+        rules: {
+            AdminPwd: { required: true, checkPwd: true },
+            AdminAge: { required: true, checkAge: true },
+            AdminPhone: { required: true, maxlength: 11, minlength: 11 },
+            AdminIdentity: { required: true, maxlength: 18, minlength: 15, checkIdentity: true }
+        },
+        messages: {
+            AdminPwd: { required: "密码不能为空", checkPwd: "密码组成：6-16位的字母数字组成" },
+            AdminAge: { required: "年龄不能为空", checkAge: "请输入正确的年龄" },
+            AdminPhone: { required: "手机号不能为空", maxlength: "请输入11位的手机号", minlength: "请输入11位的手机号" },
+            AdminIdentity: { required: "身份证不能为空", maxlength: "请输入正确的身份证", minlength: "请输入正确的身份证", }
+        }
+    })
+    $.validator.addMethod("checkPwd", function (value, e) {
+        var reg = /^[A-Za-z0-9]{6,16}$/;
+        return reg.test(value);
+    });
+    $.validator.addMethod("checkAge", function (value, e) {
+        var reg = /^[0-9]{1,3}$/;
+        return reg.test(value);
+    });
+    $.validator.addMethod("checkIdentity", function (value, e) {
+        var reg = /^[1-9]([0-9]{16}|[0-9]{13})[xX0-9]$/;
+        return reg.test(value);
+    });
+</script>

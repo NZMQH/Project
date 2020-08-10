@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Default Web Site/Security" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^E:\\大三毕业项目设计\\项目\\毕业设计源码和数据库\\毕业设计\\201817380227易炽昆\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^E:\\大三毕业项目设计\\项目\\毕业设计源码和数据库\\毕业设计\\201817380227易炽昆\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="HomeDBEntities-Web.config Connection String" description="" value="metadata=res://*/Models.HomeDB.csdl|res://*/Models.HomeDB.ssdl|res://*/Models.HomeDB.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=.;Initial Catalog=HomeDB;User ID=yck;Password=yck&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="E:\\大三毕业项目设计\\项目\\毕业设计源码和数据库\\毕业设计\\201817380227易炽昆\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='HomeDBEntities']/@connectionString" />
+  </parameter>
+</parameters>

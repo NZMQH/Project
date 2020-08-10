@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "SellPictureSee";
+    Layout = "~/Views/BackstageView.cshtml";
+}
+
+@using _201817380227易炽昆.Models
+@{
+    SellHouse sellHouse = ViewBag.sellHouse;
+    List<Picture> list = ViewBag.list;
+}
+
+@* 面包屑导航 *@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/BackStage/Index">首页</a></li>
+        <li class="breadcrumb-item"><a href="#">出售房信息</a></li>
+        <li class="breadcrumb-item"><a href="#">房屋图片管理</a></li>
+        <li class="breadcrumb-item active" aria-current="page">查看图片</li>
+    </ol>
+</nav>
+<h1 style="text-align:center;">@sellHouse.Position</h1>
+<table class="table table-hover" border="1" style="text-align:center;width:98%;margin-left:1%;">
+    <tr>
+        <th>ID</th>
+        <th>图片名</th>
+        <th>图片</th>
+        <th>操作</th>
+    </tr>
+    @foreach (var item in list)
+    {
+        <tr style="text-align:center;height:150px;line-height:150px">
+            <td>@item.ID</td>
+            <td>@item.PictureName</td>
+            <td>
+                <img src="~/Image/@item.PictureName" width="200" height="120" />
+            </td>
+            <td>
+                <a href="/Picture/SellPictureDelete?ID=@item.ID" onclick="return confirm('确定要删除吗？')" class="btn btn-primary">删除</a>
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<a href="javascript:history.back(-1)" class="btn btn-info" style="width:200px;margin-left:5%;">返回</a>
+
+

@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+
+@using _201817380227易炽昆.Models
+@{
+    User user = Session["user"] as User;
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Security房屋中介</title>
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/buju.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        #bodyall {
+            background-color: #f3f3f3;
+        }
+
+        .Hover:hover {
+            background-color: #66bbf3;
+            transition-duration: 1s;
+            border-radius: 10px;
+        }
+
+        #Head {
+            width: 100%;
+            position: fixed;
+            left: 0%;
+            top: 0%;
+            z-index:999;
+        }
+
+        #mao {
+            position: fixed;
+            right: 1%;
+            bottom: 5%;
+            z-index: 999;
+            color: #b66ae4;
+            background-color:white;
+        }
+
+            #mao:hover {
+                color: white;
+                background-color: #b110a9;
+                transition-duration: 0.5s;
+                color: white;
+            }
+    </style>
+
+</head>
+<body id="bodyall">
+    @* 头部 *@
+    <div id="head">
+        <div class="grid" id="Head" style="background-color:#3c8fd7;height:60px;text-align:center;line-height:60px;color:white;font-size:22px;font-family:KaiTi">
+            <div class="grid-cell-1">
+                <div>
+                    <img src="~/Image/Logo.png" width="64" height="48" />&nbsp;Security房屋中介
+                </div>
+            </div>
+            <div class="grid-cell-1">
+                <div>
+
+                </div>
+            </div>
+            <div class="grid grid-cell-3">
+                <div class="grid-cell-1">
+                    <a href="/UI/Index" class="Hover" style="color:white;text-decoration-line:none;display:block;">首页</a>
+                </div>
+                <div class="grid-cell-1">
+                    <a href="/UI/LeaseHouse" class="Hover" style="color:white;text-decoration-line:none;display:block;">租房</a>
+                </div>
+                <div class="grid-cell-1">
+                    <a href="/UI/SellHouse" class="Hover" style=" color: white; text-decoration-line: none; display: block;">买房</a>
+                </div>
+                <div class="grid-cell-1">
+                    <a href="/UI/RequestLease" class="Hover" style="color:white;text-decoration-line:none;display:block;">求租</a>
+                </div>
+            </div>
+            <div class="grid-cell-1">
+                <div>
+
+                </div>
+            </div>
+            @if (user == null)
+            {
+                <div class="grid-cell-2">
+                    <a href="/Login/Index" style="color: white;text-decoration-line: none;display:inline-block;width:100px;" class="Hover">登录</a>
+                    <span>&nbsp;|&nbsp;</span>
+                    <a href="/Login/Register" style="color: white;text-decoration-line: none;display:inline-block;width:100px" class="Hover">注册</a>
+                </div>
+            }
+            else
+            {
+                <div class="grid-cell-2 grid">
+                    <div class="grid-cell-1"></div>
+                    <a href="#" class="Hover grid-cell-2" style="color:white;text-decoration-line: none;display: block">个人中心</a>
+                    <a href="/UI/Index" onclick="return confirm('确定注销吗？')" class="Hover grid-cell-2" style="color:white;text-decoration-line: none;display: block">注销</a>
+                    <div class="grid-cell-1"></div>
+                </div>
+            }
+        </div>
+        <div style="height:10px">
+            <a name="Ding"></a>
+        </div>
+    </div>
+
+
+    <div style="margin-top:60px;height:auto;">
+        <div style="width:70%;margin-left:15%;">
+            <div style="width:96%;margin-left:2%;">
+                @RenderBody()
+                <a href="#Ding" id="mao" style="display:block;width:60px;height:60px;text-align:center;line-height:60px;font-size:14px;text-decoration-line:none;border-radius:5px;border:2px solid #b110a9;">返回顶部</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+
+    <style>
+        .footA {
+            color: gray;
+            text-decoration: none;
+        }
+
+            .footA:hover {
+                color: darkorange;
+                text-decoration: none;
+                transition-duration: 0.5s;
+            }
+    </style>
+
+    @* 底部 *@
+    <div id="foot"  style="margin-top:30px;">
+        @*<div style="height:450px;width:100%;background-image:url(/Image/5a52e426e5333.jpg);opacity:0.7;">*@
+        <div style="height:300px;width:100%;background-color:black;opacity:0.9;">
+            <div class="grid ">
+                @*<div class="grid-cell-2" style="width:100%;line-height:40px;height:40px;text-align:center;color:white;">版权所有</div>*@
+                <div class="grid-cell-1" style="height:300px;">
+                    <div style="width:70%;height:300px;margin-left:15%;">
+
+                    </div>
+                </div>
+                <div class="grid-cell-1" style="height:300px;">
+                    <div style="width:70%;height:300px;margin-left:15%;">
+
+                    </div>
+                </div>
+                <div class="grid-cell-1" style="height:300px;">
+                    <div style="height:260px;margin-top:30px;color:white;text-align:center;border-right:1px dashed gray">
+                        <p style="font-size:20px;">中介品质</p>
+                        <ul style="font-size:16px;">
+                            <li><a class="footA" href="#">专业团队</a></li>
+                            <br />
+                            <li><a class="footA" href="#">精装品质</a></li>
+                            <br />
+                            <li><a class="footA" href="#">五星服务</a></li>
+                            <br />
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid-cell-1" style="height:300px;">
+                    <div style="height:260px;margin-top:30px;color:white;text-align:center;border-right:1px dashed gray">
+                        <p style="font-size:20px;">关于我们</p>
+                        <ul style="font-size:16px;">
+                            <li><a class="footA" href="#">介绍</a></li>
+                            <br />
+                            <li><a class="footA" href="#">历程</a></li>
+                            <br />
+                            <li><a class="footA" href="#">文化</a></li>
+                            <br />
+                            <li><a class="footA" href="#">联系我们</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid-cell-1" style="height:300px;">
+                    <div style="height:260px;margin-top:30px;">
+                        <p style="font-size:20px;color:darkorange;text-align:center;">服务热线：17680451251</p>
+                        <p style="color:gray;margin-left:25%;">地址：湖南长沙星沙XXXX</p>
+                        <p style="color:gray;margin-left:25%;">电话：17680451251</p>
+                        <p style="color:gray;margin-left:25%;">粤ICP备xxxxxxx号</p>
+                    </div>
+                </div>
+                <div class="grid-cell-1" style="height:300px;">
+                    <div style="width:70%;height:300px;margin-left:15%;">
+
+                    </div>
+                </div>
+                <div class="grid-cell-1" style="height:300px;">
+                    <div style="width:70%;height:300px;margin-left:15%;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
